@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { stats } from '@/lib/env';
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,7 +96,7 @@ export default function TestimonialsSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Mais de 15.000 Pets Já <span className="text-blue-600">Confiaram</span> em Nós
+            Mais de {stats.petsCared.toLocaleString()} Pets Já <span className="text-blue-600">Confiaram</span> em Nós
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Veja o que nossos clientes têm a dizer sobre o cuidado que oferecemos aos seus companheiros de quatro patas

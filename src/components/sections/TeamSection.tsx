@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { stats } from '@/lib/env';
 
 export default function TeamSection() {
   const teamMembers = [
@@ -158,7 +159,7 @@ export default function TeamSection() {
               <div className="bg-gradient-to-br from-yellow-100 via-amber-50 to-orange-100 border-2 border-amber-200 rounded-2xl p-8 inline-block shadow-lg">
                 <div className="text-4xl mb-4">🏆</div>
                 <h4 className="text-2xl font-bold mb-2 text-slate-900">
-                  Mais de 15.000 Pets Já Confiaram em Nós
+                  Mais de {stats.petsCared.toLocaleString()} Pets Já Confiaram em Nós
                 </h4>
                 <p className="text-slate-600 mb-6">
                   Veja o que nossos clientes têm a dizer sobre o cuidado que oferecemos aos seus companheiros de quatro patas

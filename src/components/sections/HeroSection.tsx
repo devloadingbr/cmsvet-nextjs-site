@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Phone, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { clinic, stats } from '@/lib/env';
 
 export default function HeroSection() {
   const [isDarkMode] = useState(false);
@@ -53,7 +54,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             <Badge className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-cyan-400 text-white border-0 rounded-full hover:scale-105 transition-transform duration-300 text-sm font-semibold">
               <span className="text-lg">🐾</span>
-              <span>+15k pets</span>
+              <span>+{Math.floor(stats.petsCared / 1000)}k pets</span>
             </Badge>
             <Badge className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-400 text-white border-0 rounded-full hover:scale-105 transition-transform duration-300 text-sm font-semibold">
               <span className="text-lg">🌙</span>
@@ -61,7 +62,7 @@ export default function HeroSection() {
             </Badge>
             <Badge className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-400 text-white border-0 rounded-full hover:scale-105 transition-transform duration-300 text-sm font-semibold">
               <span className="text-lg">⭐</span>
-              <span>4.8 estrelas</span>
+              <span>{stats.rating} estrelas</span>
             </Badge>
             <Badge className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-rose-500 to-pink-400 text-white border-0 rounded-full hover:scale-105 transition-transform duration-300 text-sm font-semibold">
               <span className="text-lg">💝</span>
@@ -73,10 +74,10 @@ export default function HeroSection() {
           <div className="space-y-6 max-w-4xl mx-auto">
             <h2 className={`text-4xl lg:text-6xl font-bold ${currentTheme.text} leading-tight`}>
               Seu Pet Precisa de Cuidado?
-              <span className={`block ${currentTheme.accent} whitespace-nowrap`}>CSM Clínica Veterinária 24&nbsp;Horas</span>
+              <span className={`block ${currentTheme.accent} whitespace-nowrap`}>{clinic.name} 24&nbsp;Horas</span>
             </h2>
             <p className={`text-xl lg:text-2xl ${currentTheme.textSecondary} max-w-3xl mx-auto leading-relaxed`}>
-              Na CSM, cada pet é tratado com o amor e cuidado que ele merece. Nossa equipe especializada está aqui para cuidar da saúde e bem-estar do seu melhor amigo, com carinho e dedicação há mais de 7 anos em Curitiba.
+              {clinic.description}
             </p>
           </div>
 

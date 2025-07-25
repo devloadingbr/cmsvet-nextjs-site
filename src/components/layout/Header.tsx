@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { contact, address, clinic } from '@/lib/env';
 
 const navigationItems = [
   {
@@ -69,16 +70,16 @@ export default function Header() {
           </div>
           <div className="hidden lg:flex items-center">
             <MapPin className="w-4 h-4 mr-2" />
-            <span>Rua Julio Wischral 1099 - Uberaba, Curitiba</span>
+            <span>{address.full}</span>
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center">
               <Phone className="w-4 h-4 mr-1" />
-              <span>EMERGÊNCIAS: (41) 3077-0023</span>
+              <span>EMERGÊNCIAS: {contact.phone.primary}</span>
             </div>
             <div className="flex items-center">
               <Phone className="w-4 h-4 mr-1" />
-              <span>WhatsApp: (41) 3077-0023</span>
+              <span>WhatsApp: {contact.phone.secondary}</span>
             </div>
           </div>
         </div>
@@ -95,7 +96,7 @@ export default function Header() {
                 <div className="relative">
                   <Image
                     src="/CMS-clinica-veterinaria-logo-lg-1.webp"
-                    alt="CSM Clínica Veterinária"
+                    alt={clinic.name}
                     width={234}
                     height={78}
                     className="h-16 w-auto group-hover:scale-105 transition-transform duration-300"
@@ -149,7 +150,7 @@ export default function Header() {
                     <SheetTitle className="text-left">
                       <Image
                         src="/CMS-clinica-veterinaria-logo-lg-1.webp"
-                        alt="CSM Clínica Veterinária"
+                        alt={clinic.name}
                         width={150}
                         height={50}
                         className="h-10 w-auto"
