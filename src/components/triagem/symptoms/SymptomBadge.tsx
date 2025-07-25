@@ -43,13 +43,13 @@ export function SymptomBadge({
         'hover:scale-105 hover:shadow-lg active:scale-95',
         sizeClasses[size],
         isSelected ? [
-          'border-blue-500 bg-blue-50 text-blue-700',
-          'shadow-lg shadow-blue-200/50'
+          'border-blue-600 bg-blue-600 text-white',
+          'shadow-lg'
         ] : [
           categoryColors.border,
           categoryColors.bg,
           categoryColors.text,
-          'hover:border-blue-300 hover:bg-blue-50'
+          'hover:border-blue-600 hover:bg-blue-50'
         ],
         className
       )}

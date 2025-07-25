@@ -44,18 +44,12 @@ export default function TriageSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-blue-400"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-purple-400"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-rose-300"></div>
-      </div>
+    <section className="py-20 relative">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <span className="text-lg">🚀</span>
             <span>NOVO: Sistema de Triagem com IA</span>
           </div>
@@ -72,7 +66,7 @@ export default function TriageSection() {
 
         {/* Main CTA Card */}
         <div className="mb-16">
-          <Card className="bg-gradient-to-br from-blue-600 to-purple-600 border-0 text-white overflow-hidden relative">
+          <Card className="bg-blue-600 border-0 text-white overflow-hidden relative">
             {/* Decorative elements */}
             <div className="absolute top-4 right-4 text-6xl opacity-20">🐾</div>
             <div className="absolute bottom-4 left-4 text-4xl opacity-20">💡</div>
@@ -120,9 +114,9 @@ export default function TriageSection() {
                   <Link href="/triagem">
                     <Button 
                       size="lg" 
-                      className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl"
+                      className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
                     >
-                      🚀 Iniciar Triagem Grátis
+                      🐾 Iniciar Triagem Grátis
                     </Button>
                   </Link>
                 </div>
@@ -175,7 +169,7 @@ export default function TriageSection() {
         </div>
 
         {/* How it Works */}
-        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-8 lg:p-12">
+        <div className="border border-blue-200 rounded-2xl p-8 lg:p-12">
           <h3 className="text-3xl font-bold text-center text-slate-900 mb-8">
             Como Funciona em 4 Passos
           </h3>
@@ -225,7 +219,7 @@ export default function TriageSection() {
               <Link href="/triagem">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-6 text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl"
+                  className="bg-blue-600 hover:bg-blue-700 px-8 py-6 text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
                 >
                   🩺 Começar Triagem Agora
                 </Button>
@@ -234,7 +228,7 @@ export default function TriageSection() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="px-8 py-6 text-lg font-semibold border-2 hover:bg-blue-50"
+                className="px-8 py-6 text-lg font-semibold border-2 hover:bg-blue-50 cursor-pointer"
                 onClick={() => window.open('https://wa.me/554130770023?text=Tenho dúvidas sobre o sistema de triagem', '_blank')}
               >
                 💬 Dúvidas sobre o Sistema

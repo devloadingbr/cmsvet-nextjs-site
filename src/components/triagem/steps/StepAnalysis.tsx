@@ -139,7 +139,7 @@ export function StepAnalysis({
             </p>
           </div>
           
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
+          <div className="border border-red-200 rounded-lg p-6 max-w-md mx-auto">
             <p className="text-red-700">{error}</p>
           </div>
           
@@ -186,7 +186,7 @@ export function StepAnalysis({
             <strong>{pet.name}</strong> ({pet.age} anos) apresenta: {symptomsText}
           </p>
           {extraInfo && (
-            <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+            <div className="border-l-4 border-blue-400 p-4 rounded border border-blue-200">
               <p className="text-blue-800">
                 <strong>Informações adicionais:</strong> {extraInfo}
               </p>
@@ -210,7 +210,7 @@ export function StepAnalysis({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className={cn('p-6 rounded-lg', urgencyColors.bg)}>
+          <div className="p-6 rounded-lg border border-gray-200">
             <h3 className={cn('text-2xl font-bold mb-2', urgencyColors.text)}>
               {urgencyLabel}
             </h3>
@@ -257,7 +257,7 @@ export function StepAnalysis({
       {/* CTA Principal */}
       <Card className={cn(
         'border-2',
-        analysis.cta.urgency ? 'border-red-300 bg-red-50' : 'border-blue-300 bg-blue-50'
+        analysis.cta.urgency ? 'border-red-500' : 'border-blue-500'
       )}>
         <CardContent className="p-8 text-center">
           <div className="space-y-6">
@@ -318,7 +318,7 @@ export function StepAnalysis({
       </Card>
 
       {/* Disclaimer */}
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+      <div className="border border-gray-200 rounded-lg p-6">
         <div className="flex items-start space-x-3">
           <div className="text-xl">⚠️</div>
           <div>

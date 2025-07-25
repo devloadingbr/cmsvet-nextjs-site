@@ -77,11 +77,23 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-rose-50 via-blue-50 to-amber-50 min-h-screen relative`}
       >
-        <Header />
-        {children}
-        <Footer />
+        {/* Global Background Pattern */}
+        <div className="fixed inset-0 opacity-5 pointer-events-none">
+          <div className="absolute top-10 left-4 sm:top-20 sm:left-20 w-16 h-16 sm:w-32 sm:h-32 bg-cyan-500 transform rotate-45"></div>
+          <div className="absolute top-32 right-4 sm:top-40 sm:right-32 w-12 h-12 sm:w-24 sm:h-24 bg-orange-500"></div>
+          <div className="absolute bottom-32 left-1/4 sm:left-1/3 w-20 h-20 sm:w-40 sm:h-40 bg-violet-500 rounded-full"></div>
+          <div className="absolute bottom-20 right-4 sm:right-20 w-14 h-14 sm:w-28 sm:h-28 bg-pink-500 transform rotate-12"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-48 sm:h-48 bg-cyan-400 rounded-full"></div>
+          <div className="absolute top-1/4 right-1/4 w-10 h-10 sm:w-20 sm:h-20 bg-orange-400 transform rotate-45"></div>
+        </div>
+
+        <div className="relative z-10">
+          <Header />
+          {children}
+          <Footer />
+        </div>
         
         {/* Schema.org Structured Data */}
         <script

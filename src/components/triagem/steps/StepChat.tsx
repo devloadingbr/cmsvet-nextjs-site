@@ -185,7 +185,7 @@ export function StepChat({
             {messages.length === 0 && (
               <div className="flex justify-start">
                 <div className="max-w-xs lg:max-w-md">
-                  <div className="bg-blue-100 text-blue-800 rounded-lg p-3">
+                  <div className="text-blue-800 rounded-lg p-3 border border-blue-200">
                     <p className="text-sm">
                       Olá! Sou a IA veterinária da CSM. Acabei de analisar {pet.name} e posso esclarecer dúvidas específicas sobre o caso. 
                       Você tem {questionsRemaining} perguntas disponíveis. Como posso ajudar?
@@ -215,7 +215,7 @@ export function StepChat({
                     'rounded-lg p-3 break-words',
                     message.role === 'user' 
                       ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-100 text-gray-800'
+                      : 'border border-gray-200 text-gray-800'
                   )}>
                     <p className="text-sm leading-relaxed">
                       {message.content}
@@ -235,7 +235,7 @@ export function StepChat({
             {isLoading && (
               <div className="flex justify-start">
                 <div className="max-w-xs lg:max-w-md">
-                  <div className="bg-gray-100 rounded-lg p-3">
+                  <div className="border border-gray-200 rounded-lg p-3">
                     <div className="flex space-x-2">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse delay-75"></div>
@@ -255,7 +255,7 @@ export function StepChat({
       <div className="space-y-4">
         {/* Error */}
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+          <div className="p-3 border border-red-500 rounded-lg text-red-700 text-sm">
             {error}
           </div>
         )}
@@ -303,7 +303,7 @@ export function StepChat({
                 <button
                   key={index}
                   onClick={() => setCurrentMessage(question)}
-                  className="px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                  className="px-3 py-2 text-sm border border-gray-200 hover:border-gray-300 rounded-lg transition-colors"
                   disabled={isLoading}
                 >
                   {question}
@@ -327,7 +327,7 @@ export function StepChat({
 
       {/* Chat info */}
       {questionsRemaining === 0 && (
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
+        <div className="border border-amber-500 rounded-lg p-6 text-center">
           <div className="text-2xl mb-2">⏰</div>
           <h4 className="font-semibold text-amber-900 mb-2">
             Limite de Perguntas Atingido

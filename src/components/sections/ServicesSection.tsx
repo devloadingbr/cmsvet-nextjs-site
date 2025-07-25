@@ -14,8 +14,8 @@ export default function ServicesSection() {
       description: 'Para situações que não podem esperar: dificuldades respiratórias, vômitos, acidentes. Avaliação imediata do estado do seu pet.',
       cta: 'Como Funciona',
       color: 'red',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      bgColor: 'bg-white',
+      borderColor: 'border-red-500'
     },
     {
       icon: <Scissors className="w-8 h-8 text-blue-500" />,
@@ -24,58 +24,53 @@ export default function ServicesSection() {
       description: 'Procedimentos necessários para recuperação da saúde. Centro cirúrgico equipado com tecnologia moderna para maior segurança.',
       cta: 'Saiba Mais',
       color: 'blue',
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200'
+      bgColor: 'bg-white',
+      borderColor: 'border-blue-500'
     },
     {
-      icon: <Shield className="w-8 h-8 text-green-500" />,
+      icon: <Shield className="w-8 h-8 text-emerald-500" />,
       title: '💉 Prevenção',
       subtitle: 'Vacinas e Exames para o Seu Pet',
       description: 'Proteção contra doenças graves como cinomose, parvovirose e raiva. Exames preventivos para detectar problemas antes que se tornem sérios.',
       cta: 'Ver Vacinas',
-      color: 'green',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      color: 'emerald',
+      bgColor: 'bg-white',
+      borderColor: 'border-emerald-500'
     },
     {
-      icon: <Stethoscope className="w-8 h-8 text-purple-500" />,
+      icon: <Stethoscope className="w-8 h-8 text-violet-500" />,
       title: '🛏️ Internação',
       subtitle: 'Tratamento Constante e de Emergência',
       description: 'Para pets que precisam de cuidados intensivos. Monitoramento profissional durante recuperação. Internação separada para cães e gatos.',
       cta: 'Entender Processo',
-      color: 'purple',
-      bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200'
+      color: 'violet',
+      bgColor: 'bg-white',
+      borderColor: 'border-violet-500'
     },
     {
-      icon: <Camera className="w-8 h-8 text-indigo-500" />,
+      icon: <Camera className="w-8 h-8 text-cyan-500" />,
       title: '🔬 Diagnóstico',
       subtitle: 'Exames de Imagem para o Seu Melhor Amigo',
       description: 'Diagnósticos precisos que ajudam a identificar problemas internos que não são visíveis externamente. Fundamentais para tratamento correto.',
       cta: 'Tipos de Exames',
-      color: 'indigo',
-      bgColor: 'bg-indigo-50',
-      borderColor: 'border-indigo-200'
+      color: 'cyan',
+      bgColor: 'bg-white',
+      borderColor: 'border-cyan-500'
     },
     {
-      icon: <Home className="w-8 h-8 text-amber-500" />,
+      icon: <Home className="w-8 h-8 text-orange-500" />,
       title: '🏠 Domiciliar',
       subtitle: 'Atendimento Domiciliar para o Conforto do Seu Pet',
       description: 'Para pets que ficam estressados fora de casa ou em situações onde o deslocamento é difícil. Cuidado veterinário no ambiente familiar.',
       cta: 'Solicitar Visita',
-      color: 'amber',
-      bgColor: 'bg-amber-50',
-      borderColor: 'border-amber-200'
+      color: 'orange',
+      bgColor: 'bg-white',
+      borderColor: 'border-orange-500'
     }
   ];
 
   return (
-    <section className="py-20 bg-white relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-blue-400"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-amber-400"></div>
-      </div>
+    <section className="py-20 relative">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -116,7 +111,7 @@ export default function ServicesSection() {
                 </p>
 
                 <Button 
-                  className={`w-full bg-${service.color}-600 hover:bg-${service.color}-700 transition-all duration-300 hover:scale-105 shadow-lg`}
+                  className={`w-full bg-${service.color}-600 hover:bg-${service.color}-700 transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer`}
                 >
                   {service.cta}
                   <ArrowRight className="w-4 h-4" />
@@ -127,10 +122,10 @@ export default function ServicesSection() {
         </div>
 
         {/* Important Notice */}
-        <Card className="bg-amber-50 border-2 border-amber-200 text-center">
+        <Card className="bg-white border-2 border-amber-500 text-center">
           <CardContent className="p-8">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center">
                 <span className="text-2xl">⚠️</span>
               </div>
             </div>

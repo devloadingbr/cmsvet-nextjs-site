@@ -32,12 +32,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-16 bg-white relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-blue-400"></div>
-        <div className="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-amber-400"></div>
-      </div>
+    <section className="py-16 relative">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">

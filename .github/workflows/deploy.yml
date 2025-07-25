@@ -1,0 +1,83 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [ main ]
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'push' }}
+    
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      env:
+        # Add your environment variables here
+        NEXT_PUBLIC_CLINIC_NAME: ${{ secrets.NEXT_PUBLIC_CLINIC_NAME }}
+        NEXT_PUBLIC_PHONE_PRIMARY: ${{ secrets.NEXT_PUBLIC_PHONE_PRIMARY }}
+        NEXT_PUBLIC_WHATSAPP: ${{ secrets.NEXT_PUBLIC_WHATSAPP }}
+        NEXT_PUBLIC_ADDRESS_FULL: ${{ secrets.NEXT_PUBLIC_ADDRESS_FULL }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        
+    - name: Deploy to Vercel
+      uses: vercel/action@v1
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'
+        
+  preview-deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      env:
+        NEXT_PUBLIC_CLINIC_NAME: ${{ secrets.NEXT_PUBLIC_CLINIC_NAME }}
+        NEXT_PUBLIC_PHONE_PRIMARY: ${{ secrets.NEXT_PUBLIC_PHONE_PRIMARY }}
+        NEXT_PUBLIC_WHATSAPP: ${{ secrets.NEXT_PUBLIC_WHATSAPP }}
+        NEXT_PUBLIC_ADDRESS_FULL: ${{ secrets.NEXT_PUBLIC_ADDRESS_FULL }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        
+    - name: Deploy Preview to Vercel
+      uses: vercel/action@v1
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}

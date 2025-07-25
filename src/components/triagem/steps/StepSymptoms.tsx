@@ -86,7 +86,7 @@ export function StepSymptoms({
 
       {/* Alerta de emergência */}
       {isEmergency && (
-        <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
+        <div className="border-l-4 border-red-500 p-6 rounded-lg border border-red-200">
           <div className="flex items-center">
             <div className="text-2xl mr-3">🚨</div>
             <div>

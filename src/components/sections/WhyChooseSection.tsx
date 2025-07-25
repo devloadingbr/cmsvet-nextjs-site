@@ -19,13 +19,13 @@ export default function WhyChooseSection() {
       features: ['Mais de 10 anos de experiência', 'Educação continuada', 'Especialistas dedicados']
     },
     {
-      icon: <Building className="w-12 h-12 text-green-500" />,
+      icon: <Building className="w-12 h-12 text-emerald-500" />,
       title: 'Estrutura Completa',
       description: 'Centro cirúrgico moderno, laboratório próprio, ultrassom, raio-X, internação separada para cães e gatos. Medicamentos importados.',
       features: ['Centro cirúrgico moderno', 'Laboratório próprio', 'Equipamentos de ponta']
     },
     {
-      icon: <MapPin className="w-12 h-12 text-purple-500" />,
+      icon: <MapPin className="w-12 h-12 text-violet-500" />,
       title: 'Localização Estratégica',
       description: 'Localização central com estacionamento. Atendimento domiciliar em toda região metropolitana. Ambulância veterinária.',
       features: ['Localização central', 'Atendimento domiciliar', 'Ambulância veterinária']
@@ -33,12 +33,7 @@ export default function WhyChooseSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-white relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-32 left-32 w-40 h-40 rounded-full bg-blue-400"></div>
-        <div className="absolute bottom-32 right-32 w-32 h-32 rounded-full bg-amber-400"></div>
-      </div>
+    <section className="py-20 relative">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -56,12 +51,12 @@ export default function WhyChooseSection() {
           {differentials.map((differential, index) => (
             <Card 
               key={index}
-              className="bg-white/90 backdrop-blur-sm border-blue-100 shadow-xl shadow-blue-900/10 hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-300 group hover:transform hover:scale-105"
+              className="bg-white border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-300 group hover:transform hover:scale-105"
             >
               <CardContent className="p-8">
                 <div className="flex items-start space-x-6">
                   <div className="flex-shrink-0">
-                    <div className="w-20 h-20 bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-20 h-20 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       {differential.icon}
                     </div>
                   </div>
@@ -77,7 +72,7 @@ export default function WhyChooseSection() {
 
                     <div className="space-y-2">
                       {differential.features.map((feature, featureIndex) => (
-                        <Badge key={featureIndex} variant="secondary" className="mr-2 mb-2 bg-green-50 text-green-700 border-green-200">
+                        <Badge key={featureIndex} variant="secondary" className="mr-2 mb-2 bg-emerald-600 text-white border-emerald-600">
                           <CheckCircle className="w-3 h-3 mr-1" />
                           {feature}
                         </Badge>

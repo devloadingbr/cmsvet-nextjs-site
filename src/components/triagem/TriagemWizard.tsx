@@ -96,7 +96,7 @@ export function TriagemWizard({ onComplete, className }: TriagemWizardProps) {
 
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-blue-50 via-white to-rose-50 py-8 ${className}`}>
+    <div className={`min-h-screen py-8 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header da triagem */}
         <div className="text-center mb-12">

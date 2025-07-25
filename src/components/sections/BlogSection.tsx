@@ -7,45 +7,40 @@ export default function BlogSection() {
     {
       id: 1,
       category: '🚨 Emergência',
-      categoryColor: 'bg-red-100 text-red-700',
+      categoryColor: 'bg-red-600 text-white',
       title: '10 Plantas Que Podem Intoxicar Seu Pet',
       excerpt: 'Saiba identificar os primeiros sintomas e como agir rapidamente para proteger seu animal.',
       date: '24 mai, 2025',
       readTime: '5 min',
       views: '1250 visualizações',
-      image: 'bg-gradient-to-br from-red-100 to-red-200'
+      image: 'bg-red-500'
     },
     {
       id: 2,
       category: '💉 Vacinas',
-      categoryColor: 'bg-blue-100 text-blue-700',
+      categoryColor: 'bg-blue-600 text-white',
       title: 'Cronograma Completo de Vacinas para Filhotes',
       excerpt: 'Guia definitivo para proteger seu pet desde cedo com o calendário vacinal correto.',
       date: '21 mai, 2025',
       readTime: '8 min',
       views: '890 visualizações',
-      image: 'bg-gradient-to-br from-blue-100 to-blue-200'
+      image: 'bg-blue-600'
     },
     {
       id: 3,
       category: '👴 Pets Idosos',
-      categoryColor: 'bg-purple-100 text-purple-700',
+      categoryColor: 'bg-violet-600 text-white',
       title: 'Cuidados Especiais com Pets Idosos no Inverno',
       excerpt: 'Como adaptar a rotina dos pets mais velhos durante o período mais frio do ano.',
       date: '19 mai, 2025',
       readTime: '6 min',
       views: '720 visualizações',
-      image: 'bg-gradient-to-br from-purple-100 to-purple-200'
+      image: 'bg-violet-600'
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-blue-400"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 rounded-full bg-amber-400"></div>
-      </div>
+    <section className="py-20 relative">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -64,7 +59,7 @@ export default function BlogSection() {
           {blogPosts.map((post) => (
             <article 
               key={post.id}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl shadow-blue-900/10 hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-300 group hover:transform hover:scale-105"
+              className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group hover:transform hover:scale-105"
             >
               {/* Image Placeholder */}
               <div className={`h-48 ${post.image} flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
@@ -110,7 +105,7 @@ export default function BlogSection() {
                     <span>{post.views}</span>
                   </div>
                   
-                  <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center space-x-1 transition-colors duration-300">
+                  <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center space-x-1 transition-colors duration-300 cursor-pointer">
                     <span>Ler mais</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
@@ -121,9 +116,9 @@ export default function BlogSection() {
         </div>
 
         {/* Newsletter Section */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-blue-900/10 text-center">
+        <div className="bg-white rounded-2xl p-8 shadow-xl text-center border-2 border-blue-200">
           <div className="max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-6">
               <Mail className="w-8 h-8 text-white" />
             </div>
             
@@ -140,7 +135,7 @@ export default function BlogSection() {
                 placeholder="Seu melhor e-mail"
                 className="flex-1 px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors duration-300"
               />
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
                 Inscrever-se
               </button>
             </div>
@@ -149,7 +144,7 @@ export default function BlogSection() {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl shadow-blue-900/20 flex items-center space-x-2 mx-auto">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center space-x-2 mx-auto cursor-pointer">
             <span>Ver Todos os Artigos</span>
             <ArrowRight className="w-5 h-5" />
           </button>

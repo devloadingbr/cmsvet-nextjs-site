@@ -148,11 +148,11 @@ export function StepPetData({ initialData, onNext, className }: StepPetDataProps
                       'p-6 rounded-xl border-2 transition-all duration-200',
                       'hover:scale-105 active:scale-95',
                       isSelected ? [
-                        'border-blue-500 bg-blue-50 text-blue-700',
-                        'shadow-lg shadow-blue-200/50'
+                        'border-blue-600 bg-blue-600 text-white',
+                        'shadow-lg'
                       ] : [
                         'border-gray-200 bg-white text-gray-700',
-                        'hover:border-blue-300 hover:bg-blue-50'
+                        'hover:border-blue-600 hover:bg-blue-50'
                       ]
                     )}
                   >
@@ -223,7 +223,7 @@ export function StepPetData({ initialData, onNext, className }: StepPetDataProps
       </Card>
 
       {/* Informações importantes */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+      <div className="border border-blue-200 rounded-xl p-6">
         <div className="flex items-start space-x-3">
           <div className="text-2xl">💡</div>
           <div>

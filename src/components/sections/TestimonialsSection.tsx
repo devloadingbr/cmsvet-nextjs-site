@@ -85,12 +85,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-blue-400"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-amber-400"></div>
-      </div>
+    <section className="py-20 relative">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -106,12 +101,12 @@ export default function TestimonialsSection() {
         {/* Testimonials Carousel */}
         <div className="relative max-w-4xl mx-auto">
           {/* Main Testimonial Card */}
-          <Card className="bg-white/90 backdrop-blur-sm border-blue-100 shadow-xl shadow-blue-900/10 mb-8">
+          <Card className="bg-white border-2 border-blue-200 shadow-xl mb-8">
             <CardContent className="p-8">
               <div className="flex items-start space-x-6">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
-                  <Avatar className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600">
+                  <Avatar className="w-16 h-16 bg-blue-600">
                     <AvatarFallback className="text-white font-bold text-lg bg-transparent">
                       {testimonials[currentIndex].id}
                     </AvatarFallback>
@@ -131,7 +126,7 @@ export default function TestimonialsSection() {
                   </div>
                   
                   {/* Pet Badge */}
-                  <Badge className="bg-amber-100 text-amber-700 border-amber-200">
+                  <Badge className="bg-amber-500 text-white border-amber-500">
                     <span className="text-lg mr-1">{testimonials[currentIndex].petIcon}</span>
                     🐾 {testimonials[currentIndex].petName}
                   </Badge>
@@ -162,7 +157,7 @@ export default function TestimonialsSection() {
               onClick={prevTestimonial}
               variant="outline"
               size="icon"
-              className="w-12 h-12 rounded-full shadow-lg hover:bg-blue-50"
+              className="w-12 h-12 rounded-full shadow-lg hover:bg-blue-50 cursor-pointer"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
@@ -173,7 +168,7 @@ export default function TestimonialsSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentIndex
                       ? 'bg-blue-600 w-8'
                       : 'bg-slate-300 hover:bg-slate-400'
@@ -186,7 +181,7 @@ export default function TestimonialsSection() {
               onClick={nextTestimonial}
               variant="outline"
               size="icon"
-              className="w-12 h-12 rounded-full shadow-lg hover:bg-blue-50"
+              className="w-12 h-12 rounded-full shadow-lg hover:bg-blue-50 cursor-pointer"
             >
               <ChevronRight className="w-6 h-6" />
             </Button>
@@ -197,7 +192,7 @@ export default function TestimonialsSection() {
         <div className="text-center mt-12">
           <Button 
             size="lg"
-            className="bg-blue-600 hover:bg-blue-700 px-8 py-6 text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl shadow-blue-900/20"
+            className="bg-blue-600 hover:bg-blue-700 px-8 py-6 text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
           >
             💬 Ver Mais Casos de Sucesso
           </Button>
