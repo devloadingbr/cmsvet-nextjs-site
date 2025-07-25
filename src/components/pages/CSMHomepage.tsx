@@ -9,7 +9,6 @@ import TeamSection from '@/components/sections/TeamSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import InfoSection from '@/components/sections/InfoSection';
 import BlogSection from '@/components/sections/BlogSection';
-import Footer from '@/components/layout/Footer';
 
 export default function CSMHomepage() {
   return (
@@ -23,7 +22,6 @@ export default function CSMHomepage() {
       <TestimonialsSection />
       <InfoSection />
       <BlogSection />
-      <Footer />
     </main>
   );
 }
