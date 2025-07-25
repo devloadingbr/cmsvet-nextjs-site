@@ -58,18 +58,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "NEXT_PUBLIC_CLINIC_NAME": "@next_public_clinic_name",
-    "NEXT_PUBLIC_PHONE_PRIMARY": "@next_public_phone_primary", 
-    "NEXT_PUBLIC_WHATSAPP": "@next_public_whatsapp",
-    "NEXT_PUBLIC_ADDRESS_FULL": "@next_public_address_full",
-    "NEXT_PUBLIC_STATS_PETS_CARED": "@next_public_stats_pets_cared",
-    "NEXT_PUBLIC_STATS_YEARS_EXPERIENCE": "@next_public_stats_years_experience"
-  },
-  "build": {
-    "env": {
-      "OPENAI_API_KEY": "@openai_api_key"
-    }
-  }
+  ]
 }
