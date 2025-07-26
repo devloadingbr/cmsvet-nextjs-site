@@ -2,7 +2,7 @@
 
 import { Leaf, AlertTriangle, Shield, Building, DollarSign, BookOpen, ArrowRight, Download, Calculator, Camera, Phone } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import { contact, urls, whatsappMessages } from '@/lib/env';
+import { urls, whatsappMessages } from '@/lib/env';
 
 export default function InfoSection() {
   const infoCards = [

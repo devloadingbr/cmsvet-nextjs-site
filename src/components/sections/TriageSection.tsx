@@ -4,11 +4,16 @@
 
 'use client';
 
-import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useShowPromotionalCard, useStartInlineTriagem } from '@/stores/triagem-store';
+import { TriagemInlineCard } from '@/components/triagem/inline/TriagemInlineCard';
 
 export default function TriageSection() {
+  const showPromotionalCard = useShowPromotionalCard();
+  const startInlineTriagem = useStartInlineTriagem();
+
   const features = [
     {
       icon: '🤖',
@@ -64,84 +69,105 @@ export default function TriageSection() {
           </p>
         </div>
 
-        {/* Main CTA Card */}
+        {/* Main CTA Card - Toggle entre Promocional e Triagem */}
         <div className="mb-16">
-          <Card className="bg-blue-600 border-0 text-white overflow-hidden relative">
-            {/* Decorative elements */}
-            <div className="absolute top-4 right-4 text-6xl opacity-20">🐾</div>
-            <div className="absolute bottom-4 left-4 text-4xl opacity-20">💡</div>
-            
-            <CardContent className="p-8 lg:p-12 relative z-10">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-3xl lg:text-4xl font-bold mb-4">
-                      Seu Pet Não Está Bem?
-                    </h3>
-                    <p className="text-xl text-blue-100 leading-relaxed">
-                      Em apenas 3 minutos, nossa IA analisa os sintomas e te dá orientações 
-                      personalizadas sobre urgência e cuidados necessários.
-                    </p>
-                  </div>
+          <AnimatePresence mode="wait">
+            {showPromotionalCard ? (
+              <motion.div
+                key="promotional"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-blue-600 border-0 text-white overflow-hidden relative">
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 right-4 text-6xl opacity-20">🐾</div>
+                  <div className="absolute bottom-4 left-4 text-4xl opacity-20">💡</div>
                   
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-green-800" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <span className="text-blue-100">45 sintomas catalogados para análise precisa</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-green-800" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <span className="text-blue-100">Chat com IA para tirar dúvidas específicas</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-green-800" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <span className="text-blue-100">Orientações personalizadas por idade e espécie</span>
-                    </div>
-                  </div>
-                  
-                  <Link href="/triagem">
-                    <Button 
-                      size="lg" 
-                      className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
-                    >
-                      🐾 Iniciar Triagem Grátis
-                    </Button>
-                  </Link>
-                </div>
-                
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-center">
-                      Sintomas Mais Comuns Analisados:
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3">
-                      {symptoms.map((symptom, index) => (
-                        <div 
-                          key={index}
-                          className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/20 transition-all"
-                        >
-                          <div className="text-2xl mb-1">{symptom.emoji}</div>
-                          <div className="text-sm text-blue-100">{symptom.name}</div>
+                  <CardContent className="p-8 lg:p-12 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-8 items-center">
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="text-3xl lg:text-4xl font-bold mb-4">
+                            Seu Pet Não Está Bem?
+                          </h3>
+                          <p className="text-xl text-blue-100 leading-relaxed">
+                            Em apenas 3 minutos, nossa IA analisa os sintomas e te dá orientações 
+                            personalizadas sobre urgência e cuidados necessários.
+                          </p>
                         </div>
-                      ))}
+                        
+                        <div className="space-y-3">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <span className="text-blue-100">45 sintomas catalogados para análise precisa</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <span className="text-blue-100">Chat com IA para tirar dúvidas específicas</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+                              <svg className="w-4 h-4 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <span className="text-blue-100">Orientações personalizadas por idade e espécie</span>
+                          </div>
+                        </div>
+                        
+                        <Button 
+                          size="lg" 
+                          onClick={startInlineTriagem}
+                          className="bg-amber-500 hover:bg-amber-600 text-blue-900 px-8 py-6 text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
+                        >
+                          🐾 Iniciar Triagem Grátis
+                        </Button>
+                      </div>
+                      
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="text-xl font-semibold mb-4 text-center">
+                            Sintomas Mais Comuns Analisados:
+                          </h4>
+                          <div className="grid grid-cols-2 gap-3">
+                            {symptoms.map((symptom, index) => (
+                              <div 
+                                key={index}
+                                className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/20 transition-all"
+                              >
+                                <div className="text-2xl mb-1">{symptom.emoji}</div>
+                                <div className="text-sm text-blue-100">{symptom.name}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="triagem"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+              >
+                <TriagemInlineCard />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Features Grid */}
@@ -168,74 +194,7 @@ export default function TriageSection() {
           ))}
         </div>
 
-        {/* How it Works */}
-        <div className="border border-blue-200 rounded-2xl p-8 lg:p-12">
-          <h3 className="text-3xl font-bold text-center text-slate-900 mb-8">
-            Como Funciona em 4 Passos
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { step: '1', icon: '📋', title: 'Dados do Pet', desc: 'Nome, idade e espécie do seu companheiro' },
-              { step: '2', icon: '🔍', title: 'Sintomas', desc: 'Selecione os sintomas observados' },
-              { step: '3', icon: '🤖', title: 'Análise IA', desc: 'Nossa IA processa e gera recomendações' },
-              { step: '4', icon: '💬', title: 'Chat & Ação', desc: 'Tire dúvidas e receba orientações específicas' }
-            ].map((item, index) => (
-              <div key={index} className="text-center relative">
-                <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                  {item.step}
-                </div>
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h4 className="font-semibold text-slate-900 mb-2">{item.title}</h4>
-                <p className="text-slate-600 text-sm">{item.desc}</p>
-                
-                {/* Connector arrow */}
-                {index < 3 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-6">
-                    <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Não Espere! Cuidar do Seu Pet Não Pode Esperar
-              </h3>
-              <p className="text-slate-600 max-w-2xl mx-auto">
-                Sistema gratuito, rápido e desenvolvido com conhecimento veterinário especializado. 
-                Em caso de emergência, você será direcionado imediatamente para contato direto.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/triagem">
-                <Button 
-                  size="lg" 
-                  className="bg-blue-600 hover:bg-blue-700 px-8 py-6 text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
-                >
-                  🩺 Começar Triagem Agora
-                </Button>
-              </Link>
-              
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="px-8 py-6 text-lg font-semibold border-2 hover:bg-blue-50 cursor-pointer"
-                onClick={() => window.open('https://wa.me/554130770023?text=Tenho dúvidas sobre o sistema de triagem', '_blank')}
-              >
-                💬 Dúvidas sobre o Sistema
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

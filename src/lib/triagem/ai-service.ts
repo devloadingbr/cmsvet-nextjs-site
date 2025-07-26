@@ -252,5 +252,56 @@ Se a situação se agravar ou surgir dúvida sobre emergência, sempre recomende
   }
 }
 
-// Instância singleton do serviço
+// Instância singleton do serviço  
 export const triagemAIService = new TriagemAIService();
+
+// Funções helper para compatibilidade
+export const analyzeSymptoms = async (data: TriagemDataForAI) => {
+  try {
+    const analysis = await triagemAIService.analyzeSymptoms(data);
+    return { success: true, analysis };
+  } catch (error) {
+    console.error('Error in analyzeSymptoms:', error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Erro desconhecido' 
+    };
+  }
+};
+
+export const sendChatMessage = async (params: {
+  message: string;
+  sessionId: string;
+  petContext: { name: string; age: number; species: string };
+  previousMessages: ChatMessage[];
+  analysis?: AIAnalysis;
+}) => {
+  try {
+    // Mock implementation - replace with actual API call
+    const response = await triagemAIService.processChatMessage(
+      params.message,
+      { 
+        name: params.petContext.name, 
+        age: params.petContext.age, 
+        species: params.petContext.species as 'dog' | 'cat' | 'other'
+      },
+      [], // symptoms would be passed here
+      params.analysis || {} as AIAnalysis,
+      params.previousMessages
+    );
+    
+    return {
+      success: true,
+      message: response,
+      questionsRemaining: 4, // mock value
+      shouldEndChat: false
+    };
+  } catch (error) {
+    console.error('Error in sendChatMessage:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Erro desconhecido',
+      questionsRemaining: 0
+    };
+  }
+};
