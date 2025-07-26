@@ -1,0 +1,18 @@
+{
+  "mcp": {
+    "enabled": true,
+    "servers": {
+      "context7": {
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp@latest"],
+        "transport": "stdio"
+      }
+    }
+  },
+  "project": {
+    "name": "CSM Clínica Veterinária",
+    "type": "nextjs",
+    "stack": ["nextjs", "react", "typescript", "tailwindcss", "shadcn"],
+    "description": "Enterprise veterinary clinic website with AI triage system"
+  }
+}

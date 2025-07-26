@@ -43,16 +43,16 @@ const navigationItems = [
     icon: Microscope
   },
   {
-    title: 'Recursos',
-    href: '/recursos',
-    description: 'Guias, dicas e informações úteis',
-    icon: BookOpen
-  },
-  {
     title: 'Contato',
     href: '/contato',
     description: 'Entre em contato conosco',
     icon: MessageCircle
+  },
+  {
+    title: 'Recursos',
+    href: '/recursos',
+    description: 'Guias, dicas e informações úteis',
+    icon: BookOpen
   }
 ];
 
@@ -72,7 +72,7 @@ export default function Header() {
             <MapPin className="w-4 h-4 mr-2" />
             <span>{address.full}</span>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-8">
             <div className="flex items-center">
               <Phone className="w-4 h-4 mr-1" />
               <span>EMERGÊNCIAS: {contact.phone.primary}</span>
@@ -107,9 +107,9 @@ export default function Header() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-6">
               <NavigationMenu>
-                <NavigationMenuList>
+                <NavigationMenuList className="space-x-4">
                   {navigationItems.map((item) => {
                     const IconComponent = item.icon;
                     const isActive = pathname === item.href;

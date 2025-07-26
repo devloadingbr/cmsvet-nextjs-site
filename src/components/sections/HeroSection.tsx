@@ -114,15 +114,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-20">
-          <path
-            d="M0,50 C300,100 500,0 800,50 C1000,80 1100,20 1200,50 L1200,120 L0,120 Z"
-            className={isDarkMode ? 'fill-slate-800/50' : 'fill-white/50'}
-          />
-        </svg>
-      </div>
     </div>
   );
 }

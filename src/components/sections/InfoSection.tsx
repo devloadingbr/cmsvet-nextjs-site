@@ -1,6 +1,8 @@
 'use client';
 
-import { Leaf, AlertTriangle, Shield, Building, DollarSign, BookOpen, ArrowRight, Download, Calculator, Camera } from 'lucide-react';
+import { Leaf, AlertTriangle, Shield, Building, DollarSign, BookOpen, ArrowRight, Download, Calculator, Camera, Phone } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
+import { contact, urls, whatsappMessages } from '@/lib/env';
 
 export default function InfoSection() {
   const infoCards = [
@@ -132,15 +134,22 @@ export default function InfoSection() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer">
-              <span>🚨 EMERGÊNCIA (41) 9999-9999</span>
-            </button>
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer">
-              <span>📱 WhatsApp (41) 8888-8888</span>
-            </button>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer">
-              <span>📅 Agendar Online</span>
-            </button>
+            <a 
+              href={urls.whatsappWithMessage(whatsappMessages.emergency)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer"
+            >
+              <FaWhatsapp className="w-5 h-5" />
+              <span>WhatsApp</span>
+            </a>
+            <a 
+              href={urls.phoneCall}
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer"
+            >
+              <Phone className="w-5 h-5" />
+              <span>Ligar Agora</span>
+            </a>
           </div>
         </div>
       </div>

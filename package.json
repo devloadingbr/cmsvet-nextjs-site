@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "mcp:context7": "npx -y @upstash/context7-mcp@latest",
+    "mcp:install": "npm install -g @upstash/context7-mcp",
+    "mcp:server": "node mcp/context7-server.js",
+    "mcp:client": "node mcp/context7-client.js",
+    "mcp:docs": "node mcp/context7-client.js vercel latest"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
