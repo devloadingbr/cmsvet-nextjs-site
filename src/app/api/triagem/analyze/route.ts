@@ -9,9 +9,17 @@ import { validatePetData, validateSymptoms } from '@/lib/triagem/utils';
 import { TriagemDataForAI, AnalysisResponse } from '@/lib/triagem/types';
 
 export async function POST(request: NextRequest) {
+  console.log('🚀 Triagem analyze API called');
+  
   try {
     const body = await request.json();
     const { pet, symptomIds, extraInfo } = body;
+    
+    console.log('📊 Request data:', {
+      petName: pet?.name,
+      symptomsCount: symptomIds?.length,
+      hasExtraInfo: !!extraInfo
+    });
 
     // Validações
     const petValidation = validatePetData(pet);
@@ -63,7 +71,14 @@ export async function POST(request: NextRequest) {
     };
 
     // Chamar serviço de IA
+    console.log('🤖 Calling AI service...');
     const analysis = await triagemAIService.analyzeSymptoms(dataForAI);
+    
+    console.log('✅ AI analysis completed:', {
+      urgencyLevel: analysis.urgencyLevel,
+      hasAnalysis: !!analysis,
+      diagnosisLength: analysis.diagnosis?.length
+    });
 
     // Gerar ID da sessão (em um sistema real, salvaria no banco)
     const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -74,6 +89,7 @@ export async function POST(request: NextRequest) {
       sessionId,
     };
 
+    console.log('🎯 Returning response successfully');
     return NextResponse.json(response);
 
   } catch (error) {

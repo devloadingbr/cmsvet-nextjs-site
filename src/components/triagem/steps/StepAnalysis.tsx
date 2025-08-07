@@ -62,10 +62,39 @@ export function StepAnalysis({
         throw new Error(data.error || 'Erro ao analisar sintomas');
       }
 
+      console.log('✅ Analysis received from API:', data.analysis);
+      
       setAnalysis(data.analysis);
       onAnalysisComplete(data.analysis);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro desconhecido');
+      console.error('❌ Error in StepAnalysis:', err);
+      
+      const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
+      
+      // Criar uma análise básica de fallback local
+      const fallbackAnalysis = {
+        urgencyLevel: 6,
+        urgencyText: 'today' as const,
+        diagnosis: `Baseado nos sintomas relatados para ${pet.name}, recomendamos uma avaliação veterinária para um diagnóstico preciso.`,
+        immediateActions: [
+          'Mantenha o pet em local calmo e seguro',
+          'Monitore os sintomas de perto',
+          'Observe se há mudanças no comportamento'
+        ],
+        whenToSeekHelp: 'Recomendamos buscar atendimento veterinário hoje para avaliação adequada',
+        cta: {
+          type: 'appointment' as const,
+          text: '📅 AGENDAR CONSULTA',
+          action: 'appointment_whatsapp' as const,
+          urgency: false
+        },
+        disclaimer: 'Esta análise básica não substitui consulta veterinária profissional.'
+      };
+      
+      console.log('🛡️ Using fallback analysis in component');
+      setError(`${errorMessage} - Usando análise básica para prosseguir.`);
+      setAnalysis(fallbackAnalysis);
+      onAnalysisComplete(fallbackAnalysis);
     } finally {
       setIsLoading(false);
     }

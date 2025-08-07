@@ -23,9 +23,19 @@ export class TriagemAIService {
    * Analisa sintomas do pet e retorna diagnóstico e recomendações
    */
   async analyzeSymptoms(data: TriagemDataForAI): Promise<AIAnalysis> {
+    // Se API Key não configurada, usar análise padrão
+    if (!this.apiKey || this.apiKey.includes('exemplo')) {
+      console.log('🤖 Using default analysis (no OpenAI API key)');
+      return this.getDefaultAnalysis(data);
+    }
+
     const prompt = this.buildAnalysisPrompt(data);
     
     try {
+      // Timeout de 15 segundos
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -44,7 +54,10 @@ export class TriagemAIService {
           temperature: 0.3,
           max_tokens: 1000,
         }),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(`OpenAI API error: ${response.statusText}`);
@@ -55,8 +68,29 @@ export class TriagemAIService {
       
       return this.parseAnalysisResponse(aiResponse, data);
     } catch (error) {
-      console.error('Error analyzing symptoms:', error);
-      throw new Error('Erro ao analisar sintomas. Tente novamente.');
+      console.error('❌ Error analyzing symptoms:', {
+        error: error instanceof Error ? error.message : error,
+        model: this.model,
+        hasApiKey: !!this.apiKey,
+        petName: data.pet.name,
+        symptomsCount: data.symptoms.length
+      });
+      
+      // Se foi erro de timeout/abort, usar fallback
+      if (error instanceof Error && error.name === 'AbortError') {
+        console.log('⏰ Request timeout, using fallback analysis');
+        return this.getDefaultAnalysis(data);
+      }
+      
+      // Se foi erro de API, usar fallback
+      if (error instanceof Error && error.message.includes('API')) {
+        console.log('🔄 API error, using fallback analysis');
+        return this.getDefaultAnalysis(data);
+      }
+      
+      // Para outros erros, usar fallback também
+      console.log('🛡️ Using fallback analysis due to error');
+      return this.getDefaultAnalysis(data);
     }
   }
 
@@ -198,13 +232,26 @@ Se a situação se agravar ou surgir dúvida sobre emergência, sempre recomende
    */
   private parseAnalysisResponse(aiResponse: string, originalData: TriagemDataForAI): AIAnalysis {
     try {
+      console.log('🤖 AI Response received:', aiResponse.substring(0, 200) + '...');
+      
       // Remove possíveis caracteres antes/depois do JSON
       const cleanResponse = aiResponse.replace(/```json\n?|\n?```/g, '').trim();
+      
+      console.log('🧹 Cleaned response:', cleanResponse.substring(0, 200) + '...');
+      
       const parsed = JSON.parse(cleanResponse);
+      
+      console.log('✅ Parsed AI response:', {
+        hasUrgencyLevel: !!parsed.urgencyLevel,
+        hasDiagnosis: !!parsed.diagnosis,
+        hasCta: !!parsed.cta,
+        urgencyLevel: parsed.urgencyLevel
+      });
       
       // Valida campos obrigatórios
       if (!parsed.urgencyLevel || !parsed.diagnosis || !parsed.cta) {
-        throw new Error('Resposta da IA incompleta');
+        console.warn('⚠️ Incomplete AI response, using fallback');
+        return this.getDefaultAnalysis(originalData);
       }
 
       // Garante que urgencyLevel está no range correto
@@ -224,11 +271,22 @@ Se a situação se agravar ou surgir dúvida sobre emergência, sempre recomende
       // Adiciona disclaimer se não presente
       parsed.disclaimer = parsed.disclaimer || 'Esta análise não substitui consulta veterinária profissional.';
 
+      console.log('🎯 Final parsed analysis:', {
+        urgencyLevel: parsed.urgencyLevel,
+        urgencyText: parsed.urgencyText,
+        diagnosisLength: parsed.diagnosis?.length
+      });
+
       return parsed as AIAnalysis;
     } catch (error) {
-      console.error('Error parsing AI response:', error);
+      console.error('❌ Error parsing AI response:', {
+        error: error instanceof Error ? error.message : error,
+        responseLength: aiResponse?.length,
+        responsePreview: aiResponse?.substring(0, 100)
+      });
       
       // Retorna resposta padrão em caso de erro
+      console.log('🛡️ Using fallback due to parsing error');
       return this.getDefaultAnalysis(originalData);
     }
   }
