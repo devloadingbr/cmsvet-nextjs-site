@@ -145,39 +145,27 @@ export function StepChat({
   ];
 
   return (
-    <div className={cn('max-w-4xl mx-auto space-y-6', className)}>
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <div className="text-6xl">💬</div>
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900">
-            Chat com Nossa IA Veterinária
-          </h2>
-          <p className="text-gray-600 mt-2">
-            Tire suas dúvidas específicas sobre {pet.name}
-          </p>
+    <div className={cn('max-w-4xl mx-auto space-y-3', className)}>
+      {/* Header Compacto */}
+      <div className="flex items-center justify-between border-b pb-3">
+        <div className="flex items-center gap-3">
+          <div className="text-2xl">💬</div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">
+              🤖 Assistente de IA Veterinária
+            </h2>
+            <p className="text-sm text-gray-600">
+              Perguntas sobre {pet.name} • {questionsRemaining} restantes
+            </p>
+          </div>
         </div>
-      </div>
-
-      {/* Contador de perguntas */}
-      <div className="flex justify-center">
-        <Badge 
-          variant={questionsRemaining > 0 ? "default" : "secondary"}
-          className="px-4 py-2 text-base"
-        >
-          {questionsRemaining} pergunta{questionsRemaining !== 1 ? 's' : ''} restante{questionsRemaining !== 1 ? 's' : ''}
+        <Badge variant="outline" className="text-xs">
+          Online
         </Badge>
       </div>
 
-      {/* Chat Container */}
-      <Card className="h-96 flex flex-col">
-        <CardHeader className="flex-shrink-0 border-b">
-          <CardTitle className="text-lg flex items-center">
-            <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-            IA Veterinária Online
-          </CardTitle>
-        </CardHeader>
-        
+      {/* Chat Container - 70% da altura da viewport */}
+      <Card className="h-[70vh] flex flex-col">
         <CardContent className="flex-1 p-0 overflow-hidden">
           {/* Messages */}
           <div className="h-full overflow-y-auto p-4 space-y-4">
@@ -187,7 +175,7 @@ export function StepChat({
                 <div className="max-w-xs lg:max-w-md">
                   <div className="text-blue-800 rounded-lg p-3 border border-blue-200">
                     <p className="text-sm">
-                      Olá! Sou a IA veterinária da CSM. Acabei de analisar {pet.name} e posso esclarecer dúvidas específicas sobre o caso. 
+                      Olá! Sou o Assistente de IA Veterinária da CSM. Acabei de analisar {pet.name} e posso esclarecer dúvidas específicas sobre o caso. 
                       Você tem {questionsRemaining} perguntas disponíveis. Como posso ajudar?
                     </p>
                   </div>
@@ -251,8 +239,8 @@ export function StepChat({
         </CardContent>
       </Card>
 
-      {/* Input Area */}
-      <div className="space-y-4">
+      {/* Input Area - Compacta */}
+      <div className="space-y-3">
         {/* Error */}
         {error && (
           <div className="p-3 border border-red-500 rounded-lg text-red-700 text-sm">
@@ -287,54 +275,41 @@ export function StepChat({
           </Button>
         </div>
 
-        {/* Character count */}
-        <div className="text-right text-xs text-gray-500">
-          {currentMessage.length}/300
-        </div>
-
-        {/* Suggested questions */}
+        {/* Suggested questions - Inline com input */}
         {messages.length === 0 && questionsRemaining > 0 && (
-          <div className="space-y-3">
-            <p className="text-sm text-gray-600 text-center">
-              Sugestões de perguntas:
-            </p>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {suggestedQuestions.slice(0, 3).map((question, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentMessage(question)}
-                  className="px-3 py-2 text-sm border border-gray-200 hover:border-gray-300 rounded-lg transition-colors"
-                  disabled={isLoading}
-                >
-                  {question}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            {suggestedQuestions.slice(0, 3).map((question, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentMessage(question)}
+                className="px-3 py-1 text-xs border border-gray-200 hover:border-gray-300 rounded-full transition-colors"
+                disabled={isLoading}
+              >
+                {question}
+              </button>
+            ))}
           </div>
         )}
 
-        {/* Finish button */}
-        <div className="text-center pt-4">
+        {/* Bottom Actions */}
+        <div className="flex items-center justify-between text-xs text-gray-500">
+          <span>{currentMessage.length}/300</span>
           <Button
-            variant="outline"
+            variant="ghost"
+            size="sm"
             onClick={onFinish}
-            className="px-8"
+            className="text-xs"
           >
             Finalizar Triagem
           </Button>
         </div>
       </div>
 
-      {/* Chat info */}
+      {/* Chat info - Compacto */}
       {questionsRemaining === 0 && (
-        <div className="border border-amber-500 rounded-lg p-6 text-center">
-          <div className="text-2xl mb-2">⏰</div>
-          <h4 className="font-semibold text-amber-900 mb-2">
-            Limite de Perguntas Atingido
-          </h4>
-          <p className="text-amber-800 text-sm">
-            Você utilizou todas as {maxQuestions} perguntas disponíveis. Para mais dúvidas, 
-            entre em contato diretamente com a clínica.
+        <div className="border border-amber-200 rounded-lg p-3 bg-amber-50">
+          <p className="text-amber-800 text-sm text-center">
+            ⏰ Limite de perguntas atingido. Para mais dúvidas, entre em contato com a clínica.
           </p>
         </div>
       )}

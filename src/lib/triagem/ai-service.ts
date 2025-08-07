@@ -296,26 +296,58 @@ Se a situação se agravar ou surgir dúvida sobre emergência, sempre recomende
    */
   private getDefaultAnalysis(data: TriagemDataForAI): AIAnalysis {
     const hasEmergencySymptoms = data.symptoms.some(s => s.urgencyLevel === 'emergency');
+    const symptomNames = data.symptoms.map(s => s.name).join(', ');
+    
+    // Correlação simples baseada nos sintomas
+    let correlation = `Os sintomas ${symptomNames} apresentados por ${data.pet.name}`;
+    if (data.symptoms.length > 1) {
+      correlation += ' podem estar inter-relacionados, sugerindo uma condição que requer avaliação veterinária.';
+    } else {
+      correlation += ' requer atenção veterinária para avaliação adequada.';
+    }
+    
+    // Possíveis condições baseadas nos sintomas
+    const conditions = [];
+    if (data.symptoms.some(s => s.category === 'digestive')) {
+      conditions.push('Distúrbio gastrintestinal', 'Intoxicação alimentar', 'Parasitose');
+    } else if (data.symptoms.some(s => s.category === 'respiratory')) {
+      conditions.push('Problema respiratório', 'Infecção das vias aéreas', 'Reação alérgica');
+    } else {
+      conditions.push('Condição sistêmica', 'Processo inflamatório', 'Distúrbio comportamental');
+    }
     
     return {
-      urgencyLevel: hasEmergencySymptoms ? 9 : 5,
+      urgencyLevel: hasEmergencySymptoms ? 9 : 6,
       urgencyText: hasEmergencySymptoms ? 'emergency' : 'today',
-      diagnosis: `Com base nos sintomas relatados para ${data.pet.name}, recomendamos avaliação veterinária.`,
+      diagnosis: `Com base na análise dos sintomas apresentados por ${data.pet.name}, POSSIVELMENTE temos uma situação que requer avaliação veterinária profissional. Os sintomas observados PODEM indicar diferentes condições que necessitam de exame clínico para diagnóstico definitivo.`,
+      symptomCorrelation: correlation,
+      possibleConditions: conditions.slice(0, 3),
       immediateActions: [
-        'Mantenha o pet em local calmo e seguro',
-        'Observe os sintomas de perto',
-        'Ofereça água fresca se o pet estiver consciente'
+        'Mantenha o pet em ambiente calmo e seguro',
+        'Monitore os sintomas atentamente',
+        'Ofereça água fresca se o pet estiver responsivo',
+        'Evite medicamentos sem orientação veterinária'
       ],
       whenToSeekHelp: hasEmergencySymptoms 
-        ? 'Procure ajuda veterinária imediatamente'
-        : 'Procure ajuda veterinária nas próximas horas',
+        ? 'Recomendamos avaliação veterinária IMEDIATA devido à natureza crítica dos sintomas'
+        : 'Recomendamos consulta veterinária HOJE para investigação e diagnóstico adequado',
       cta: {
         type: hasEmergencySymptoms ? 'emergency' : 'appointment',
-        text: hasEmergencySymptoms ? '🚨 EMERGÊNCIA WHATSAPP' : '📅 AGENDAR CONSULTA',
+        text: hasEmergencySymptoms ? '🚨 EMERGÊNCIA - CONTATAR AGORA' : '📅 AGENDAR CONSULTA HOJE',
         action: hasEmergencySymptoms ? 'emergency_whatsapp' : 'appointment_whatsapp',
         urgency: hasEmergencySymptoms
       },
-      disclaimer: 'Esta análise não substitui consulta veterinária profissional.'
+      redFlags: hasEmergencySymptoms ? [
+        'Dificuldade respiratória severa',
+        'Perda de consciência',
+        'Sangramento abundante',
+        'Convulsões'
+      ] : [
+        'Piora dos sintomas existentes',
+        'Recusa total de água/comida',
+        'Letargia extrema'
+      ],
+      disclaimer: '🤖 Este assistente de IA veterinária fornece triagem pré-consulta. Para diagnóstico definitivo e tratamento, consulte sempre um veterinário licenciado pelo CRMV.'
     };
   }
 }

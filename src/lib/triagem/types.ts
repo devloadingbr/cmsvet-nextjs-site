@@ -34,6 +34,8 @@ export interface AIAnalysis {
   urgencyLevel: number; // 1-10
   urgencyText: UrgencyLevel;
   diagnosis: string;
+  symptomCorrelation?: string; // Nova: correlação dos sintomas
+  possibleConditions?: string[]; // Nova: possíveis condições
   immediateActions: string[];
   whenToSeekHelp: string;
   cta: {
@@ -42,6 +44,7 @@ export interface AIAnalysis {
     action: string;
     urgency: boolean;
   };
+  redFlags?: string[]; // Nova: sinais de alarme
   estimatedTime?: string;
   disclaimer: string;
 }
