@@ -13,6 +13,10 @@ export class TriagemAIService {
   constructor() {
     this.apiKey = process.env.OPENAI_API_KEY || '';
     this.model = process.env.OPENAI_MODEL || 'gpt-4';
+    
+    if (!this.apiKey || this.apiKey.includes('exemplo')) {
+      console.warn('⚠️ OpenAI API Key não configurada. Configure OPENAI_API_KEY no arquivo .env.local');
+    }
   }
 
   /**
@@ -31,7 +35,10 @@ export class TriagemAIService {
         body: JSON.stringify({
           model: this.model,
           messages: [
-            { role: 'system', content: AI_PROMPTS.ANALYSIS_SYSTEM },
+            { 
+              role: 'system', 
+              content: process.env.TRIAGEM_ANALYSIS_PROMPT || AI_PROMPTS.ANALYSIS_SYSTEM 
+            },
             { role: 'user', content: prompt }
           ],
           temperature: 0.3,
@@ -67,7 +74,10 @@ export class TriagemAIService {
     
     try {
       const messages = [
-        { role: 'system', content: AI_PROMPTS.CHAT_SYSTEM },
+        { 
+          role: 'system', 
+          content: process.env.TRIAGEM_CHAT_PROMPT || AI_PROMPTS.CHAT_SYSTEM 
+        },
         ...this.buildChatHistory(chatHistory),
         { role: 'user', content: prompt }
       ];

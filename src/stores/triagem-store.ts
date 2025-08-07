@@ -19,6 +19,7 @@ import {
   isSessionExpired
 } from '@/lib/triagem/utils';
 import { DEFAULT_TRIAGEM_CONFIG } from '@/lib/triagem/constants';
+import { PetDataSchema } from '@/lib/triagem/schemas';
 
 interface TriagemState {
   // Estado atual
@@ -93,6 +94,7 @@ export const useTriagemStore = create<TriagemState>()(
       
       previousSessions: [],
       config: DEFAULT_TRIAGEM_CONFIG,
+      lastUpdate: Date.now(),
 
       // Inicializar nova sessão
       initializeSession: () => {
@@ -115,24 +117,24 @@ export const useTriagemStore = create<TriagemState>()(
         });
       },
 
-      // Definir dados do pet
+      // Definir dados do pet com Zod validation
       setPetData: (pet: Pet) => {
-        const state = get();
-        if (!state.currentSession) return;
-
-        const validation = validatePetData(pet);
-        if (!validation.isValid) {
-          set({ error: validation.errors[0] });
-          return;
+        try {
+          const validatedPet = PetDataSchema.parse(pet);
+          
+          set(state => ({
+            ...state,
+            currentSession: state.currentSession ? {
+              ...state.currentSession,
+              pet: validatedPet,
+            } : null,
+            error: null,
+            lastUpdate: Date.now(),
+          }));
+        } catch (error) {
+          const errorMessage = (error as { errors?: { message: string }[] })?.errors?.[0]?.message || 'Dados do pet inválidos';
+          set(state => ({ ...state, error: errorMessage }));
         }
-
-        set({
-          currentSession: {
-            ...state.currentSession,
-            pet,
-          },
-          error: null
-        });
       },
 
       // Adicionar sintoma
@@ -407,7 +409,6 @@ export const useTriagemStore = create<TriagemState>()(
     }),
     {
       name: 'triagem-storage',
-      // Apenas persiste sessões anteriores e configurações
       partialize: (state) => ({
         previousSessions: state.previousSessions,
         config: state.config,

@@ -7,12 +7,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useShowPromotionalCard, useStartInlineTriagem } from '@/stores/triagem-store';
-import { TriagemInlineCard } from '@/components/triagem/inline/TriagemInlineCard';
+import { useShowPromotionalCard, useStartInlineTriagem, useExitInlineTriagem } from '@/stores/triagem-store';
+import { TriagemWizard } from '@/components/triagem/TriagemWizard';
 
 export default function TriageSection() {
   const showPromotionalCard = useShowPromotionalCard();
   const startInlineTriagem = useStartInlineTriagem();
+  const exitInlineTriagem = useExitInlineTriagem();
 
   const features = [
     {
@@ -164,7 +165,13 @@ export default function TriageSection() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
               >
-                <TriagemInlineCard />
+                <TriagemWizard 
+                  mode="inline"
+                  onExit={exitInlineTriagem}
+                  onComplete={() => {
+                    console.log('Triagem inline completed');
+                  }}
+                />
               </motion.div>
             )}
           </AnimatePresence>
