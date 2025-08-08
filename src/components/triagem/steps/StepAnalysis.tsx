@@ -4,7 +4,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -39,67 +39,66 @@ export function StepAnalysis({
 
   const symptomsText = formatSymptomsForDisplay(symptomIds);
 
+  const runAnalysis = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+
+    // Simular um delay de 2s para mostrar o loading e então usar fallback
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Usar análise de fallback inteligente (sem chamada de API problemática)
+    const hasEmergency = symptomIds.some(id => id.includes('emergency'));
+    
+    const fallbackAnalysis = {
+      urgencyLevel: hasEmergency ? 9 : 6,
+      urgencyText: hasEmergency ? 'emergency' as const : 'today' as const,
+      diagnosis: `Com base na análise dos sintomas apresentados por ${pet.name}, POSSIVELMENTE temos uma situação que requer avaliação veterinária profissional. Os sintomas observados PODEM indicar diferentes condições que necessitam de exame clínico para diagnóstico definitivo.`,
+      symptomCorrelation: `Os sintomas relatados por ${pet.name} ${symptomIds.length > 1 ? 'podem estar inter-relacionados, sugerindo uma condição sistêmica' : 'requer atenção veterinária para avaliação adequada'}.`,
+      possibleConditions: [
+        'Processo inflamatório',
+        'Distúrbio comportamental',
+        'Condição que requer investigação'
+      ],
+      immediateActions: [
+        'Mantenha o pet em ambiente calmo e seguro',
+        'Monitore os sintomas atentamente',
+        'Ofereça água fresca se o pet estiver responsivo',
+        'Evite medicamentos sem orientação veterinária'
+      ],
+      whenToSeekHelp: hasEmergency 
+        ? 'Recomendamos avaliação veterinária IMEDIATA devido à natureza crítica dos sintomas'
+        : 'Recomendamos consulta veterinária HOJE para investigação e diagnóstico adequado',
+      cta: {
+        type: hasEmergency ? 'emergency' as const : 'appointment' as const,
+        text: hasEmergency ? '🚨 EMERGÊNCIA - CONTATAR AGORA' : '📅 AGENDAR CONSULTA HOJE',
+        action: hasEmergency ? 'emergency_whatsapp' as const : 'appointment_whatsapp' as const,
+        urgency: hasEmergency
+      },
+      redFlags: hasEmergency ? [
+        'Dificuldade respiratória severa',
+        'Perda de consciência',
+        'Sangramento abundante'
+      ] : [
+        'Piora dos sintomas existentes',
+        'Recusa total de água/comida',
+        'Letargia extrema'
+      ],
+      disclaimer: '🤖 Este assistente de IA veterinária fornece triagem pré-consulta. Para diagnóstico definitivo e tratamento, consulte sempre um veterinário licenciado pelo CRMV.'
+    };
+    
+    console.log('✅ Using reliable fallback analysis');
+    setAnalysis(fallbackAnalysis);
+    onAnalysisComplete(fallbackAnalysis);
+    setIsLoading(false);
+  }, [pet.name, symptomIds, onAnalysisComplete]);
+
   useEffect(() => {
     // Evita execução se já tem análise
     if (analysis) return;
     
     console.log('🚀 Starting analysis for:', pet.name, 'Symptoms:', symptomIds.length);
-    
-    const runAnalysis = async () => {
-      setIsLoading(true);
-      setError(null);
-
-      // Simular um delay de 2s para mostrar o loading e então usar fallback
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
-      // Usar análise de fallback inteligente (sem chamada de API problemática)
-      const hasEmergency = symptomIds.some(id => id.includes('emergency'));
-      
-      const fallbackAnalysis = {
-        urgencyLevel: hasEmergency ? 9 : 6,
-        urgencyText: hasEmergency ? 'emergency' as const : 'today' as const,
-        diagnosis: `Com base na análise dos sintomas apresentados por ${pet.name}, POSSIVELMENTE temos uma situação que requer avaliação veterinária profissional. Os sintomas observados PODEM indicar diferentes condições que necessitam de exame clínico para diagnóstico definitivo.`,
-        symptomCorrelation: `Os sintomas relatados por ${pet.name} ${symptomIds.length > 1 ? 'podem estar inter-relacionados, sugerindo uma condição sistêmica' : 'requer atenção veterinária para avaliação adequada'}.`,
-        possibleConditions: [
-          'Processo inflamatório',
-          'Distúrbio comportamental',
-          'Condição que requer investigação'
-        ],
-        immediateActions: [
-          'Mantenha o pet em ambiente calmo e seguro',
-          'Monitore os sintomas atentamente',
-          'Ofereça água fresca se o pet estiver responsivo',
-          'Evite medicamentos sem orientação veterinária'
-        ],
-        whenToSeekHelp: hasEmergency 
-          ? 'Recomendamos avaliação veterinária IMEDIATA devido à natureza crítica dos sintomas'
-          : 'Recomendamos consulta veterinária HOJE para investigação e diagnóstico adequado',
-        cta: {
-          type: hasEmergency ? 'emergency' as const : 'appointment' as const,
-          text: hasEmergency ? '🚨 EMERGÊNCIA - CONTATAR AGORA' : '📅 AGENDAR CONSULTA HOJE',
-          action: hasEmergency ? 'emergency_whatsapp' as const : 'appointment_whatsapp' as const,
-          urgency: hasEmergency
-        },
-        redFlags: hasEmergency ? [
-          'Dificuldade respiratória severa',
-          'Perda de consciência',
-          'Sangramento abundante'
-        ] : [
-          'Piora dos sintomas existentes',
-          'Recusa total de água/comida',
-          'Letargia extrema'
-        ],
-        disclaimer: '🤖 Este assistente de IA veterinária fornece triagem pré-consulta. Para diagnóstico definitivo e tratamento, consulte sempre um veterinário licenciado pelo CRMV.'
-      };
-      
-      console.log('✅ Using reliable fallback analysis');
-      setAnalysis(fallbackAnalysis);
-      onAnalysisComplete(fallbackAnalysis);
-      setIsLoading(false);
-    };
-
     runAnalysis();
-  }, [pet.name, symptomIds, analysis, onAnalysisComplete]);
+  }, [analysis, runAnalysis, pet.name, symptomIds]);
 
   const handleCTAAction = () => {
     if (!analysis) return;
