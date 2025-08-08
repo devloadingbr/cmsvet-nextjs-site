@@ -4,10 +4,10 @@
 
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Pet, AIAnalysis } from '@/lib/triagem/types';
 import { URGENCY_COLORS, URGENCY_LABELS } from '@/lib/triagem/constants';
 import { formatSymptomsForDisplay, buildWhatsAppMessage } from '@/lib/triagem/utils';
@@ -170,7 +170,7 @@ export function StepAnalysis({
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={analyzeSymptoms} className="px-8">
+            <Button onClick={runAnalysis} className="px-8">
               Tentar Novamente
             </Button>
             <Button variant="outline" onClick={onBack} className="px-8">
