@@ -1,7 +1,6 @@
 'use client';
 
-import { Leaf, AlertTriangle, Shield, Building, DollarSign, BookOpen, ArrowRight, Download, Calculator, Camera, Phone } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
+import { Leaf, AlertTriangle, Shield, Building, DollarSign, BookOpen, ArrowRight, Download, Calculator, Camera, Phone, MessageCircle } from 'lucide-react';
 import { urls, whatsappMessages } from '@/lib/env';
 
 export default function InfoSection() {
@@ -140,7 +139,7 @@ export default function InfoSection() {
               rel="noopener noreferrer"
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer"
             >
-              <FaWhatsapp className="w-5 h-5" />
+              <MessageCircle className="w-5 h-5" />
               <span>WhatsApp</span>
             </a>
             <a 

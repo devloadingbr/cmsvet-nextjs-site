@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
+import { Phone, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { clinic, stats, urls, whatsappMessages } from '@/lib/env';
@@ -83,7 +82,7 @@ export default function HeroSection() {
               className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-5 sm:px-8 sm:py-6 md:px-10 md:py-7 text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl shadow-emerald-900/20 flex-1 max-w-xs cursor-pointer"
               onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
             >
-              <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               WHATSAPP
             </Button>
             <Button 
