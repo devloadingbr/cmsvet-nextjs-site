@@ -39,17 +39,11 @@ export function StepAnalysis({
 
   const symptomsText = formatSymptomsForDisplay(symptomIds);
 
-  const runAnalysis = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    // Simular um delay de 2s para mostrar o loading e então usar fallback
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Usar análise de fallback inteligente (sem chamada de API problemática)
+  // Função para gerar análise de fallback
+  const getFallbackAnalysis = useCallback(() => {
     const hasEmergency = symptomIds.some(id => id.includes('emergency'));
     
-    const fallbackAnalysis = {
+    return {
       urgencyLevel: hasEmergency ? 9 : 6,
       urgencyText: hasEmergency ? 'emergency' as const : 'today' as const,
       diagnosis: `Com base na análise dos sintomas apresentados por ${pet.name}, POSSIVELMENTE temos uma situação que requer avaliação veterinária profissional. Os sintomas observados PODEM indicar diferentes condições que necessitam de exame clínico para diagnóstico definitivo.`,
@@ -85,12 +79,66 @@ export function StepAnalysis({
       ],
       disclaimer: '🤖 Este assistente de IA veterinária fornece triagem pré-consulta. Para diagnóstico definitivo e tratamento, consulte sempre um veterinário licenciado pelo CRMV.'
     };
-    
-    console.log('✅ Using reliable fallback analysis');
-    setAnalysis(fallbackAnalysis);
-    onAnalysisComplete(fallbackAnalysis);
-    setIsLoading(false);
-  }, [pet.name, symptomIds, onAnalysisComplete]);
+  }, [pet.name, symptomIds]);
+
+  const runAnalysis = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+
+    console.log('🚀 [StepAnalysis] Iniciando análise para:', pet.name);
+    console.log('📊 [StepAnalysis] Sintomas:', symptomIds.length, 'selecionados');
+
+    try {
+      // Chamar API de análise
+      const response = await fetch('/api/triagem/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pet,
+          symptomIds,
+          extraInfo
+        })
+      });
+
+      console.log('📡 [StepAnalysis] Resposta da API:', response.status, response.statusText);
+
+      if (!response.ok) {
+        throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ [StepAnalysis] Dados recebidos:', {
+        success: data.success,
+        hasAnalysis: !!data.analysis,
+        sessionId: data.sessionId
+      });
+
+      if (!data.success || !data.analysis) {
+        throw new Error(data.error || 'Resposta inválida da API');
+      }
+
+      // Sucesso - usar análise da API
+      console.log('🎯 [StepAnalysis] Usando análise da IA');
+      setAnalysis(data.analysis);
+      onAnalysisComplete(data.analysis);
+
+    } catch (err) {
+      // Erro - usar fallback
+      console.error('❌ [StepAnalysis] Erro na análise:', err);
+      console.log('🛡️ [StepAnalysis] Usando análise offline (fallback)');
+      
+      const fallbackAnalysis = getFallbackAnalysis();
+      setAnalysis(fallbackAnalysis);
+      onAnalysisComplete(fallbackAnalysis);
+      
+      // Mostrar aviso ao usuário
+      setError('Usando análise offline. A IA está temporariamente indisponível.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [pet, symptomIds, extraInfo, onAnalysisComplete, getFallbackAnalysis]);
 
   useEffect(() => {
     // Evita execução se já tem análise

@@ -56,15 +56,12 @@ export default function TriagemPage() {
       {/* Triagem Wizard */}
       <section className="pb-20 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-gradient-to-br from-slate-50 to-violet-50 border-violet-200 border-2 rounded-2xl p-6 sm:p-8 shadow-lg">
-            <TriagemWizard 
-              onComplete={() => {
-                // Opcional: redirecionar após completar
-                console.log('Triagem completada');
-              }}
-              className="w-full"
-            />
-          </div>
+          <TriagemWizard 
+            onComplete={() => {
+              // Opcional: redirecionar após completar
+              console.log('Triagem completada');
+            }}
+          />
         </div>
       </section>
     </div>

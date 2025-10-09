@@ -1,15 +1,12 @@
 /**
- * Sistema unificado de triagem veterinária
- * Suporta modo standalone (página) e inline (seção)
+ * Sistema de triagem veterinária
+ * Versão simplificada - apenas modo standalone
  */
 
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { ProgressBar } from './shared/ProgressBar';
 import { StepPetData } from './steps/StepPetData';
 import { StepSymptoms } from './steps/StepSymptoms';
@@ -20,19 +17,13 @@ import { generateChatMessageId } from '@/lib/triagem/utils';
 import { ChatMessage, Pet, AIAnalysis } from '@/lib/triagem/types';
 import { cn } from '@/lib/utils';
 
-type TriagemMode = 'standalone' | 'inline';
-
 interface TriagemWizardProps {
-  mode?: TriagemMode;
   onComplete?: () => void;
-  onExit?: () => void;
   className?: string;
 }
 
 export function TriagemWizard({ 
-  mode = 'standalone', 
-  onComplete, 
-  onExit,
+  onComplete,
   className 
 }: TriagemWizardProps) {
   const {
@@ -52,15 +43,6 @@ export function TriagemWizard({
   } = useTriagemStore();
 
   const selectedSymptoms = currentSession?.selectedSymptoms || [];
-  
-  const isInline = mode === 'inline';
-  
-  // Progresso calculado
-  const progress = useMemo(() => {
-    const steps = ['pet_data', 'symptoms', 'analysis', 'chat'];
-    const currentIndex = steps.indexOf(currentStep);
-    return Math.round(((currentIndex + 1) / steps.length) * 100);
-  }, [currentStep]);
 
   // Inicializar sessão se não existir
   useEffect(() => {
@@ -72,24 +54,12 @@ export function TriagemWizard({
 
   // Loading state
   if (!currentSession) {
-    const LoadingContent = (
-      <div className="text-center py-20">
+    return (
+      <div className="max-w-4xl mx-auto text-center py-20">
         <div className="text-6xl mb-4">🐾</div>
         <p className="text-gray-600">Inicializando triagem...</p>
       </div>
     );
-
-    if (isInline) {
-      return (
-        <Card className="bg-white border-2 border-blue-200">
-          <CardContent className="p-8">
-            {LoadingContent}
-          </CardContent>
-        </Card>
-      );
-    }
-    
-    return <div className="max-w-4xl mx-auto">{LoadingContent}</div>;
   }
 
   const handlePetDataSubmit = (pet: Pet) => {
@@ -129,14 +99,6 @@ export function TriagemWizard({
       onComplete();
     }
   };
-
-  const handleExit = () => {
-    if (onExit) {
-      onExit();
-    }
-  };
-
-  const canGoBack = currentStep !== 'pet_data';
 
   // Render step content
   const renderStep = () => {
@@ -185,91 +147,7 @@ export function TriagemWizard({
     }
   };
 
-  // Inline mode rendering
-  if (isInline) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className={cn("w-full", className)}
-      >
-        <Card className="bg-white border-2 border-blue-200 text-slate-900 overflow-hidden relative shadow-xl">
-          {/* Decorative elements */}
-          <div className="absolute top-4 right-4 text-6xl opacity-20 text-amber-500">🐾</div>
-          <div className="absolute bottom-4 left-4 text-4xl opacity-20 text-blue-500">💡</div>
-          
-          <CardContent className="p-6 lg:p-8 relative z-10">
-            {/* Header com controles */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-4">
-                {canGoBack && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={previousStep}
-                    className="text-blue-600 hover:bg-amber-50 h-10 w-10 border border-blue-200"
-                  >
-                    <ArrowLeft className="h-5 w-5" />
-                  </Button>
-                )}
-                <div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-blue-600">
-                    🩺 Triagem Veterinária
-                  </h3>
-                  <p className="text-slate-600 text-sm">
-                    Análise inteligente dos sintomas do seu pet
-                  </p>
-                </div>
-              </div>
-              
-              {onExit && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={handleExit}
-                  className="text-slate-500 hover:bg-red-50 hover:text-red-600 h-10 w-10 border border-slate-200"
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              )}
-            </div>
-
-            {/* Progress bar inline */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-blue-600">Progresso</span>
-                <span className="text-sm text-slate-500">{progress}%</span>
-              </div>
-              <div className="w-full bg-blue-100 rounded-full h-2">
-                <div 
-                  className="bg-gradient-to-r from-blue-500 to-violet-500 h-2 rounded-full transition-all duration-500 ease-out"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Step content com animação */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentStep}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
-                className="min-h-[400px] flex flex-col"
-              >
-                {renderStep()}
-              </motion.div>
-            </AnimatePresence>
-          </CardContent>
-        </Card>
-      </motion.div>
-    );
-  }
-
-  // Standalone mode rendering
+  // Renderização standalone
   return (
     <div className={cn("min-h-screen py-8", className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -316,16 +194,4 @@ export function TriagemWizard({
       </div>
     </div>
   );
-}
-
-// Hook personalizado para usar com o wizard unificado
-export function useTriagemWizard(mode: TriagemMode = 'standalone') {
-  const store = useTriagemStore();
-  
-  return {
-    ...store,
-    mode,
-    isInline: mode === 'inline',
-    isStandalone: mode === 'standalone',
-  };
 }

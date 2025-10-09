@@ -9,16 +9,22 @@ import { validatePetData, validateSymptoms } from '@/lib/triagem/utils';
 import { TriagemDataForAI, AnalysisResponse } from '@/lib/triagem/types';
 
 export async function POST(request: NextRequest) {
-  console.log('🚀 Triagem analyze API called');
+  const startTime = Date.now();
+  console.log('🚀 [API] Triagem analyze iniciada');
   
   try {
     const body = await request.json();
     const { pet, symptomIds, extraInfo } = body;
     
-    console.log('📊 Request data:', {
+    console.log('📊 [API] Dados recebidos:', {
       petName: pet?.name,
+      petAge: pet?.age,
+      petSpecies: pet?.species,
       symptomsCount: symptomIds?.length,
-      hasExtraInfo: !!extraInfo
+      symptoms: symptomIds,
+      hasExtraInfo: !!extraInfo,
+      extraInfoLength: extraInfo?.length || 0,
+      timestamp: new Date().toISOString()
     });
 
     // Validações
@@ -71,13 +77,18 @@ export async function POST(request: NextRequest) {
     };
 
     // Chamar serviço de IA
-    console.log('🤖 Calling AI service...');
+    console.log('🤖 [API] Chamando AI service...');
+    const analysisStartTime = Date.now();
+    
     const analysis = await triagemAIService.analyzeSymptoms(dataForAI);
     
-    console.log('✅ AI analysis completed:', {
+    const analysisDuration = Date.now() - analysisStartTime;
+    console.log('✅ [API] Análise IA concluída:', {
       urgencyLevel: analysis.urgencyLevel,
+      urgencyText: analysis.urgencyText,
       hasAnalysis: !!analysis,
-      diagnosisLength: analysis.diagnosis?.length
+      diagnosisLength: analysis.diagnosis?.length,
+      duration: `${analysisDuration}ms`
     });
 
     // Gerar ID da sessão (em um sistema real, salvaria no banco)
@@ -89,16 +100,31 @@ export async function POST(request: NextRequest) {
       sessionId,
     };
 
-    console.log('🎯 Returning response successfully');
+    const totalDuration = Date.now() - startTime;
+    console.log('🎯 [API] Resposta enviada com sucesso:', {
+      sessionId,
+      totalDuration: `${totalDuration}ms`
+    });
+    
     return NextResponse.json(response);
 
   } catch (error) {
-    console.error('Error in analyze route:', error);
+    const totalDuration = Date.now() - startTime;
+    
+    console.error('❌ [API] Erro na análise:', {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      duration: `${totalDuration}ms`,
+      timestamp: new Date().toISOString()
+    });
 
     return NextResponse.json(
       { 
         success: false, 
-        error: error instanceof Error ? error.message : 'Erro interno do servidor',
+        error: 'Erro ao processar análise. Tente novamente.',
+        details: process.env.NODE_ENV === 'development' 
+          ? (error instanceof Error ? error.message : String(error))
+          : undefined,
         sessionId: null 
       },
       { status: 500 }

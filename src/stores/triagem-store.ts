@@ -28,10 +28,6 @@ interface TriagemState {
   isLoading: boolean;
   error: string | null;
   
-  // Estado da UI inline
-  isInlineMode: boolean;
-  showPromotionalCard: boolean;
-  
   // Cache de sessões anteriores
   previousSessions: TriagemSession[];
   
@@ -52,11 +48,6 @@ interface TriagemState {
   goToStep: (step: TriagemStep) => void;
   nextStep: () => void;
   previousStep: () => void;
-  
-  // Inline UI actions
-  startInlineTriagem: () => void;
-  exitInlineTriagem: () => void;
-  togglePromotionalCard: () => void;
   
   // State management
   setLoading: (loading: boolean) => void;
@@ -88,13 +79,8 @@ export const useTriagemStore = create<TriagemState>()(
       isLoading: false,
       error: null,
       
-      // Estado da UI inline
-      isInlineMode: false,
-      showPromotionalCard: true,
-      
       previousSessions: [],
       config: DEFAULT_TRIAGEM_CONFIG,
-      lastUpdate: Date.now(),
 
       // Inicializar nova sessão
       initializeSession: () => {
@@ -362,39 +348,6 @@ export const useTriagemStore = create<TriagemState>()(
         return (state.currentSession?.questionsRemaining || 0) > 0;
       },
 
-      // Ações da UI inline
-      startInlineTriagem: () => {
-        const state = get();
-        
-        // Inicializar sessão se não existir
-        if (!state.currentSession) {
-          state.initializeSession();
-        }
-        
-        set({
-          isInlineMode: true,
-          showPromotionalCard: false,
-          currentStep: 'pet_data',
-          error: null
-        });
-      },
-
-      exitInlineTriagem: () => {
-        set({
-          isInlineMode: false,
-          showPromotionalCard: true,
-          currentStep: 'pet_data',
-          error: null
-        });
-      },
-
-      togglePromotionalCard: () => {
-        const state = get();
-        set({
-          showPromotionalCard: !state.showPromotionalCard
-        });
-      },
-
       // Limpeza de sessões expiradas
       cleanupExpiredSessions: () => {
         const state = get();
@@ -427,12 +380,3 @@ export const useSelectedSymptoms = () => useTriagemStore((state) => state.curren
 export const useAnalysis = () => useTriagemStore((state) => state.currentSession?.analysis);
 export const useChatHistory = () => useTriagemStore((state) => state.currentSession?.chatHistory || []);
 export const useRemainingQuestions = () => useTriagemStore((state) => state.getRemainingQuestions());
-
-// Seletores para UI inline
-export const useInlineMode = () => useTriagemStore((state) => state.isInlineMode);
-export const useShowPromotionalCard = () => useTriagemStore((state) => state.showPromotionalCard);
-
-// Seletores individuais para evitar re-renders desnecessários
-export const useStartInlineTriagem = () => useTriagemStore((state) => state.startInlineTriagem);
-export const useExitInlineTriagem = () => useTriagemStore((state) => state.exitInlineTriagem);
-export const useTogglePromotionalCard = () => useTriagemStore((state) => state.togglePromotionalCard);

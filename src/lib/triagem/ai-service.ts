@@ -23,18 +23,26 @@ export class TriagemAIService {
    * Analisa sintomas do pet e retorna diagnóstico e recomendações
    */
   async analyzeSymptoms(data: TriagemDataForAI): Promise<AIAnalysis> {
+    console.log('🤖 [AI Service] Iniciando análise');
+    console.log('📋 [AI Service] Pet:', data.pet.name, `(${data.pet.species}, ${data.pet.age} anos)`);
+    console.log('🩺 [AI Service] Sintomas:', data.symptoms.length);
+    
     // Se API Key não configurada, usar análise padrão
     if (!this.apiKey || this.apiKey.includes('exemplo')) {
-      console.log('🤖 Using default analysis (no OpenAI API key)');
+      console.warn('⚠️ [AI Service] API key não configurada, usando fallback');
       return this.getDefaultAnalysis(data);
     }
 
+    console.log('🔑 [AI Service] API key válida, chamando OpenAI');
     const prompt = this.buildAnalysisPrompt(data);
     
     try {
-      // Timeout de 15 segundos
+      // Timeout de 30 segundos (aumentado de 15s)
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      const timeoutId = setTimeout(() => {
+        console.warn('⏰ [AI Service] Timeout de 30s atingido');
+        controller.abort();
+      }, 30000);
       
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
@@ -60,16 +68,25 @@ export class TriagemAIService {
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        throw new Error(`OpenAI API error: ${response.statusText}`);
+        const errorText = await response.text();
+        console.error('❌ [AI Service] OpenAI API error:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorText
+        });
+        throw new Error(`OpenAI API error: ${response.status} - ${response.statusText}`);
       }
 
       const result = await response.json();
+      console.log('✅ [AI Service] Resposta OpenAI recebida');
+      
       const aiResponse = result.choices[0].message.content;
       
       return this.parseAnalysisResponse(aiResponse, data);
     } catch (error) {
-      console.error('❌ Error analyzing symptoms:', {
-        error: error instanceof Error ? error.message : error,
+      console.error('❌ [AI Service] Erro na análise:', {
+        error: error instanceof Error ? error.message : String(error),
+        errorName: error instanceof Error ? error.name : 'Unknown',
         model: this.model,
         hasApiKey: !!this.apiKey,
         petName: data.pet.name,
@@ -78,18 +95,18 @@ export class TriagemAIService {
       
       // Se foi erro de timeout/abort, usar fallback
       if (error instanceof Error && error.name === 'AbortError') {
-        console.log('⏰ Request timeout, using fallback analysis');
+        console.log('⏰ [AI Service] Timeout, usando fallback');
         return this.getDefaultAnalysis(data);
       }
       
       // Se foi erro de API, usar fallback
       if (error instanceof Error && error.message.includes('API')) {
-        console.log('🔄 API error, using fallback analysis');
+        console.log('🔄 [AI Service] Erro de API, usando fallback');
         return this.getDefaultAnalysis(data);
       }
       
       // Para outros erros, usar fallback também
-      console.log('🛡️ Using fallback analysis due to error');
+      console.log('🛡️ [AI Service] Usando fallback devido a erro');
       return this.getDefaultAnalysis(data);
     }
   }
