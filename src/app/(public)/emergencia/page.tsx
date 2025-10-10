@@ -264,19 +264,7 @@ export default function EmergenciaPage() {
             </Button>
           </div>
 
-          {/* AI Triage Button */}
-          <div className="pt-1 sm:pt-4 max-w-2xl mx-auto px-2">
-            <Button 
-              size="lg" 
-              className="w-full bg-violet-500 hover:bg-violet-600 text-white px-4 py-6 sm:px-6 sm:py-7 md:px-8 md:py-8 text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl shadow-violet-900/20 cursor-pointer"
-              onClick={() => window.location.href = '/triagem'}
-            >
-              🩺 TRIAGEM INTELIGENTE
-            </Button>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2 sm:mt-3 text-center px-2">
-              💕 Sistema carinhoso que ajuda a entender como seu pet está se sentindo
-            </p>
-          </div>
+          {/* AI Triage Button - removido */}
         </div>
       </div>
 
@@ -352,19 +340,7 @@ export default function EmergenciaPage() {
             </p>
           </div>
           
-          {/* Botão Triagem Rápida */}
-          <div className="text-center mb-16">
-            <Button 
-              size="lg"
-              className="w-full max-w-2xl bg-violet-500 hover:bg-violet-600 text-white px-4 py-6 sm:px-6 sm:py-7 md:px-8 md:py-8 text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl shadow-violet-900/20 cursor-pointer"
-              onClick={() => window.location.href = '/triagem'}
-            >
-              🩺 TRIAGEM INTELIGENTE
-            </Button>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2 sm:mt-3 text-center px-2">
-              💕 Sistema carinhoso que ajuda a entender como seu pet está se sentindo
-            </p>
-          </div>
+          {/* Botão Triagem Rápida - removido */}
           
           {/* Emergency Levels Grid */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">

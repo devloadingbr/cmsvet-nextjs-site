@@ -2,7 +2,6 @@
 
 import HeroSection from '@/components/sections/HeroSection';
 import StatsSection from '@/components/sections/StatsSection';
-import TriageSection from '@/components/sections/TriageSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import WhyChooseSection from '@/components/sections/WhyChooseSection';
 import TeamSection from '@/components/sections/TeamSection';
@@ -15,7 +14,6 @@ export default function CSMHomepage() {
     <main className="min-h-screen">
       <HeroSection />
       <StatsSection />
-      <TriageSection />
       <ServicesSection />
       <WhyChooseSection />
       <TeamSection />
