@@ -63,7 +63,7 @@ export default function Header() {
   return (
     <>
       {/* Emergency Banner */}
-      <div className="bg-csm-urgency text-white py-2 px-4">
+      <div className="bg-[#E67E22] text-white py-2 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-sm font-medium">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4" />
@@ -121,9 +121,9 @@ export default function Header() {
                             href={item.href}
                             className={cn(
                               "px-4 py-2 text-csm-gray-dark hover:text-csm-blue transition-colors duration-300 rounded-lg font-medium flex flex-row items-center gap-2 focus:outline-none",
-                              item.isEmergency && "text-csm-urgency hover:text-csm-urgency-hover font-semibold bg-orange-50 hover:bg-orange-100",
+                              item.isEmergency && "text-[#E67E22] hover:text-[#D35400] font-semibold bg-orange-50 hover:bg-orange-100",
                               isActive && !item.isEmergency && "text-white bg-csm-blue hover:bg-csm-blue-hover hover:text-white focus:bg-csm-blue focus:text-white",
-                              isActive && item.isEmergency && "bg-csm-urgency text-white hover:bg-csm-urgency-hover hover:text-white focus:bg-csm-urgency focus:text-white"
+                              isActive && item.isEmergency && "bg-[#E67E22] text-white hover:bg-[#D35400] hover:text-white focus:bg-[#E67E22] focus:text-white"
                             )}
                           >
                             <IconComponent className={cn("w-4 h-4", isActive && "text-white")} />
@@ -170,9 +170,9 @@ export default function Header() {
                           onClick={() => setIsOpen(false)}
                           className={cn(
                             "block px-4 py-3 rounded-lg text-csm-gray-dark hover:text-csm-blue hover:bg-csm-blue-light transition-colors duration-300 focus:outline-none",
-                            item.isEmergency && "text-csm-urgency hover:text-csm-urgency-hover bg-orange-50",
+                            item.isEmergency && "text-[#E67E22] hover:text-[#D35400] bg-orange-50",
                             isActive && !item.isEmergency && "text-white bg-csm-blue hover:bg-csm-blue-hover hover:text-white focus:bg-csm-blue focus:text-white",
-                            isActive && item.isEmergency && "bg-csm-urgency text-white hover:bg-csm-urgency-hover hover:text-white focus:bg-csm-urgency focus:text-white"
+                            isActive && item.isEmergency && "bg-[#E67E22] text-white hover:bg-[#D35400] hover:text-white focus:bg-[#E67E22] focus:text-white"
                           )}
                         >
                           <div className="flex items-center space-x-3">
