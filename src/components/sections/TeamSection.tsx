@@ -147,43 +147,41 @@ export default function TeamSection() {
           </CardCSM>
         </div>
 
-        {/* Bottom Section */}
-        <CardCSM variant="highlight" className="relative overflow-hidden">
-          
-          <CardCsmContent className="p-8 relative z-10">
-            {/* Header */}
-            <div className="bg-csm-blue rounded-lg p-6 text-white text-center mb-8">
-              <h3 className="text-3xl font-bold mb-4">
-                Equipe Disponível 24 Horas por Dia
-              </h3>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto">
-                Nossa equipe está sempre pronta para cuidar do seu pet, seja para consultas de rotina ou emergências
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              {serviceFeatures.map((feature, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-20 h-20 bg-csm-blue-light rounded-lg flex items-center justify-center mx-auto mb-4">
-                    {feature.icon}
-                  </div>
-                  <h4 className="font-bold text-xl mb-2 text-csm-gray-dark">{feature.title}</h4>
-                  <p className="text-csm-gray text-sm">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <div className="bg-csm-yellow-light border-2 border-csm-yellow rounded-lg p-8 inline-block">
-                <div className="w-16 h-16 bg-csm-yellow rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-csm-gray-dark" />
-                </div>
-                <h4 className="text-2xl font-bold mb-2 text-csm-gray-dark">
-                  Mais de {stats.petsCared.toLocaleString()} Pets Já Confiaram em Nós
-                </h4>
-                <p className="text-csm-gray mb-6">
-                  Veja o que nossos clientes têm a dizer sobre o cuidado que oferecemos aos seus companheiros de quatro patas
+        {/* Bottom Section - Redesign Moderno */}
+        <div className="bg-gradient-to-br from-csm-blue-light/10 to-white rounded-2xl p-8 lg:p-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div>
+                <BadgeCSM variant="blue" className="mb-4">
+                  Disponibilidade Total
+                </BadgeCSM>
+                <h3 className="text-3xl lg:text-4xl font-bold text-csm-gray-dark mb-4">
+                  Equipe Disponível <span className="text-csm-blue">24 Horas por Dia</span>
+                </h3>
+                <p className="text-lg text-csm-gray leading-relaxed">
+                  Nossa equipe está sempre pronta para cuidar do seu pet, seja para consultas de rotina ou emergências. Atendimento profissional quando você mais precisa.
                 </p>
+              </div>
+
+              {/* Features List */}
+              <div className="space-y-4">
+                {serviceFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-csm-gray-dark mb-1">{feature.title}</h4>
+                      <p className="text-sm text-csm-gray">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div>
                 <ButtonCSM 
                   variant="primary"
                   size="lg"
@@ -192,8 +190,52 @@ export default function TeamSection() {
                 </ButtonCSM>
               </div>
             </div>
-          </CardCsmContent>
-        </CardCSM>
+
+            {/* Right Content - Stats Cards */}
+            <div className="relative lg:h-[400px] flex items-center justify-center">
+              <div className="relative w-full max-w-md">
+                {/* Main Card */}
+                <CardCSM variant="default" className="bg-white shadow-xl">
+                  <CardCsmContent className="p-8 text-center">
+                    <Award className="w-16 h-16 text-csm-blue mx-auto mb-4" />
+                    <div className="text-4xl font-bold text-csm-blue mb-2">
+                      {stats.petsCared.toLocaleString()}+
+                    </div>
+                    <p className="text-csm-gray-dark font-semibold mb-2">
+                      Pets Confiaram em Nós
+                    </p>
+                    <p className="text-sm text-csm-gray">
+                      Histórias de sucesso e recuperação
+                    </p>
+                  </CardCsmContent>
+                </CardCSM>
+
+                {/* Floating Badge - Top Right */}
+                <div className="absolute -top-6 -right-6 z-10">
+                  <CardCSM variant="default" className="bg-csm-blue shadow-lg">
+                    <div className="p-4 text-center">
+                      <Clock className="w-6 h-6 text-white mx-auto mb-2" />
+                      <div className="text-xl font-bold text-white">24/7</div>
+                      <div className="text-xs text-white/80">Disponível</div>
+                    </div>
+                  </CardCSM>
+                </div>
+
+                {/* Floating Badge - Bottom Left */}
+                <div className="absolute -bottom-6 -left-6 z-10">
+                  <CardCSM variant="highlight" className="bg-csm-yellow shadow-lg">
+                    <div className="p-4 text-center">
+                      <UserCheck className="w-6 h-6 text-csm-gray-dark mx-auto mb-2" />
+                      <div className="text-xl font-bold text-csm-gray-dark">100%</div>
+                      <div className="text-xs text-csm-gray-dark">Dedicação</div>
+                    </div>
+                  </CardCSM>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );
