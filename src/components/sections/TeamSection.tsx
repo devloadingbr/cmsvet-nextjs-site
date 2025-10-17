@@ -68,7 +68,7 @@ export default function TeamSection() {
         <div className="flex justify-center mb-12">
           <CardCSM 
             variant="highlight"
-            className="max-w-2xl w-full"
+            className="max-w-md w-full"
           >
             <CardCsmHeader className="text-center">
               <Avatar className={`w-32 h-32 ${clinicalDirector.color} mx-auto mb-4`}>
