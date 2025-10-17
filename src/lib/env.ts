@@ -105,8 +105,8 @@ export const urls = {
 
 // Mensagens pré-definidas para WhatsApp
 export const whatsappMessages = {
-  emergency: "🚨 EMERGÊNCIA: Preciso de atendimento veterinário urgente para meu pet!",
-  appointment: "📅 Gostaria de agendar uma consulta para meu pet.",
-  info: "ℹ️ Gostaria de mais informações sobre os serviços da CSM.",
-  triage: "🩺 Meu pet não está bem, gostaria de orientação sobre o que fazer.",
+  emergency: "Olá! Gostaria de atendimento veterinário para meu pet.",
+  appointment: "Olá! Gostaria de agendar uma consulta para meu pet.",
+  info: "Olá! Gostaria de mais informações sobre os serviços da CSM.",
+  triage: "Olá! Meu pet não está bem, gostaria de orientação sobre o que fazer.",
 } as const;
