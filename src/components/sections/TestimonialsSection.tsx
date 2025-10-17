@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { CardCSM, CardCsmContent } from '@/components/ui/card-csm';
+import { ButtonCSM } from '@/components/ui/button-csm';
+import { BadgeCSM } from '@/components/ui/badge-csm';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { stats } from '@/lib/env';
 
@@ -16,7 +16,7 @@ export default function TestimonialsSection() {
       id: 'KD',
       name: 'Kaoana Deuchmann dos Santos',
       role: 'Tutor de Mimi',
-      petIcon: '🐱',
+      petIcon: '',
       petName: 'Mimi',
       review: 'Todas as médicas veterinárias que atenderam nossa gatinha foram incríveis! Fizeram uma investigação detalhada e trouxeram todas as soluções. Parabéns!',
       rating: 5
@@ -25,16 +25,16 @@ export default function TestimonialsSection() {
       id: 'IN',
       name: 'Isis Nogueira',
       role: 'Tutor de Bella',
-      petIcon: '🐕',
+      petIcon: '',
       petName: 'Bella',
-      review: 'Levei minha cachorrinha porque tinha ingerido chocolate. Deram todo o suporte necessário e cuidaram bem dela. Agora ela está bem! ❤️',
+      review: 'Levei minha cachorrinha porque tinha ingerido chocolate. Deram todo o suporte necessário e cuidaram bem dela. Agora ela está bem!',
       rating: 5
     },
     {
       id: 'JM',
       name: 'Jessé Mafiolete Pereira',
       role: 'Tutor de Félix',
-      petIcon: '🐱',
+      petIcon: '',
       petName: 'Félix',
       review: 'Nosso gatinho órfão estava muito mal. A equipe foi super prestativa e encontrou uma forma de atendê-lo. Hoje ele está grande e forte!',
       rating: 5
@@ -43,7 +43,7 @@ export default function TestimonialsSection() {
       id: 'SC',
       name: 'Sara Coutinho',
       role: 'Tutor de Thor',
-      petIcon: '🐕',
+      petIcon: '',
       petName: 'Thor',
       review: 'O atendimento foi impecável! A Dra. Thayana e sua equipe foram muito atenciosas e ajudaram a controlar a dor do meu cachorro.',
       rating: 5
@@ -52,7 +52,7 @@ export default function TestimonialsSection() {
       id: 'AP',
       name: 'Aline Pena Rodrigues',
       role: 'Tutor de Buddy',
-      petIcon: '🐕',
+      petIcon: '',
       petName: 'Buddy',
       review: 'Meu filho foi diagnosticado com parvovirose. Graças ao profissionalismo da equipe, ele está melhor e se recuperando em casa.',
       rating: 5
@@ -61,7 +61,7 @@ export default function TestimonialsSection() {
       id: 'CL',
       name: 'Carol Lima',
       role: 'Tutor de Luna e Mel',
-      petIcon: '🐕',
+      petIcon: '',
       petName: 'Luna e Mel',
       review: 'Castrei minhas duas fêmeas na CSM. Atendimento incrível desde o WhatsApp até a saída delas. Preço acessível e muito amor pelos pets.',
       rating: 5
@@ -90,10 +90,10 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Mais de {stats.petsCared.toLocaleString()} Pets Já <span className="text-blue-600">Confiaram</span> em Nós
+          <h2 className="text-4xl lg:text-5xl font-bold text-csm-gray-dark mb-6">
+            Mais de {stats.petsCared.toLocaleString()} Pets Já <span className="text-csm-blue">Confiaram</span> em Nós
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-xl text-csm-gray max-w-3xl mx-auto">
             Veja o que nossos clientes têm a dizer sobre o cuidado que oferecemos aos seus companheiros de quatro patas
           </p>
         </div>
@@ -101,12 +101,12 @@ export default function TestimonialsSection() {
         {/* Testimonials Carousel */}
         <div className="relative max-w-4xl mx-auto">
           {/* Main Testimonial Card */}
-          <Card className="bg-white border-2 border-blue-200 shadow-xl mb-8">
-            <CardContent className="p-8">
+          <CardCSM variant="default" className="mb-8">
+            <CardCsmContent className="p-8">
               <div className="flex items-start space-x-6">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
-                  <Avatar className="w-16 h-16 bg-blue-600">
+                  <Avatar className="w-16 h-16 bg-csm-blue">
                     <AvatarFallback className="text-white font-bold text-lg bg-transparent">
                       {testimonials[currentIndex].id}
                     </AvatarFallback>
@@ -117,50 +117,48 @@ export default function TestimonialsSection() {
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900">
+                    <h3 className="text-xl font-bold text-csm-gray-dark">
                       {testimonials[currentIndex].name}
                     </h3>
-                    <p className="text-slate-600">
+                    <p className="text-csm-gray">
                       {testimonials[currentIndex].role}
                     </p>
                   </div>
                   
                   {/* Pet Badge */}
-                  <Badge className="bg-amber-500 text-white border-amber-500">
-                    <span className="text-lg mr-1">{testimonials[currentIndex].petIcon}</span>
-                    🐾 {testimonials[currentIndex].petName}
-                  </Badge>
+                  <BadgeCSM variant="yellow">
+                    {testimonials[currentIndex].petName}
+                  </BadgeCSM>
                 </div>
 
                 {/* Stars */}
                 <div className="flex items-center space-x-1 mb-4">
                   {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-5 h-5 fill-csm-yellow text-csm-yellow" />
                   ))}
                 </div>
 
                 {/* Quote */}
                 <div className="relative">
-                  <Quote className="w-8 h-8 text-blue-200 absolute -top-2 -left-2" />
-                  <p className="text-slate-700 leading-relaxed text-lg pl-6">
+                  <Quote className="w-8 h-8 text-csm-blue-light absolute -top-2 -left-2" />
+                  <p className="text-csm-gray-dark leading-relaxed text-lg pl-6">
                     &ldquo;{testimonials[currentIndex].review}&rdquo;
                   </p>
                 </div>
               </div>
             </div>
-            </CardContent>
-          </Card>
+            </CardCsmContent>
+          </CardCSM>
 
           {/* Navigation */}
           <div className="flex items-center justify-center space-x-4">
-            <Button
+            <ButtonCSM
               onClick={prevTestimonial}
-              variant="outline"
-              size="icon"
-              className="w-12 h-12 rounded-full shadow-lg hover:bg-blue-50 cursor-pointer"
+              variant="secondary"
+              className="w-12 h-12 rounded-full cursor-pointer"
             >
               <ChevronLeft className="w-6 h-6" />
-            </Button>
+            </ButtonCSM>
 
             {/* Dots */}
             <div className="flex space-x-2">
@@ -170,32 +168,31 @@ export default function TestimonialsSection() {
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentIndex
-                      ? 'bg-blue-600 w-8'
-                      : 'bg-slate-300 hover:bg-slate-400'
+                      ? 'bg-csm-blue w-8'
+                      : 'bg-csm-gray-light hover:bg-csm-gray'
                   }`}
                 />
               ))}
             </div>
 
-            <Button
+            <ButtonCSM
               onClick={nextTestimonial}
-              variant="outline"
-              size="icon"
-              className="w-12 h-12 rounded-full shadow-lg hover:bg-blue-50 cursor-pointer"
+              variant="secondary"
+              className="w-12 h-12 rounded-full cursor-pointer"
             >
               <ChevronRight className="w-6 h-6" />
-            </Button>
+            </ButtonCSM>
           </div>
         </div>
 
         {/* CTA Button */}
         <div className="text-center mt-12">
-          <Button 
+          <ButtonCSM 
+            variant="primary"
             size="lg"
-            className="bg-blue-600 hover:bg-blue-700 px-8 py-6 text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl cursor-pointer"
           >
-            💬 Ver Mais Casos de Sucesso
-          </Button>
+            Ver Mais Casos de Sucesso
+          </ButtonCSM>
         </div>
       </div>
     </section>
