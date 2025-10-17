@@ -14,7 +14,9 @@ export default function BlogSection() {
       date: '24 mai, 2025',
       readTime: '5 min',
       views: '1250 visualizações',
-      image: 'bg-csm-blue'
+      image: 'bg-csm-blue',
+      badge: 'Mais Lido',
+      badgeVariant: 'yellow' as const
     },
     {
       id: 2,
@@ -24,7 +26,9 @@ export default function BlogSection() {
       date: '21 mai, 2025',
       readTime: '8 min',
       views: '890 visualizações',
-      image: 'bg-csm-blue'
+      image: 'bg-csm-blue',
+      badge: 'Essencial',
+      badgeVariant: 'yellow' as const
     },
     {
       id: 3,
@@ -67,10 +71,15 @@ export default function BlogSection() {
               {/* Content */}
               <div className="p-6">
                 {/* Category */}
-                <div className="mb-4">
+                <div className="mb-4 flex flex-wrap gap-2">
                   <BadgeCSM variant="blue">
                     {post.category}
                   </BadgeCSM>
+                  {post.badge && (
+                    <BadgeCSM variant={post.badgeVariant || 'blue'}>
+                      {post.badge}
+                    </BadgeCSM>
+                  )}
                 </div>
 
                 {/* Title */}

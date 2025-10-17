@@ -10,25 +10,41 @@ export default function WhyChooseSection() {
       icon: <Clock className="w-12 h-12 text-csm-blue" />,
       title: 'Plantão 24h Real',
       description: 'Não é só telefone. Veterinário presente na clínica 24h por dia, 7 dias por semana. Internação com monitoramento constante.',
-      features: ['Veterinário na clínica 24h', 'Internação monitorada', 'Emergências reais']
+      features: [
+        { text: 'Veterinário na clínica 24h', variant: 'yellow' as const },
+        { text: 'Internação monitorada', variant: 'blue' as const },
+        { text: 'Emergências reais', variant: 'yellow' as const }
+      ]
     },
     {
       icon: <Users className="w-12 h-12 text-csm-blue" />,
       title: 'Equipe Especializada',
       description: 'Catarina Gadelha, Sabine Hilbert e Marcelo Tavares. Equipe com mais de 10 anos de experiência e educação continuada.',
-      features: ['Mais de 10 anos de experiência', 'Educação continuada', 'Especialistas dedicados']
+      features: [
+        { text: 'Mais de 10 anos de experiência', variant: 'yellow' as const },
+        { text: 'Educação continuada', variant: 'blue' as const },
+        { text: 'Especialistas dedicados', variant: 'blue' as const }
+      ]
     },
     {
       icon: <Building className="w-12 h-12 text-csm-blue" />,
       title: 'Estrutura Completa',
       description: 'Centro cirúrgico moderno, laboratório próprio, ultrassom, raio-X, internação separada para cães e gatos. Medicamentos importados.',
-      features: ['Centro cirúrgico moderno', 'Laboratório próprio', 'Equipamentos de ponta']
+      features: [
+        { text: 'Centro cirúrgico moderno', variant: 'yellow' as const },
+        { text: 'Laboratório próprio', variant: 'blue' as const },
+        { text: 'Equipamentos de ponta', variant: 'blue' as const }
+      ]
     },
     {
       icon: <MapPin className="w-12 h-12 text-csm-blue" />,
       title: 'Localização Estratégica',
       description: 'Localização central com estacionamento. Atendimento domiciliar em toda região metropolitana. Ambulância veterinária.',
-      features: ['Localização central', 'Atendimento domiciliar', 'Ambulância veterinária']
+      features: [
+        { text: 'Localização central', variant: 'blue' as const },
+        { text: 'Atendimento domiciliar', variant: 'yellow' as const },
+        { text: 'Ambulância veterinária', variant: 'blue' as const }
+      ]
     }
   ];
 
@@ -72,9 +88,9 @@ export default function WhyChooseSection() {
 
                     <div className="space-y-2">
                       {differential.features.map((feature, featureIndex) => (
-                        <BadgeCSM key={featureIndex} variant="blue" className="mr-2 mb-2">
+                        <BadgeCSM key={featureIndex} variant={feature.variant} className="mr-2 mb-2">
                           <CheckCircle className="w-3 h-3 mr-1" />
-                          {feature}
+                          {feature.text}
                         </BadgeCSM>
                       ))}
                     </div>

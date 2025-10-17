@@ -12,7 +12,9 @@ export default function ServicesSection() {
       title: 'Urgência',
       subtitle: 'Consulta de Urgência e Emergência',
       description: 'Para situações que não podem esperar: dificuldades respiratórias, vômitos, acidentes. Avaliação imediata do estado do seu pet.',
-      cta: 'Como Funciona'
+      cta: 'Como Funciona',
+      badge: '24 Horas',
+      badgeVariant: 'yellow' as const
     },
     {
       icon: <Scissors className="w-8 h-8 text-csm-blue" />,
@@ -26,14 +28,18 @@ export default function ServicesSection() {
       title: 'Prevenção',
       subtitle: 'Vacinas e Exames para o Seu Pet',
       description: 'Proteção contra doenças graves como cinomose, parvovirose e raiva. Exames preventivos para detectar problemas antes que se tornem sérios.',
-      cta: 'Ver Vacinas'
+      cta: 'Ver Vacinas',
+      badge: 'Essencial',
+      badgeVariant: 'yellow' as const
     },
     {
       icon: <Stethoscope className="w-8 h-8 text-csm-blue" />,
       title: 'Internação',
       subtitle: 'Tratamento Constante e de Emergência',
       description: 'Para pets que precisam de cuidados intensivos. Monitoramento profissional durante recuperação. Internação separada para cães e gatos.',
-      cta: 'Entender Processo'
+      cta: 'Entender Processo',
+      badge: 'Monitoramento 24h',
+      badgeVariant: 'yellow' as const
     },
     {
       icon: <Camera className="w-8 h-8 text-csm-blue" />,
@@ -82,9 +88,16 @@ export default function ServicesSection() {
                   {service.title}
                 </CardCsmTitle>
                 
-                <BadgeCSM variant="gray" className="w-fit">
-                  {service.subtitle}
-                </BadgeCSM>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  <BadgeCSM variant="gray" className="w-fit">
+                    {service.subtitle}
+                  </BadgeCSM>
+                  {service.badge && (
+                    <BadgeCSM variant={service.badgeVariant || 'blue'} className="w-fit">
+                      {service.badge}
+                    </BadgeCSM>
+                  )}
+                </div>
               </CardCsmHeader>
               
               <CardCsmContent>
