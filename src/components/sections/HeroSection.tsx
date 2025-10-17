@@ -1,6 +1,7 @@
 'use client';
 
-import { Phone, MessageCircle, Star, CheckCircle, Clock, Stethoscope } from 'lucide-react';
+import { Phone, CheckCircle, Stethoscope, MapPin } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { ButtonCSM } from '@/components/ui/button-csm';
 import { BadgeCSM } from '@/components/ui/badge-csm';
 import { CardCSM } from '@/components/ui/card-csm';
@@ -17,8 +18,8 @@ export default function HeroSection() {
             {/* Badge Amarelo */}
             <div>
               <BadgeCSM variant="yellow" className="text-base">
-                <Clock className="w-4 h-4 mr-2" />
-                Plantão 24h Ativo • Emergências
+                <MapPin className="w-4 h-4 mr-2" />
+                Uberaba, Curitiba
               </BadgeCSM>
             </div>
 
@@ -34,32 +35,27 @@ export default function HeroSection() {
               </p>
             </div>
 
-            {/* Avaliações e Stats */}
+            {/* Stats */}
             <div className="flex items-center gap-6 flex-wrap">
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-csm-yellow text-csm-yellow" />
-                  ))}
-                </div>
-                <span className="text-csm-gray-dark font-semibold">4.9/5</span>
+              <div className="text-csm-gray">
+                <span className="font-bold text-csm-blue">{stats.petsCared.toLocaleString()}+</span> pets atendidos
               </div>
               <div className="h-6 w-px bg-csm-gray-light"></div>
               <div className="text-csm-gray">
-                <span className="font-bold text-csm-blue">{stats.petsCared.toLocaleString()}+</span> pets atendidos
+                <span className="font-bold text-csm-blue">{stats.yearsExperience}+</span> anos de experiência
               </div>
             </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <ButtonCSM 
-                variant="urgency"
+                variant="primary"
                 size="lg" 
                 className="flex-1 sm:flex-initial"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
               >
-                <MessageCircle className="w-5 h-5" />
-                EMERGÊNCIA 24H
+                <FaWhatsapp className="w-5 h-5" />
+                WHATSAPP
               </ButtonCSM>
               <ButtonCSM 
                 variant="secondary"
@@ -68,7 +64,7 @@ export default function HeroSection() {
                 onClick={() => window.open(urls.phoneCall, '_self')}
               >
                 <Phone className="w-5 h-5" />
-                VER SERVIÇOS
+                TELEFONE
               </ButtonCSM>
             </div>
 
