@@ -62,7 +62,7 @@ export default function BlogSection() {
           {blogPosts.map((post) => (
             <article 
               key={post.id}
-              className="bg-white rounded-lg overflow-hidden border border-csm-blue-light hover:shadow-md transition-all duration-300"
+              className="bg-white rounded-lg overflow-hidden border border-csm-blue-light hover:shadow-xl hover:border-csm-blue hover:-translate-y-1 transition-all duration-300"
             >
               {/* Image Placeholder */}
               <div className={`h-48 ${post.image} flex items-center justify-center`}>
@@ -122,30 +122,33 @@ export default function BlogSection() {
           ))}
         </div>
 
-        {/* Newsletter Section */}
-        <div className="bg-white rounded-lg p-8 border border-csm-blue-light text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-csm-blue rounded-lg flex items-center justify-center mx-auto mb-6">
-              <Mail className="w-8 h-8 text-white" />
-            </div>
+        {/* Newsletter Section - Redesign Moderno */}
+        <div className="bg-gradient-to-br from-csm-blue-light/10 to-white rounded-2xl p-8 lg:p-12 border border-csm-blue-light">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             
-            <h3 className="text-2xl font-bold text-csm-gray-dark mb-4">
-              Receba Dicas Veterinárias Semanais
-            </h3>
-            <p className="text-csm-gray mb-6">
-              *Enviamos apenas conteúdo útil, sem spam
-            </p>
+            {/* Left Content */}
+            <div>
+              <Mail className="w-12 h-12 text-csm-blue mb-4" />
+              <h3 className="text-2xl lg:text-3xl font-bold text-csm-gray-dark mb-4">
+                Receba Dicas Veterinárias Semanais
+              </h3>
+              <p className="text-csm-gray">
+                Conteúdo exclusivo, dicas práticas e informações que podem salvar vidas. Sem spam, apenas conhecimento útil.
+              </p>
+            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            {/* Right Content - Form */}
+            <div className="flex flex-col gap-4">
               <input
                 type="email"
                 placeholder="Seu melhor e-mail"
-                className="flex-1 px-4 py-3 border-2 border-csm-blue-light rounded-lg focus:border-csm-blue focus:outline-none transition-colors duration-300"
+                className="w-full px-4 py-3 border-2 border-csm-blue-light rounded-lg focus:border-csm-blue focus:outline-none transition-colors duration-300"
               />
-              <ButtonCSM variant="primary">
-                Inscrever-se
+              <ButtonCSM variant="primary" size="lg" className="w-full">
+                Inscrever-se Gratuitamente
               </ButtonCSM>
             </div>
+
           </div>
         </div>
 

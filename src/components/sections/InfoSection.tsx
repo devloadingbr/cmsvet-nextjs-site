@@ -76,10 +76,10 @@ export default function InfoSection() {
           {infoCards.map((card, index) => (
             <div 
               key={index}
-              className="bg-white border border-csm-blue-light rounded-lg p-8 hover:shadow-md transition-all duration-300"
+              className="bg-white border border-csm-blue-light rounded-lg p-8 hover:shadow-lg hover:border-csm-blue transition-all duration-300"
             >
               <div className="text-center">
-                <div className="flex items-center justify-center w-16 h-16 bg-csm-blue-light rounded-lg mb-6 mx-auto">
+                <div className="flex items-center justify-center mb-6 mx-auto">
                   {card.icon}
                 </div>
                 
@@ -112,33 +112,42 @@ export default function InfoSection() {
           ))}
         </div>
 
-        {/* Final CTA Section */}
-        <div className="mt-20 bg-csm-blue rounded-lg p-8 text-white text-center">
-          <h3 className="text-3xl font-bold mb-4">
-            Seu Pet Merece o Melhor Cuidado!
-          </h3>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Não espere! Entre em contato agora e garante a saúde e felicidade do seu melhor amigo.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ButtonCSM 
-              variant="primary"
-              size="lg"
-              className="bg-white text-csm-blue hover:bg-csm-blue-light"
-              onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
-            >
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp
-            </ButtonCSM>
-            <ButtonCSM 
-              variant="urgency"
-              size="lg"
-              onClick={() => window.open(urls.phoneCall, '_self')}
-            >
-              <Phone className="w-5 h-5" />
-              Ligar Agora
-            </ButtonCSM>
+        {/* Final CTA Section - Redesign Moderno */}
+        <div className="mt-20 bg-gradient-to-br from-csm-blue-light/10 to-white rounded-2xl p-8 lg:p-12">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            
+            {/* Left Content */}
+            <div>
+              <h3 className="text-3xl lg:text-4xl font-bold text-csm-gray-dark mb-4">
+                Seu Pet Merece o <span className="text-csm-blue">Melhor Cuidado</span>
+              </h3>
+              <p className="text-lg text-csm-gray leading-relaxed">
+                Entre em contato agora e garanta a saúde e felicidade do seu melhor amigo. Nossa equipe está pronta para atender.
+              </p>
+            </div>
+
+            {/* Right Content - CTAs */}
+            <div className="flex flex-col gap-4">
+              <ButtonCSM 
+                variant="primary"
+                size="lg"
+                className="w-full"
+                onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
+              </ButtonCSM>
+              <ButtonCSM 
+                variant="secondary"
+                size="lg"
+                className="w-full"
+                onClick={() => window.open(urls.phoneCall, '_self')}
+              >
+                <Phone className="w-5 h-5" />
+                Ligar Agora
+              </ButtonCSM>
+            </div>
+
           </div>
         </div>
       </div>
