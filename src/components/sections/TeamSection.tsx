@@ -13,7 +13,7 @@ export default function TeamSection() {
     role: 'Diretora Clínica e Responsável Técnica',
     experience: '8+ anos de experiência',
     specialties: ['Clínica Geral', 'Cirurgia', 'Gestão Clínica'],
-    description: 'Responsável técnica e diretora clínica. Especialista em clínica geral e procedimentos cirúrgicos, com foco em cuidados preventivos e emergências.',
+    description: 'Responsável geral por toda a operação da clínica. Supervisiona internamentos, define protocolos médicos, coordena todas as cirurgias e decisões clínicas. Gerencia o relacionamento com clientes e garante a excelência em cada atendimento. Toda a estrutura médica e administrativa da CSM passa pela supervisão direta da Dra. Catarina.',
     avatar: 'CG',
     color: 'bg-csm-blue'
   };
