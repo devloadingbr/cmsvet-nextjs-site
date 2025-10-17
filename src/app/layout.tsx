@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ConstructionBanner from "@/components/ui/construction-banner";
 import { seo, generateVeterinaryClinicSchema } from "@/lib/seo";
 import { clinic } from "@/lib/env";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ConstructionBanner />
         </div>
         
         {/* Schema.org Structured Data */}
