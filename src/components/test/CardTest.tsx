@@ -245,8 +245,8 @@ export function CardTest() {
                 </div>
               </div>
               <p className="text-csm-gray-dark leading-relaxed italic">
-                "Tenho 5 cães resgatados. Antes pagava R$ 450/mês em plano tradicional. 
-                Hoje pago R$ 91/mês e tenho o MESMO cuidado. A diferença compra ração premium para todos!"
+                &quot;Tenho 5 cães resgatados. Antes pagava R$ 450/mês em plano tradicional. 
+                Hoje pago R$ 91/mês e tenho o MESMO cuidado. A diferença compra ração premium para todos!&quot;
               </p>
             </CardCsmContent>
           </CardCSM>
@@ -260,13 +260,13 @@ export function CardTest() {
             <CardCsmContent className="p-6">
               <div className="space-y-2 text-sm font-mono">
                 <p className="text-csm-gray-dark">
-                  <strong>Import:</strong> import &#123; CardCSM, CardCsmHeader, ... &#125; from '@/components/ui/card-csm'
+                  <strong>Import:</strong> import &#123; CardCSM, CardCsmHeader, ... &#125; from &apos;@/components/ui/card-csm&apos;
                 </p>
                 <p className="text-csm-gray-dark">
-                  <strong>Padrão:</strong> &lt;CardCSM variant="default"&gt;...&lt;/CardCSM&gt;
+                  <strong>Padrão:</strong> &lt;CardCSM variant=&quot;default&quot;&gt;...&lt;/CardCSM&gt;
                 </p>
                 <p className="text-csm-gray-dark">
-                  <strong>Destaque:</strong> &lt;CardCSM variant="highlight"&gt;...&lt;/CardCSM&gt;
+                  <strong>Destaque:</strong> &lt;CardCSM variant=&quot;highlight&quot;&gt;...&lt;/CardCSM&gt;
                 </p>
                 <p className="text-csm-gray-dark mt-4">
                   <strong>Subcomponentes:</strong>
