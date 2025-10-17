@@ -16,14 +16,6 @@ export default function TeamSection() {
       description: 'Especialista em clínica geral e procedimentos cirúrgicos, com foco em cuidados preventivos e emergências.',
       avatar: 'CG',
       color: 'bg-csm-blue'
-    },
-    {
-      name: 'Dra. Sabine Hilbert',
-      experience: '6+ anos de experiência',
-      specialties: ['Dermatologia', 'Comportamento'],
-      description: 'Especializada em dermatologia veterinária e comportamento animal, ajudando pets com problemas de pele e comportamentais.',
-      avatar: 'SH',
-      color: 'bg-csm-blue'
     }
   ];
 
@@ -60,11 +52,12 @@ export default function TeamSection() {
         </div>
 
         {/* Team Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+        <div className="flex justify-center mb-16">
           {teamMembers.map((member, index) => (
             <CardCSM 
               key={index}
               variant="default"
+              className="max-w-md"
             >
               <CardCsmHeader className="text-center">
                 <Avatar className={`w-24 h-24 ${member.color} mx-auto mb-4`}>
