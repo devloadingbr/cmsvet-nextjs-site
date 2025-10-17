@@ -201,19 +201,19 @@ export function ButtonTest() {
         <h2 className="text-2xl font-semibold text-csm-blue">Como Usar</h2>
         <div className="space-y-2 text-sm font-mono">
           <p className="text-csm-gray-dark">
-            <strong>Import:</strong> import &#123; ButtonCSM &#125; from '@/components/ui/button-csm'
+            <strong>Import:</strong> import &#123; ButtonCSM &#125; from &apos;@/components/ui/button-csm&apos;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Primary:</strong> &lt;ButtonCSM variant="primary"&gt;Texto&lt;/ButtonCSM&gt;
+            <strong>Primary:</strong> &lt;ButtonCSM variant=&quot;primary&quot;&gt;Texto&lt;/ButtonCSM&gt;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Secondary:</strong> &lt;ButtonCSM variant="secondary"&gt;Texto&lt;/ButtonCSM&gt;
+            <strong>Secondary:</strong> &lt;ButtonCSM variant=&quot;secondary&quot;&gt;Texto&lt;/ButtonCSM&gt;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Urgency:</strong> &lt;ButtonCSM variant="urgency"&gt;Texto&lt;/ButtonCSM&gt;
+            <strong>Urgency:</strong> &lt;ButtonCSM variant=&quot;urgency&quot;&gt;Texto&lt;/ButtonCSM&gt;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Tamanhos:</strong> size="sm" | "md" | "lg"
+            <strong>Tamanhos:</strong> size=&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
           </p>
         </div>
       </section>

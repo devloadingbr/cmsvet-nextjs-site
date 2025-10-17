@@ -211,16 +211,16 @@ export function BadgeTest() {
         <h2 className="text-2xl font-semibold text-csm-blue">Como Usar</h2>
         <div className="space-y-2 text-sm font-mono">
           <p className="text-csm-gray-dark">
-            <strong>Import:</strong> import &#123; BadgeCSM &#125; from '@/components/ui/badge-csm'
+            <strong>Import:</strong> import &#123; BadgeCSM &#125; from &apos;@/components/ui/badge-csm&apos;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Blue:</strong> &lt;BadgeCSM variant="blue"&gt;Texto&lt;/BadgeCSM&gt;
+            <strong>Blue:</strong> &lt;BadgeCSM variant=&quot;blue&quot;&gt;Texto&lt;/BadgeCSM&gt;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Yellow:</strong> &lt;BadgeCSM variant="yellow"&gt;Texto&lt;/BadgeCSM&gt;
+            <strong>Yellow:</strong> &lt;BadgeCSM variant=&quot;yellow&quot;&gt;Texto&lt;/BadgeCSM&gt;
           </p>
           <p className="text-csm-gray-dark">
-            <strong>Gray:</strong> &lt;BadgeCSM variant="gray"&gt;Texto&lt;/BadgeCSM&gt;
+            <strong>Gray:</strong> &lt;BadgeCSM variant=&quot;gray&quot;&gt;Texto&lt;/BadgeCSM&gt;
           </p>
         </div>
       </section>
