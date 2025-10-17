@@ -1,30 +1,30 @@
 'use client';
 
 import { Clock, Heart, Users, Star } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { CardCSM, CardCsmContent } from '@/components/ui/card-csm';
 
 export default function StatsSection() {
   const stats = [
     {
-      icon: <Clock className="w-8 h-8 text-red-500" />,
+      icon: <Clock className="w-8 h-8 text-csm-blue" />,
       number: '24h',
       label: 'Emergência',
       description: 'Plantão veterinário 24 horas'
     },
     {
-      icon: <Heart className="w-8 h-8 text-pink-500" />,
+      icon: <Heart className="w-8 h-8 text-csm-blue" />,
       number: '500+',
       label: 'Pets Salvos',
       description: 'Atendimentos de emergência'
     },
     {
-      icon: <Users className="w-8 h-8 text-blue-500" />,
+      icon: <Users className="w-8 h-8 text-csm-blue" />,
       number: '15+',
       label: 'Veterinários',
       description: 'Equipe especializada'
     },
     {
-      icon: <Star className="w-8 h-8 text-amber-500" />,
+      icon: <Star className="w-8 h-8 text-csm-blue" />,
       number: '98%',
       label: 'Satisfação',
       description: 'Avaliação dos clientes'
@@ -37,25 +37,26 @@ export default function StatsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <Card 
+            <CardCSM 
               key={index} 
-              className="text-center group hover:transform hover:scale-105 transition-all duration-300 bg-gradient-to-br from-slate-50 to-blue-50 border-blue-100 shadow-lg shadow-blue-900/10 hover:shadow-xl hover:shadow-blue-900/20"
+              variant="default"
+              className="text-center"
             >
-              <CardContent className="p-6">
+              <CardCsmContent className="p-6">
                 <div className="flex justify-center mb-4">
                   {stat.icon}
                 </div>
-                <div className="text-3xl lg:text-4xl font-bold text-slate-900 mb-2">
+                <div className="text-3xl lg:text-4xl font-bold text-csm-blue mb-2">
                   {stat.number}
                 </div>
-                <div className="text-lg font-semibold text-blue-600 mb-1">
+                <div className="text-lg font-semibold text-csm-blue mb-1">
                   {stat.label}
                 </div>
-                <div className="text-sm text-slate-600">
+                <div className="text-sm text-csm-gray">
                   {stat.description}
                 </div>
-              </CardContent>
-            </Card>
+              </CardCsmContent>
+            </CardCSM>
           ))}
         </div>
       </div>
