@@ -18,8 +18,7 @@ export default function HeroSection() {
             {/* Badge Amarelo */}
             <div>
               <BadgeCSM variant="yellow" className="text-base">
-                <MapPin className="w-4 h-4 mr-2" />
-                Uberaba, Curitiba
+                CSM Clínica Veterinária
               </BadgeCSM>
             </div>
 
@@ -37,8 +36,9 @@ export default function HeroSection() {
 
             {/* Stats */}
             <div className="flex items-center gap-6 flex-wrap">
-              <div className="text-csm-gray">
-                <span className="font-bold text-csm-blue">{stats.petsCared.toLocaleString()}+</span> pets atendidos
+              <div className="flex items-center gap-2 text-csm-gray">
+                <MapPin className="w-4 h-4 text-csm-blue" />
+                <span>Uberaba, Curitiba</span>
               </div>
               <div className="h-6 w-px bg-csm-gray-light"></div>
               <div className="text-csm-gray">
