@@ -49,7 +49,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <ButtonCSM 
-                variant="primary"
+                variant="urgency"
                 size="lg" 
                 className="flex-1 sm:flex-initial"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
