@@ -19,7 +19,7 @@ export default function WhyChooseSection() {
     {
       icon: <Users className="w-12 h-12 text-csm-blue" />,
       title: 'Equipe Especializada',
-      description: 'Catarina Gadelha, Sabine Hilbert e Marcelo Tavares. Equipe com mais de 10 anos de experiência e educação continuada.',
+      description: 'Dra Catarina Gadelha está na liderança de uma equipe com muita experiência. Além de parcerias com varios especialistas, profissionais extremamente competentes integram a equipe CSM.',
       features: [
         { text: 'Mais de 10 anos de experiência', variant: 'yellow' as const },
         { text: 'Educação continuada', variant: 'blue' as const },
@@ -29,7 +29,7 @@ export default function WhyChooseSection() {
     {
       icon: <Building className="w-12 h-12 text-csm-blue" />,
       title: 'Estrutura Completa',
-      description: 'Centro cirúrgico moderno, laboratório próprio, ultrassom, raio-X, internação separada para cães e gatos. Medicamentos importados.',
+      description: 'Centro cirúrgico, internação separada para cães e gatos. Exames de imagem e exames laboratoriais, além de médicos especialistas.',
       features: [
         { text: 'Centro cirúrgico moderno', variant: 'yellow' as const },
         { text: 'Laboratório próprio', variant: 'blue' as const },
@@ -39,7 +39,7 @@ export default function WhyChooseSection() {
     {
       icon: <MapPin className="w-12 h-12 text-csm-blue" />,
       title: 'Localização Estratégica',
-      description: 'Localização central com estacionamento. Atendimento domiciliar em toda região metropolitana. Ambulância veterinária.',
+      description: 'Estamos localizados no Uberaba, Proximo da coca-cola, e panificadora Aki Pão. Oferecemos atendimento domiciliar em Curitiba, SJP e Pinhais.',
       features: [
         { text: 'Localização central', variant: 'blue' as const },
         { text: 'Atendimento domiciliar', variant: 'yellow' as const },
