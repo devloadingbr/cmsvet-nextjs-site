@@ -76,9 +76,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-rose-50 via-blue-50 to-amber-50 min-h-screen relative`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-rose-50 via-blue-50 to-amber-50 min-h-screen relative overflow-x-hidden`}
       >
         {/* Global Background Pattern */}
         <div className="fixed inset-0 opacity-5 pointer-events-none">

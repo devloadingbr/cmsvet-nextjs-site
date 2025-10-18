@@ -101,10 +101,10 @@ export default function HeroSection() {
               </CardCSM>
 
               {/* Badge Flutuante - Top Right */}
-              <div className="absolute -top-4 -right-4 z-10">
+              <div className="absolute top-2 right-2 sm:-top-4 sm:-right-4 z-10">
                 <CardCSM variant="default" className="bg-white shadow-lg">
-                  <div className="p-4 text-center">
-                    <div className="text-3xl font-bold text-csm-blue">10+</div>
+                  <div className="p-3 sm:p-4 text-center">
+                    <div className="text-2xl sm:text-3xl font-bold text-csm-blue">10+</div>
                     <div className="text-xs text-csm-gray">Anos de</div>
                     <div className="text-xs text-csm-gray">Experiência</div>
                   </div>
@@ -112,10 +112,10 @@ export default function HeroSection() {
               </div>
 
               {/* Badge Flutuante - Bottom Left */}
-              <div className="absolute -bottom-4 -left-4 z-10">
+              <div className="absolute bottom-2 left-2 sm:-bottom-4 sm:-left-4 z-10">
                 <CardCSM variant="highlight" className="bg-csm-yellow shadow-lg">
-                  <div className="p-4 text-center">
-                    <div className="text-2xl font-bold text-csm-gray-dark">85%</div>
+                  <div className="p-3 sm:p-4 text-center">
+                    <div className="text-xl sm:text-2xl font-bold text-csm-gray-dark">85%</div>
                     <div className="text-xs text-csm-gray-dark">Satisfação</div>
                     <div className="text-xs text-csm-gray-dark">dos Clientes</div>
                   </div>

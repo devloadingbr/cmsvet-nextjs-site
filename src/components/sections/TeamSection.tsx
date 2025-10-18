@@ -211,22 +211,22 @@ export default function TeamSection() {
                 </CardCSM>
 
                 {/* Floating Badge - Top Right */}
-                <div className="absolute -top-6 -right-6 z-10">
+                <div className="absolute top-2 right-2 sm:-top-6 sm:-right-6 z-10">
                   <CardCSM variant="default" className="bg-csm-blue shadow-lg">
-                    <div className="p-4 text-center">
-                      <Clock className="w-6 h-6 text-white mx-auto mb-2" />
-                      <div className="text-xl font-bold text-white">24/7</div>
+                    <div className="p-3 sm:p-4 text-center">
+                      <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white mx-auto mb-2" />
+                      <div className="text-lg sm:text-xl font-bold text-white">24/7</div>
                       <div className="text-xs text-white/80">Disponível</div>
                     </div>
                   </CardCSM>
                 </div>
 
                 {/* Floating Badge - Bottom Left */}
-                <div className="absolute -bottom-6 -left-6 z-10">
+                <div className="absolute bottom-2 left-2 sm:-bottom-6 sm:-left-6 z-10">
                   <CardCSM variant="highlight" className="bg-csm-yellow shadow-lg">
-                    <div className="p-4 text-center">
-                      <UserCheck className="w-6 h-6 text-csm-gray-dark mx-auto mb-2" />
-                      <div className="text-xl font-bold text-csm-gray-dark">100%</div>
+                    <div className="p-3 sm:p-4 text-center">
+                      <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-csm-gray-dark mx-auto mb-2" />
+                      <div className="text-lg sm:text-xl font-bold text-csm-gray-dark">100%</div>
                       <div className="text-xs text-csm-gray-dark">Dedicação</div>
                     </div>
                   </CardCSM>

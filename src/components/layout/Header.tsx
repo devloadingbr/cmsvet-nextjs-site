@@ -67,18 +67,19 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex items-center justify-between text-sm font-medium">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4" />
-            <span>PLANTÃO 24H ATIVO</span>
+            <span className="text-xs sm:text-sm">PLANTÃO 24H</span>
           </div>
           <div className="hidden lg:flex items-center">
             <MapPin className="w-4 h-4 mr-2" />
             <span>{address.full}</span>
           </div>
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center gap-2 sm:gap-4">
             <div className="flex items-center">
               <Phone className="w-4 h-4 mr-1" />
-              <span>EMERGÊNCIAS: {contact.phone.primary}</span>
+              <span className="hidden sm:inline">EMERGÊNCIAS: </span>
+              <span className="text-xs sm:text-sm">{contact.phone.primary}</span>
             </div>
-            <div className="flex items-center">
+            <div className="hidden md:flex items-center">
               <Phone className="w-4 h-4 mr-1" />
               <span>WhatsApp: {contact.phone.secondary}</span>
             </div>
