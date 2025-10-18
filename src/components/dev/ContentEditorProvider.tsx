@@ -1,13 +1,15 @@
 'use client';
 
 import { useEffect } from 'react';
-import { initContentEditor } from '@/lib/content-editor';
+import { initContentEditorAdvanced } from '@/lib/content-editor-advanced';
 
 /**
- * Content Editor Provider
+ * Content Editor Provider - ADVANCED MODE
  * 
- * Ativa o editor de conteúdo apenas em desenvolvimento (localhost)
- * Permite edição inline de textos diretamente no navegador
+ * Ativa o editor de conteúdo avançado apenas em desenvolvimento (localhost)
+ * ATENÇÃO: Esta versão MODIFICA o código-fonte diretamente!
+ * 
+ * Permite edição inline de textos e salva alterações nos arquivos .tsx
  */
 export default function ContentEditorProvider() {
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function ContentEditorProvider() {
     if (isLocalhost && process.env.NODE_ENV === 'development') {
       // Aguarda um pouco para garantir que todo o conteúdo foi renderizado
       const timer = setTimeout(() => {
-        initContentEditor();
+        initContentEditorAdvanced();
       }, 1000);
 
       return () => clearTimeout(timer);
