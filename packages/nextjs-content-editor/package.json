@@ -1,0 +1,42 @@
+{
+  "name": "@devloadingbr/nextjs-content-editor",
+  "version": "1.0.0",
+  "description": "Editor visual de conteúdo para Next.js que salva alterações diretamente no código-fonte",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "nextjs",
+    "content-editor",
+    "visual-editor",
+    "cms",
+    "low-code",
+    "react",
+    "typescript"
+  ],
+  "author": "DevLoading.br",
+  "license": "MIT",
+  "peerDependencies": {
+    "next": ">=14.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devloadingbr/nextjs-content-editor"
+  }
+}
