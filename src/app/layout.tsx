@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ConstructionBanner from "@/components/ui/construction-banner";
+import ContentEditorProvider from "@/components/dev/ContentEditorProvider";
 import { seo, generateVeterinaryClinicSchema } from "@/lib/seo";
 import { clinic } from "@/lib/env";
 
@@ -95,6 +96,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <ConstructionBanner />
+          <ContentEditorProvider />
         </div>
         
         {/* Schema.org Structured Data */}
