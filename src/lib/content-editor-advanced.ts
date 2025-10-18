@@ -39,8 +39,9 @@ export class ContentEditorAdvanced {
   private createPanel() {
     const panel = document.createElement('div');
     panel.id = 'content-editor-panel';
+    panel.setAttribute('data-editor-ui', 'true');
     panel.innerHTML = `
-      <div style="
+      <div data-editor-ui="true" style="
         position: fixed;
         top: 0;
         right: -450px;
@@ -149,7 +150,7 @@ export class ContentEditorAdvanced {
       </div>
 
       <!-- Toggle Button -->
-      <button id="toggle-editor" style="
+      <button id="toggle-editor" data-editor-ui="true" style="
         position: fixed;
         top: 50%;
         right: 0;
@@ -209,44 +210,100 @@ export class ContentEditorAdvanced {
   }
 
   private scanEditableContent() {
-    const selectors = [
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-      'p:not(button p)',
-      '[class*="badge"]',
-      'button span',
-      'li'
-    ];
+    // Busca TODOS os elementos com texto, de forma mais abrangente
+    const allElements = document.querySelectorAll('*');
+    let count = 0;
 
-    selectors.forEach(selector => {
-      document.querySelectorAll(selector).forEach((element, index) => {
-        const htmlElement = element as HTMLElement;
-        const text = htmlElement.textContent?.trim() || '';
-        
-        if (text && text.length > 0 && text.length < 500) {
-          const id = `${selector}-${index}`;
-          const section = this.findSection(htmlElement);
-          
-          this.editableElements.set(id, {
-            id,
-            type: this.getElementType(selector),
-            section,
-            originalText: text,
-            currentText: text,
-            selector: `${selector}:nth-of-type(${index + 1})`,
-            element: htmlElement
-          });
+    allElements.forEach((element) => {
+      const htmlElement = element as HTMLElement;
+      
+      // Ignora elementos do próprio editor
+      if (this.isEditorElement(htmlElement)) {
+        return;
+      }
 
-          this.makeElementEditable(htmlElement, id);
-        }
+      // Ignora elementos sem texto direto ou com apenas espaços
+      const directText = this.getDirectText(htmlElement);
+      if (!directText || directText.length === 0 || directText.length > 500) {
+        return;
+      }
+
+      // Ignora elementos que são apenas containers (sem texto próprio)
+      if (htmlElement.children.length > 0 && directText === htmlElement.textContent?.trim()) {
+        return;
+      }
+
+      const id = `element-${count}`;
+      const section = this.findSection(htmlElement);
+      const type = this.getElementType(htmlElement.tagName.toLowerCase());
+      
+      this.editableElements.set(id, {
+        id,
+        type,
+        section,
+        originalText: directText,
+        currentText: directText,
+        selector: this.generateSelector(htmlElement),
+        element: htmlElement
       });
+
+      this.makeElementEditable(htmlElement, id);
+      count++;
     });
 
     console.log(`📝 ${this.editableElements.size} elementos editáveis encontrados`);
   }
 
+  /**
+   * Verifica se elemento pertence ao próprio editor
+   */
+  private isEditorElement(element: HTMLElement): boolean {
+    // Verifica se é o painel do editor ou está dentro dele
+    if (element.id === 'content-editor-panel' || 
+        element.id === 'toggle-editor' ||
+        element.closest('#content-editor-panel')) {
+      return true;
+    }
+
+    // Verifica se tem atributo data-editor
+    if (element.hasAttribute('data-editor-ui')) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Pega apenas o texto direto do elemento (não de filhos)
+   */
+  private getDirectText(element: HTMLElement): string {
+    let text = '';
+    
+    // Itera apenas nos nós de texto diretos
+    element.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        text += node.textContent || '';
+      }
+    });
+
+    return text.trim();
+  }
+
+  /**
+   * Gera seletor único para o elemento
+   */
+  private generateSelector(element: HTMLElement): string {
+    const tag = element.tagName.toLowerCase();
+    const id = element.id ? `#${element.id}` : '';
+    const classes = element.className ? `.${element.className.split(' ').join('.')}` : '';
+    
+    return `${tag}${id}${classes}`;
+  }
+
   private makeElementEditable(element: HTMLElement, id: string) {
     element.style.cursor = 'pointer';
     element.style.transition = 'all 0.2s';
+    element.setAttribute('data-editable-id', id);
     
     element.addEventListener('mouseenter', () => {
       element.style.outline = '2px dashed #1E5AA8';
@@ -261,8 +318,31 @@ export class ContentEditorAdvanced {
 
     element.addEventListener('click', (e) => {
       e.stopPropagation();
+      e.preventDefault();
+      
+      // Abre o painel automaticamente se estiver fechado
+      this.openPanel();
+      
+      // Mostra o editor para este elemento
       this.showEditor(id);
     });
+  }
+
+  /**
+   * Abre o painel do editor
+   */
+  private openPanel() {
+    if (!this.panel) return;
+
+    const editorPanel = this.panel.querySelector('div') as HTMLElement;
+    const toggleBtn = this.panel.querySelector('#toggle-editor') as HTMLElement;
+
+    if (editorPanel && editorPanel.style.right !== '0px') {
+      editorPanel.style.right = '0px';
+      if (toggleBtn) {
+        toggleBtn.style.right = '450px';
+      }
+    }
   }
 
   private findSection(element: HTMLElement): string {
@@ -277,11 +357,15 @@ export class ContentEditorAdvanced {
     return 'Geral';
   }
 
-  private getElementType(selector: string): EditableContent['type'] {
-    if (selector.startsWith('h')) return 'heading';
-    if (selector.includes('badge')) return 'badge';
-    if (selector.includes('button')) return 'button';
-    if (selector === 'li') return 'list-item';
+  private getElementType(tagOrSelector: string): EditableContent['type'] {
+    const tag = tagOrSelector.toLowerCase();
+    
+    if (tag.match(/^h[1-6]$/)) return 'heading';
+    if (tag.includes('badge') || tagOrSelector.includes('badge')) return 'badge';
+    if (tag === 'button' || tag === 'span' && tagOrSelector.includes('button')) return 'button';
+    if (tag === 'li') return 'list-item';
+    if (tag === 'p') return 'paragraph';
+    
     return 'paragraph';
   }
 
