@@ -125,7 +125,7 @@ export const REGRA_60_30_10 = {
  * HELPER: Verificar se cor é permitida
  */
 export function isCorPermitida(cor: string): boolean {
-  const coresProibidas = Object.values(CORES_PROIBIDAS);
+  const coresProibidas = Object.values(CORES_PROIBIDAS) as string[];
   return !coresProibidas.includes(cor.toUpperCase());
 }
 
