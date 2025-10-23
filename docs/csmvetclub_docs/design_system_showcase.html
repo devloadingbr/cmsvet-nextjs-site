@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMVet Club - Design System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-csm: #1E5AA8;
+            --amarelo-csm: #F2B749;
+            --cinza: #7F8C8D;
+            --laranja: #E67E22;
+            --azul-claro: #E8F4F8;
+            --azul-hover: #164A8C;
+            --laranja-hover: #D35400;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #2C3E50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 48px;
+            color: var(--azul-csm);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 36px;
+            color: var(--azul-csm);
+            line-height: 1.3;
+            margin: 64px 0 24px 0;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 24px;
+            color: #2C3E50;
+            margin: 32px 0 16px 0;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .caption {
+            font-size: 14px;
+            color: var(--cinza);
+        }
+
+        /* COLORS */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .color-box {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .color-box span {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* BUTTONS */
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            padding: 16px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--azul-csm);
+            color: white;
+            box-shadow: 0 4px 12px rgba(30, 90, 168, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--azul-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 90, 168, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--azul-csm);
+            color: var(--azul-csm);
+            padding: 14px 30px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--azul-claro);
+        }
+
+        .btn-urgency {
+            background: var(--laranja);
+            color: white;
+            padding: 18px 40px;
+            box-shadow: 0 6px 16px rgba(230, 126, 34, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .btn-urgency:hover {
+            background: var(--laranja-hover);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* CARDS */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--azul-claro);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+        }
+
+        .card-plan {
+            background: white;
+            border: 2px solid var(--azul-csm);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(30, 90, 168, 0.15);
+            position: relative;
+        }
+
+        .card-plan .price {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--azul-csm);
+            margin: 16px 0;
+        }
+
+        .card-plan ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .card-plan li {
+            padding: 8px 0;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .card-plan li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27AE60;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* BADGES */
+        .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-popular {
+            background: var(--laranja);
+            color: white;
+        }
+
+        .badge-desconto {
+            background: #27AE60;
+            color: white;
+        }
+
+        .badge-novo {
+            background: var(--amarelo-csm);
+            color: #2C3E50;
+        }
+
+        /* ICONS */
+        .icon-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin: 32px 0;
+        }
+
+        .icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--azul-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 64px 0;
+        }
+
+        .bg-alt {
+            background: var(--azul-claro);
+        }
+
+        /* HERO EXAMPLE */
+        .hero {
+            background: white;
+            padding: 96px 0;
+            text-align: center;
+        }
+
+        .hero .subheadline {
+            font-size: 18px;
+            color: #2C3E50;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* TESTIMONIAL */
+        .testimonial {
+            background: white;
+            border: 1px solid var(--azul-claro);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            margin: 32px 0;
+        }
+
+        .testimonial:before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 64px;
+            color: var(--azul-csm);
+            opacity: 0.2;
+            font-family: 'Georgia', serif;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--azul-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--azul-csm);
+        }
+
+        .testimonial-info h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .stars {
+            color: var(--amarelo-csm);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison {
+            margin: 32px 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--azul-csm);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--azul-claro);
+        }
+
+        tr:hover {
+            background: var(--azul-claro);
+        }
+
+        /* FORM ELEMENTS */
+        .form-group {
+            margin: 24px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--azul-csm);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--azul-claro);
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--azul-csm);
+            box-shadow: 0 0 0 3px rgba(30, 90, 168, 0.1);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            h2 { font-size: 28px; }
+            h3 { font-size: 20px; }
+            
+            .hero { padding: 48px 0; }
+            section { padding: 48px 0; }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO EXAMPLE -->
+    <section class="hero">
+        <div class="container">
+            <h1>Uma Assinatura. Todos os Seus Pets.</h1>
+            <p class="subheadline">Economize até 85% vs. planos tradicionais protegendo toda sua família pet</p>
+            <div class="cta-group">
+                <button class="btn btn-urgency">Calcule Sua Economia</button>
+                <button class="btn btn-secondary">Como Funciona</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section>
+        <div class="container">
+            <h2>Tipografia</h2>
+            <h1>Heading 1 - Poppins Bold 48px</h1>
+            <h2>Heading 2 - Poppins SemiBold 36px</h2>
+            <h3>Heading 3 - Poppins Medium 24px</h3>
+            <p>Body text - Open Sans Regular 16px. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="caption">Caption - Open Sans 14px cinza</p>
+        </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2>Paleta de Cores</h2>
+            <div class="color-grid">
+                <div class="color-box" style="background: #1E5AA8; color: white;">
+                    <span>Azul CSM<br>#1E5AA8</span>
+                </div>
+                <div class="color-box" style="background: #F2B749;">
+                    <span>Amarelo CSM<br>#F2B749</span>
+                </div>
+                <div class="color-box" style="background: #7F8C8D; color: white;">
+                    <span>Cinza<br>#7F8C8D</span>
+                </div>
+                <div class="color-box" style="background: #E67E22; color: white;">
+                    <span>Laranja<br>#E67E22</span>
+                </div>
+                <div class="color-box" style="background: #E8F4F8; border: 2px solid #ccc;">
+                    <span>Azul Claro<br>#E8F4F8</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section>
+        <div class="container">
+            <h2>Botões</h2>
+            <div class="button-grid">
+                <button class="btn btn-primary">Botão Primário</button>
+                <button class="btn btn-secondary">Botão Secundário</button>
+                <button class="btn btn-urgency">Botão Urgência</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2>Badges</h2>
+            <div class="badge-grid">
+                <span class="badge badge-popular">Popular</span>
+                <span class="badge badge-desconto">-20% OFF</span>
+                <span class="badge badge-novo">Novo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ICONS -->
+    <section>
+        <div class="container">
+            <h2>Ícones</h2>
+            <div class="icon-grid">
+                <div class="icon-box">
+                    <div class="icon">💰</div>
+                    <span>Economia</span>
+                </div>
+                <div class="icon-box">
+                    <div class="icon">🤝</div>
+                    <span>Relacionamento</span>
+                </div>
+                <div class="icon-box">
+                    <div class="icon">💉</div>
+                    <span>Vacinas</span>
+                </div>
+                <div class="icon-box">
+                    <div class="icon">🚨</div>
+                    <span>Emergência</span>
+                </div>
+                <div class="icon-box">
+                    <div class="icon">🐕</div>
+                    <span>Pets</span>
+                </div>
+                <div class="icon-box">
+                    <div class="icon">✅</div>
+                    <span>Check</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2>Cards Padrão</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Card Título</h3>
+                    <p>Este é um exemplo de card padrão com hover effect. Passe o mouse para ver a elevação.</p>
+                    <button class="btn btn-primary">Ação</button>
+                </div>
+                <div class="card">
+                    <h3>Card Título</h3>
+                    <p>Mais um exemplo de conteúdo dentro do card com texto descritivo.</p>
+                    <button class="btn btn-secondary">Ação</button>
+                </div>
+                <div class="card">
+                    <h3>Card Título</h3>
+                    <p>Terceiro exemplo mostrando a flexibilidade do componente.</p>
+                    <button class="btn btn-primary">Ação</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAN CARDS -->
+    <section>
+        <div class="container">
+            <h2>Cards de Planos</h2>
+            <div class="card-grid">
+                <div class="card-plan">
+                    <span class="badge badge-popular" style="position: absolute; top: 16px; right: 16px;">Popular</span>
+                    <h3>Plano Família</h3>
+                    <div class="price">R$ 590<span style="font-size: 18px;">/ano</span></div>
+                    <p class="caption">1-3 pets</p>
+                    <ul>
+                        <li>Vacinas anuais completas</li>
+                        <li>Microchipagem obrigatória</li>
+                        <li>R$ 1.500 crédito emergencial</li>
+                        <li>20-25% desconto em tudo</li>
+                        <li>Prioridade agendamento</li>
+                    </ul>
+                    <button class="btn btn-urgency" style="width: 100%;">Escolher Plano</button>
+                </div>
+                
+                <div class="card-plan">
+                    <h3>Plano Matilha</h3>
+                    <div class="price">R$ 1.090<span style="font-size: 18px;">/ano</span></div>
+                    <p class="caption">4-6 pets</p>
+                    <ul>
+                        <li>Tudo do Plano Família</li>
+                        <li>Custo 83% menor</li>
+                        <li>Apenas R$ 15,13/pet/mês</li>
+                        <li>Economia brutal</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">Escolher Plano</button>
+                </div>
+                
+                <div class="card-plan">
+                    <h3>Plano Santuário</h3>
+                    <div class="price">R$ 1.690<span style="font-size: 18px;">/ano</span></div>
+                    <p class="caption">7-10 pets</p>
+                    <ul>
+                        <li>Tudo dos planos anteriores</li>
+                        <li>R$ 14,08/pet/mês</li>
+                        <li>Suporte prioritário máximo</li>
+                        <li>Ideal para ONGs</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">Escolher Plano</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2>Depoimentos</h2>
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">MS</div>
+                    <div class="testimonial-info">
+                        <h4>Maria Silva</h4>
+                        <div class="stars">★★★★★</div>
+                        <p class="caption">Tutora de 5 cães</p>
+                    </div>
+                </div>
+                <p class="testimonial-text">Tenho 5 cães resgatados. Antes pagava R$ 450/mês em plano tradicional. Hoje pago R$ 91/mês e tenho o MESMO cuidado. A diferença compra ração premium para todos!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section>
+        <div class="container">
+            <h2>Tabela Comparativa</h2>
+            <div class="comparison">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Planos Tradicionais</th>
+                            <th>CSMVet Club</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Preço</strong></td>
+                            <td>R$ 70-300/pet/mês</td>
+                            <td>R$ 49-185/mês TODOS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cobertura</strong></td>
+                            <td>1 pet por assinatura</td>
+                            <td>Todos os pets da família</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Burocracia</strong></td>
+                            <td>Autorização prévia</td>
+                            <td>Zero</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relacionamento</strong></td>
+                            <td>Impessoal</td>
+                            <td>Direto com veterinário</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2>Formulário</h2>
+            <form style="max-width: 600px;">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="pets">Quantos pets você tem?</label>
+                    <select id="pets">
+                        <option>1-3 pets</option>
+                        <option>4-6 pets</option>
+                        <option>7-10 pets</option>
+                        <option>Mais de 10 pets</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-urgency" style="width: 100%;">Calcular Economia</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Hover effects
+        const cards = document.querySelectorAll('.card, .card-plan');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Button click animation
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

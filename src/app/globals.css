@@ -16,6 +16,10 @@
   --color-csm-orange: #E67E22;
   --color-csm-orange-hover: #D35400;
   
+  /* Alias para urgência (mesmo que laranja) */
+  --color-csm-urgency: #E67E22;
+  --color-csm-urgency-hover: #D35400;
+  
   --color-csm-gray: #7F8C8D;
   --color-csm-gray-dark: #2C3E50;
   --color-csm-gray-light: #F7FAFC;
@@ -168,4 +172,86 @@
 
 .animate-wiggle {
   animation: wiggle 1s ease-in-out infinite;
+}
+
+/* Modal Animation */
+@keyframes modal-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-modal-slide-in {
+  animation: modal-slide-in 0.3s ease;
+}
+
+/* Pulse Slow for WhatsApp */
+@keyframes pulse-slow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.8);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s infinite;
+}
+
+/* Ocultar apenas Footer padrão e background pattern na página home-test */
+
+/* Ocultar background pattern (formas coloridas) */
+body.home-test-page > div.fixed.inset-0.opacity-5 {
+  display: none !important;
+}
+
+/* Ocultar Footer dentro do div.relative.z-10 */
+body.home-test-page > div.relative.z-10 > footer {
+  display: none !important;
+}
+
+/* Corrigir barras de rolagem duplicadas na home-test */
+body.home-test-page {
+  height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Cores de fundo customizadas para seções */
+.bg-csm-yellow-light {
+  background-color: #FEF3E2;
+}
+
+.bg-csm-blue-light {
+  background-color: #E8F1F8;
+}
+
+.bg-gradient-csm-blue {
+  background: linear-gradient(135deg, #1E5AA8 0%, #164A8F 100%);
+}
+
+/* Ajustes de padding para conteúdo não ultrapassar 100vh */
+@media (max-height: 800px) {
+  .fullpage-section > div {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .fullpage-section > div {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  .fullpage-section h2 {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
 }
