@@ -62,10 +62,6 @@ export const site = {
 
 // APIs e serviços externos
 export const apis = {
-  openai: {
-    apiKey: process.env.OPENAI_API_KEY,
-    model: process.env.OPENAI_MODEL || "gpt-4",
-  },
   supabase: {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL,
     anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -108,5 +104,4 @@ export const whatsappMessages = {
   emergency: "Olá! Gostaria de atendimento veterinário para meu pet.",
   appointment: "Olá! Gostaria de agendar uma consulta para meu pet.",
   info: "Olá! Gostaria de mais informações sobre os serviços da CSM.",
-  triage: "Olá! Meu pet não está bem, gostaria de orientação sobre o que fazer.",
 } as const;
