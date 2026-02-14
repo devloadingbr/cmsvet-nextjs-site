@@ -1,34 +1,26 @@
 'use client';
 
-import { UserCheck, Clock, Award } from 'lucide-react';
 import { CardCSM, CardCsmContent, CardCsmHeader, CardCsmTitle } from '@/components/ui/card-csm';
 import { BadgeCSM } from '@/components/ui/badge-csm';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { stats } from '@/lib/env';
 
 export default function TeamSection() {
   const clinicalDirector = {
     name: 'Dra. Catarina Gadelha',
     role: 'Diretora Clínica e Responsável Técnica',
     experience: '8+ anos de experiência',
-    specialties: ['Clínica Geral', 'Cirurgia', 'Gestão Clínica'],
-    description: 'Responsável geral por toda a operação da clínica. Supervisiona internamentos, define protocolos médicos, coordena todas as cirurgias e decisões clínicas. Gerencia o relacionamento com clientes e garante a excelência em cada atendimento. Toda a estrutura médica e administrativa da CSM passa pela supervisão direta da Dra. Catarina.',
+    description: 'Responsável pela operação da clínica, protocolos médicos e coordenação de todas as cirurgias e decisões clínicas.',
     avatar: 'CG',
     color: 'bg-csm-blue'
   };
 
   const onCallVets = [
-    { name: 'Dra. Anny Caroline', avatar: 'AC' },
     { name: 'Dr. Bruno Steven Becker', avatar: 'BB' },
     { name: 'Dra. Carolina Grassi Warnecke', avatar: 'CW' },
-    { name: 'Dra. Valquiria Kury', avatar: 'VK' },
-    { name: 'Dra. Giovana Anchieta', avatar: 'GA' },
     { name: 'Dra. Isabella Martins Pereira', avatar: 'IP' },
-    { name: 'Dra. Laura Kauanne Duenha Brito', avatar: 'LB' },
-    { name: 'Dra. Letícia Souza Maciel', avatar: 'LM' },
-    { name: 'Dra. Yasmim da Conceição', avatar: 'YC' },
-    { name: 'Dra. Rebeca Fuccio', avatar: 'RF' },
-    { name: 'Dra. Thayana Martins Piber', avatar: 'TP' }
+    { name: 'Dra. Thayana Martins Piber', avatar: 'TP' },
+    { name: 'Dra. Fernanda Heofacker', avatar: 'FH' },
+    { name: 'Dra. Thiely Vieira', avatar: 'TV' }
   ];
 
   return (
@@ -41,7 +33,7 @@ export default function TeamSection() {
             Nossa Equipe <span className="text-csm-blue">Veterinária</span>
           </h2>
           <p className="text-xl text-csm-gray max-w-3xl mx-auto">
-            Profissionais experientes e dedicados, prontos para cuidar do seu pet com excelência e carinho
+            Profissionais experientes e dedicados ao cuidado do seu pet
           </p>
         </div>
 
@@ -71,17 +63,6 @@ export default function TeamSection() {
             </CardCsmHeader>
 
             <CardCsmContent className="text-center">
-              <div className="flex justify-center flex-wrap gap-2 mb-4">
-                {clinicalDirector.specialties.map((specialty, index) => (
-                  <BadgeCSM 
-                    key={index}
-                    variant="blue"
-                    className="text-xs"
-                  >
-                    {specialty}
-                  </BadgeCSM>
-                ))}
-              </div>
               <p className="text-sm text-csm-gray leading-relaxed">
                 {clinicalDirector.description}
               </p>
@@ -119,33 +100,6 @@ export default function TeamSection() {
                   </div>
                 ))}
               </div>
-            </CardCsmContent>
-          </CardCSM>
-        </div>
-
-        {/* Bottom Section - Stats Compacto */}
-        <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
-          <CardCSM variant="default">
-            <CardCsmContent className="p-6 text-center">
-              <Clock className="w-8 h-8 text-csm-blue mx-auto mb-2" />
-              <div className="text-2xl font-bold text-csm-blue">24/7</div>
-              <div className="text-xs text-csm-gray">Disponível</div>
-            </CardCsmContent>
-          </CardCSM>
-
-          <CardCSM variant="default">
-            <CardCsmContent className="p-6 text-center">
-              <Award className="w-8 h-8 text-csm-blue mx-auto mb-2" />
-              <div className="text-2xl font-bold text-csm-blue">{stats.petsCared.toLocaleString()}+</div>
-              <div className="text-xs text-csm-gray">Pets Atendidos</div>
-            </CardCsmContent>
-          </CardCSM>
-
-          <CardCSM variant="default">
-            <CardCsmContent className="p-6 text-center">
-              <UserCheck className="w-8 h-8 text-csm-blue mx-auto mb-2" />
-              <div className="text-2xl font-bold text-csm-blue">100%</div>
-              <div className="text-xs text-csm-gray">Dedicação</div>
             </CardCsmContent>
           </CardCSM>
         </div>

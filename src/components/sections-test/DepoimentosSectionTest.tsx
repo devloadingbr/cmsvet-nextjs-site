@@ -41,7 +41,7 @@ export default function DepoimentosSectionTest() {
             Depoimentos
           </BadgeCSM>
           <h2 className="text-4xl lg:text-6xl font-bold text-csm-gray-dark mb-6">
-            Mais de {stats.petsCared.toLocaleString()} Pets Já <span className="text-csm-blue">Confiaram</span> em Nós
+            Mais de {stats.petsCared.toLocaleString('pt-BR')} Pets Já <span className="text-csm-blue">Confiaram</span> em Nós
           </h2>
           <p className="text-xl text-csm-gray max-w-3xl mx-auto">
             Histórias reais de tutores que confiaram na nossa equipe
@@ -88,7 +88,7 @@ export default function DepoimentosSectionTest() {
           <CardCSM variant="default">
             <CardCsmContent className="p-4 text-center">
               <div className="text-2xl font-bold text-csm-blue mb-1">
-                {stats.petsCared.toLocaleString()}+
+                {stats.petsCared.toLocaleString('pt-BR')}+
               </div>
               <p className="text-xs text-csm-gray">Pets Atendidos</p>
             </CardCsmContent>

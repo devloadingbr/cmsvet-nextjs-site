@@ -35,7 +35,6 @@ export default function CTASectionTest() {
                 <div>
                   <p className="font-bold">Telefone 24h</p>
                   <p className="text-white/90">{contact.phone.primary}</p>
-                  <p className="text-white/90">{contact.phone.secondary}</p>
                 </div>
               </div>
 

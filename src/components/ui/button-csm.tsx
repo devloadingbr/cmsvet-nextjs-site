@@ -8,6 +8,7 @@
  * - primary: Azul CSM (ações principais)
  * - secondary: Outline Azul (ações secundárias)
  * - urgency: Laranja (apenas urgência/conversão)
+ * - whatsapp: Verde WhatsApp (botões de contato WhatsApp)
  * 
  * Tamanhos:
  * - sm: Pequeno (px-4 py-2)
@@ -22,7 +23,7 @@ import { cn } from '@/lib/utils';
 
 const buttonCsmVariants = cva(
   // Base styles - aplicados a todos os botões
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-semibold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-csm-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-semibold uppercase tracking-wide cursor-pointer transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-csm-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -37,6 +38,10 @@ const buttonCsmVariants = cva(
         // Urgência: Laranja - Apenas urgência/conversão
         urgency:
           'bg-csm-orange text-white hover:bg-csm-orange-hover shadow-sm hover:shadow-md',
+        
+        // WhatsApp: Verde - Botões de contato WhatsApp
+        whatsapp:
+          'bg-[#25D366] text-white hover:bg-[#1DA851] shadow-sm hover:shadow-md',
       },
       size: {
         sm: 'px-4 py-2 text-sm',

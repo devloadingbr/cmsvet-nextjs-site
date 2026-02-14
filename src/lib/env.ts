@@ -13,9 +13,8 @@ export const clinic = {
 // Contato
 export const contact = {
   phone: {
-    primary: process.env.NEXT_PUBLIC_PHONE_PRIMARY || "(41) 3242-3166",
-    secondary: process.env.NEXT_PUBLIC_PHONE_SECONDARY || "(41) 99999-9999",
-    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5541999999999",
+    primary: process.env.NEXT_PUBLIC_PHONE_PRIMARY || "(41) 3077-0023",
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "554130770023",
   },
   email: {
     general: process.env.NEXT_PUBLIC_EMAIL || "contato@csmvet.com.br",
@@ -29,7 +28,7 @@ export const address = {
   neighborhood: process.env.NEXT_PUBLIC_ADDRESS_NEIGHBORHOOD || "Centro",
   city: process.env.NEXT_PUBLIC_ADDRESS_CITY || "Curitiba",
   state: process.env.NEXT_PUBLIC_ADDRESS_STATE || "PR",
-  zip: process.env.NEXT_PUBLIC_ADDRESS_ZIP || "80010-000",
+  cep: process.env.NEXT_PUBLIC_ADDRESS_CEP || "81540-590",
   full: process.env.NEXT_PUBLIC_ADDRESS_FULL || "Rua das Flores, 123 - Centro, Curitiba/PR",
 } as const;
 
@@ -37,7 +36,7 @@ export const address = {
 export const social = {
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM || "@csmvet",
   facebook: process.env.NEXT_PUBLIC_FACEBOOK || "csmvet",
-  googleMaps: process.env.NEXT_PUBLIC_GOOGLE_MAPS_LINK || "https://goo.gl/maps/exemplo",
+  googleMaps: process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL || process.env.NEXT_PUBLIC_GOOGLE_MAPS_LINK || "https://maps.google.com/?q=CSM+Clinica+Veterinaria+Curitiba",
 } as const;
 
 // Horários

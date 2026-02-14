@@ -2,7 +2,6 @@
 
 import { Quote, Star } from 'lucide-react';
 import { CardCSM, CardCsmContent } from '@/components/ui/card-csm';
-import { ButtonCSM } from '@/components/ui/button-csm';
 import { BadgeCSM } from '@/components/ui/badge-csm';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { stats } from '@/lib/env';
@@ -76,15 +75,15 @@ export default function TestimonialsSection() {
             Depoimentos
           </BadgeCSM>
           <h2 className="text-4xl lg:text-5xl font-bold text-csm-gray-dark mb-6">
-            Mais de {stats.petsCared.toLocaleString()} Pets Já <span className="text-csm-blue">Confiaram</span> em Nós
+            Mais de {stats.petsCared.toLocaleString('pt-BR')} Pets Já <span className="text-csm-blue">Confiaram</span> em Nós
           </h2>
           <p className="text-xl text-csm-gray max-w-3xl mx-auto">
-            Histórias reais de tutores que confiaram na nossa equipe para cuidar dos seus pets
+            Histórias reais de quem confia na CSM
           </p>
         </div>
 
         {/* Testimonials Grid - Mostra 3 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.slice(0, 3).map((testimonial, index) => (
             <CardCSM key={index} variant="default" className="h-full">
               <CardCsmContent className="p-6 flex flex-col h-full">
@@ -127,58 +126,6 @@ export default function TestimonialsSection() {
               </CardCsmContent>
             </CardCSM>
           ))}
-        </div>
-
-        {/* Stats Row com Badges Flutuantes */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
-            
-            {/* Card 1 */}
-            <CardCSM variant="default" className="text-center">
-              <CardCsmContent className="p-6">
-                <div className="text-3xl font-bold text-csm-blue mb-2">
-                  {stats.petsCared.toLocaleString()}+
-                </div>
-                <p className="text-sm text-csm-gray">Pets Atendidos</p>
-              </CardCsmContent>
-            </CardCSM>
-
-            {/* Card 2 - Destaque */}
-            <CardCSM variant="highlight" className="text-center relative">
-              <CardCsmContent className="p-6">
-                <div className="flex items-center justify-center gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-csm-yellow text-csm-yellow" />
-                  ))}
-                </div>
-                <div className="text-3xl font-bold text-csm-gray-dark mb-2">
-                  4.9/5
-                </div>
-                <p className="text-sm text-csm-gray-dark">Avaliação Média</p>
-              </CardCsmContent>
-            </CardCSM>
-
-            {/* Card 3 */}
-            <CardCSM variant="default" className="text-center">
-              <CardCsmContent className="p-6">
-                <div className="text-3xl font-bold text-csm-blue mb-2">
-                  100%
-                </div>
-                <p className="text-sm text-csm-gray">Dedicação</p>
-              </CardCsmContent>
-            </CardCSM>
-
-          </div>
-        </div>
-
-        {/* CTA Button */}
-        <div className="text-center mt-12">
-          <ButtonCSM 
-            variant="primary"
-            size="lg"
-          >
-            Ver Todos os Depoimentos
-          </ButtonCSM>
         </div>
 
       </div>

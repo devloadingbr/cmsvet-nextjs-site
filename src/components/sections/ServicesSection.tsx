@@ -9,50 +9,38 @@ export default function ServicesSection() {
   const services = [
     {
       icon: <AlertTriangle className="w-8 h-8 text-csm-blue" />,
-      title: 'Urgência',
-      subtitle: 'Consulta de Urgência e Emergência',
-      description: 'Para situações que não podem esperar: dificuldades respiratórias, vômitos, acidentes. Avaliação imediata do estado do seu pet.',
-      cta: 'Como Funciona',
+      title: 'Urgência e Emergência',
       badge: '24 Horas',
-      badgeVariant: 'yellow' as const
+      badgeVariant: 'yellow' as const,
+      cta: 'Como Funciona'
     },
     {
       icon: <Scissors className="w-8 h-8 text-csm-blue" />,
       title: 'Cirurgias',
-      subtitle: 'Cirurgias Ortopédicas e Gerais',
-      description: 'Procedimentos necessários para recuperação da saúde. Centro cirúrgico equipado com tecnologia moderna para maior segurança.',
       cta: 'Saiba Mais'
     },
     {
       icon: <Shield className="w-8 h-8 text-csm-blue" />,
-      title: 'Prevenção',
-      subtitle: 'Vacinas e Exames para o Seu Pet',
-      description: 'Proteção contra doenças graves como cinomose, parvovirose e raiva. Exames preventivos para detectar problemas antes que se tornem sérios.',
-      cta: 'Ver Vacinas',
+      title: 'Vacinas e Prevenção',
       badge: 'Essencial',
-      badgeVariant: 'yellow' as const
+      badgeVariant: 'yellow' as const,
+      cta: 'Ver Vacinas'
     },
     {
       icon: <Stethoscope className="w-8 h-8 text-csm-blue" />,
       title: 'Internação',
-      subtitle: 'Tratamento Constante e de Emergência',
-      description: 'Para pets que precisam de cuidados intensivos. Monitoramento profissional durante recuperação. Internação separada para cães e gatos.',
-      cta: 'Entender Processo',
       badge: 'Monitoramento 24h',
-      badgeVariant: 'yellow' as const
+      badgeVariant: 'yellow' as const,
+      cta: 'Entender Processo'
     },
     {
       icon: <Camera className="w-8 h-8 text-csm-blue" />,
-      title: 'Diagnóstico',
-      subtitle: 'Exames de Imagem para o Seu Melhor Amigo',
-      description: 'Diagnósticos precisos que ajudam a identificar problemas internos que não são visíveis externamente. Fundamentais para tratamento correto.',
+      title: 'Exames e Diagnóstico',
       cta: 'Tipos de Exames'
     },
     {
       icon: <Home className="w-8 h-8 text-csm-blue" />,
-      title: 'Domiciliar',
-      subtitle: 'Atendimento Domiciliar para o Conforto do Seu Pet',
-      description: 'Para pets que ficam estressados fora de casa ou em situações onde o deslocamento é difícil. Cuidado veterinário no ambiente familiar.',
+      title: 'Atendimento Domiciliar',
       cta: 'Solicitar Visita'
     }
   ];
@@ -64,16 +52,15 @@ export default function ServicesSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-csm-gray-dark mb-6">
-            <span className="text-csm-blue">Serviços Especializados</span>
+            <span className="text-csm-blue">Nossos Serviços</span>
           </h2>
           <p className="text-xl text-csm-gray max-w-3xl mx-auto">
-            Cuidados Especializados Para Cada Necessidade<br />
-            <span className="text-lg">Serviços completos com a melhor equipe veterinária e tecnologia avançada</span>
+            Cuidado completo com equipe especializada e tecnologia avançada
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <CardCSM 
               key={index}
@@ -88,23 +75,14 @@ export default function ServicesSection() {
                   {service.title}
                 </CardCsmTitle>
                 
-                <div className="flex flex-wrap gap-2 justify-center">
-                  <BadgeCSM variant="gray" className="w-fit">
-                    {service.subtitle}
+                {service.badge && (
+                  <BadgeCSM variant={service.badgeVariant || 'blue'} className="w-fit">
+                    {service.badge}
                   </BadgeCSM>
-                  {service.badge && (
-                    <BadgeCSM variant={service.badgeVariant || 'blue'} className="w-fit">
-                      {service.badge}
-                    </BadgeCSM>
-                  )}
-                </div>
+                )}
               </CardCsmHeader>
               
               <CardCsmContent>
-                <p className="text-csm-gray leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
                 <ButtonCSM 
                   variant="primary"
                   className="w-full"
@@ -116,24 +94,6 @@ export default function ServicesSection() {
             </CardCSM>
           ))}
         </div>
-
-        {/* Important Notice */}
-        <CardCSM variant="highlight" className="text-center">
-          <CardCsmContent className="p-8">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-12 h-12 bg-csm-yellow rounded-lg flex items-center justify-center">
-                <AlertTriangle className="w-6 h-6 text-csm-gray-dark" />
-              </div>
-            </div>
-            <h3 className="text-xl font-bold text-csm-gray-dark mb-4">
-              Observação Importante
-            </h3>
-            <p className="text-csm-gray max-w-3xl mx-auto">
-              Alguns serviços, como ultrassonografia e radiografia, estão sujeitos à agenda de profissionais terceirizados. 
-              A CSM é 24 Horas para internamento e atendimento de urgência e emergência.
-            </p>
-          </CardCsmContent>
-        </CardCSM>
       </div>
     </section>
   );

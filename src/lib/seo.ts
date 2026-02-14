@@ -61,7 +61,7 @@ export const generateVeterinaryClinicSchema = () => {
       streetAddress: address.street,
       addressLocality: address.city,
       addressRegion: address.state,
-      postalCode: address.zip,
+      postalCode: address.cep,
       addressCountry: 'BR',
     },
     geo: {
@@ -183,7 +183,7 @@ export const pageMetadata = {
   
   contato: {
     title: `Contato | ${clinic.name} - ${address.city}`,
-    description: `Entre em contato com a ${clinic.name}. Endereço: ${address.full}. Telefone: ${contact.phone.primary}. WhatsApp: ${contact.phone.secondary}`,
+    description: `Entre em contato com a ${clinic.name}. Endereço: ${address.full}. Telefone: ${contact.phone.primary}. WhatsApp: ${contact.phone.primary}`,
     keywords: `contato veterinário, endereço clínica veterinária, telefone veterinário ${address.city.toLowerCase()}`,
   },
 } as const;

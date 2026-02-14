@@ -37,10 +37,6 @@ export default function Footer() {
                 <span>{contact.phone.primary}</span>
               </li>
               <li className="flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 flex-shrink-0 text-[#E67E22]" />
-                <span>{contact.phone.secondary} (Emergência)</span>
-              </li>
-              <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 flex-shrink-0" />
                 <span>{contact.email.general}</span>
               </li>

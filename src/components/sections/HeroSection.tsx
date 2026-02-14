@@ -1,6 +1,6 @@
 'use client';
 
-import { Phone, CheckCircle, Stethoscope, MapPin } from 'lucide-react';
+import { Phone, CheckCircle, MapPin, Navigation } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { ButtonCSM } from '@/components/ui/button-csm';
 import { BadgeCSM } from '@/components/ui/badge-csm';
@@ -49,7 +49,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <ButtonCSM 
-                variant="urgency"
+                variant="whatsapp"
                 size="lg" 
                 className="flex-1 sm:flex-initial"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
@@ -85,43 +85,33 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Content - 60% */}
-          <div className="relative lg:h-[600px] flex items-center justify-center">
-            {/* Card Principal com Imagem */}
-            <div className="relative w-full max-w-lg">
-              <CardCSM variant="default" className="overflow-hidden">
-                <div className="relative h-[400px] lg:h-[500px] bg-csm-blue flex items-center justify-center">
-                  {/* Placeholder para imagem */}
-                  <div className="text-center text-white p-8">
-                    <Stethoscope className="w-24 h-24 mx-auto mb-4 opacity-50" />
-                    <p className="text-lg opacity-75">Imagem da Clínica</p>
-                    <p className="text-sm opacity-50 mt-2">Substitua por foto real</p>
-                  </div>
-                </div>
-              </CardCSM>
-
-              {/* Badge Flutuante - Top Right */}
-              <div className="absolute top-2 right-2 sm:-top-4 sm:-right-4 z-10">
-                <CardCSM variant="default" className="bg-white shadow-lg">
-                  <div className="p-3 sm:p-4 text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-csm-blue">10+</div>
-                    <div className="text-xs text-csm-gray">Anos de</div>
-                    <div className="text-xs text-csm-gray">Experiência</div>
-                  </div>
-                </CardCSM>
+          {/* Right Content - Mapa */}
+          <div className="flex flex-col items-center gap-4">
+            <CardCSM variant="default" className="overflow-hidden w-full">
+              <div className="relative h-[350px] lg:h-[450px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.5!2d-49.2308!3d-25.4628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce3b0f1a1a1a1%3A0x1234567890abcdef!2sR.+J%C3%BAlio+Wischral%2C+1099+-+Uberaba%2C+Curitiba+-+PR!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localização CSM Clínica Veterinária"
+                  className="absolute inset-0"
+                />
               </div>
-
-              {/* Badge Flutuante - Bottom Left */}
-              <div className="absolute bottom-2 left-2 sm:-bottom-4 sm:-left-4 z-10">
-                <CardCSM variant="highlight" className="bg-csm-yellow shadow-lg">
-                  <div className="p-3 sm:p-4 text-center">
-                    <div className="text-xl sm:text-2xl font-bold text-csm-gray-dark">85%</div>
-                    <div className="text-xs text-csm-gray-dark">Satisfação</div>
-                    <div className="text-xs text-csm-gray-dark">dos Clientes</div>
-                  </div>
-                </CardCSM>
-              </div>
-            </div>
+            </CardCSM>
+            
+            <ButtonCSM 
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => window.open('https://www.google.com/maps?q=Rua+Julio+Wischral,+1099,+Uberaba,+Curitiba,+PR', '_blank')}
+            >
+              <Navigation className="w-5 h-5" />
+              Traçar Rota
+            </ButtonCSM>
           </div>
 
         </div>

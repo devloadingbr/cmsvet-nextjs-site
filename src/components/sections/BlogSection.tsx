@@ -1,6 +1,6 @@
 'use client';
 
-import { Calendar, Eye, Clock, ArrowRight, Mail } from 'lucide-react';
+import { Calendar, Eye, Clock, ArrowRight } from 'lucide-react';
 import { ButtonCSM } from '@/components/ui/button-csm';
 import { BadgeCSM } from '@/components/ui/badge-csm';
 
@@ -52,13 +52,12 @@ export default function BlogSection() {
             Blog <span className="text-csm-blue">CSM</span>
           </h2>
           <p className="text-xl text-csm-gray max-w-3xl mx-auto">
-            Conteúdo Veterinário Atualizado<br />
-            <span className="text-lg">Informações confiáveis para cuidar melhor do seu pet, escritas por veterinários especializados</span>
+            Dicas e informações confiáveis para cuidar melhor do seu pet
           </p>
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
             <article 
               key={post.id}
@@ -120,36 +119,6 @@ export default function BlogSection() {
               </div>
             </article>
           ))}
-        </div>
-
-        {/* Newsletter Section - Redesign Moderno */}
-        <div className="bg-gradient-to-br from-csm-blue-light/10 to-white rounded-2xl p-8 lg:p-12 border border-csm-blue-light">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            
-            {/* Left Content */}
-            <div>
-              <Mail className="w-12 h-12 text-csm-blue mb-4" />
-              <h3 className="text-2xl lg:text-3xl font-bold text-csm-gray-dark mb-4">
-                Receba Dicas Veterinárias Semanais
-              </h3>
-              <p className="text-csm-gray">
-                Conteúdo exclusivo, dicas práticas e informações que podem salvar vidas. Sem spam, apenas conhecimento útil.
-              </p>
-            </div>
-
-            {/* Right Content - Form */}
-            <div className="flex flex-col gap-4">
-              <input
-                type="email"
-                placeholder="Seu melhor e-mail"
-                className="w-full px-4 py-3 border-2 border-csm-blue-light rounded-lg focus:border-csm-blue focus:outline-none transition-colors duration-300"
-              />
-              <ButtonCSM variant="primary" size="lg" className="w-full">
-                Inscrever-se Gratuitamente
-              </ButtonCSM>
-            </div>
-
-          </div>
         </div>
 
         {/* View All Button */}

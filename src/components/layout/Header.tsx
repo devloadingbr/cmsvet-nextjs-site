@@ -73,16 +73,10 @@ export default function Header() {
             <MapPin className="w-4 h-4 mr-2" />
             <span>{address.full}</span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4">
-            <div className="flex items-center">
-              <Phone className="w-4 h-4 mr-1" />
-              <span className="hidden sm:inline">EMERGÊNCIAS: </span>
-              <span className="text-xs sm:text-sm">{contact.phone.primary}</span>
-            </div>
-            <div className="hidden md:flex items-center">
-              <Phone className="w-4 h-4 mr-1" />
-              <span>WhatsApp: {contact.phone.secondary}</span>
-            </div>
+          <div className="flex items-center">
+            <Phone className="w-4 h-4 mr-1" />
+            <span className="hidden sm:inline">EMERGÊNCIAS: </span>
+            <span className="text-xs sm:text-sm">{contact.phone.primary}</span>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Phone, MessageCircle, Clock, Users, Heart, Ambulance, ChevronDown, ChevronUp, AlertTriangle, Activity, Shield } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { ButtonCSM } from '@/components/ui/button-csm';
 import { CardCSM, CardCsmContent } from '@/components/ui/card-csm';
 import { BadgeCSM } from '@/components/ui/badge-csm';
@@ -300,12 +301,12 @@ export default function EmergenciaPage() {
           {/* CTA Buttons */}
           <div className="flex flex-row gap-4 sm:gap-6 justify-center max-w-4xl mx-auto px-2">
             <ButtonCSM 
-              variant="urgency"
+              variant="whatsapp"
               size="lg" 
               className="flex-1 max-w-xs"
               onClick={() => window.open(`https://wa.me/${contact.phone.whatsapp}`, '_blank')}
             >
-              <MessageCircle className="w-5 h-5" />
+              <FaWhatsapp className="w-5 h-5" />
               WHATSAPP
             </ButtonCSM>
             <ButtonCSM 
@@ -968,12 +969,12 @@ export default function EmergenciaPage() {
                 LIGAÇÃO
               </ButtonCSM>
               <ButtonCSM 
-                variant="urgency"
+                variant="whatsapp"
                 size="lg"
                 className="flex-1 max-w-xs"
                 onClick={() => window.open(`https://wa.me/${contact.phone.whatsapp}`, '_blank')}
               >
-                <MessageCircle className="w-5 h-5" />
+                <FaWhatsapp className="w-5 h-5" />
                 WHATSAPP
               </ButtonCSM>
             </div>
