@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, AlertTriangle, Home, Shield, Microscope, BookOpen, MessageCircle, Phone, MapPin } from 'lucide-react';
+import { Menu, AlertTriangle, Home, Shield, Microscope, BookOpen, MessageCircle, Phone, MapPin, Heart } from 'lucide-react';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -41,6 +41,12 @@ const navigationItems = [
     href: '/exames',
     description: 'Exames laboratoriais e de imagem',
     icon: Microscope
+  },
+  {
+    title: 'Convênios',
+    href: '/convenios',
+    description: 'Planos de saúde pet aceitos na CSM',
+    icon: Heart
   },
   {
     title: 'Contato',
