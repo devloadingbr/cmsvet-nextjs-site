@@ -59,6 +59,16 @@ export const site = {
   apiUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api",
 } as const;
 
+// Tracking, Analytics & Marketing
+export const tracking = {
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID,
+  gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+  facebookPixelId: process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
+  clarityId: process.env.NEXT_PUBLIC_CLARITY_ID,
+  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  facebookDomainVerification: process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION,
+} as const;
+
 // APIs e serviços externos
 export const apis = {
   supabase: {
@@ -68,9 +78,6 @@ export const apis = {
   },
   resend: {
     apiKey: process.env.RESEND_API_KEY,
-  },
-  googleAnalytics: {
-    measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
   },
   googleMaps: {
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,

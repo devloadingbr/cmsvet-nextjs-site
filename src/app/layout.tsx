@@ -7,7 +7,9 @@ import Footer from "@/components/layout/Footer";
 import ConstructionBanner from "@/components/ui/construction-banner";
 import ContentEditorProvider from "@/components/dev/ContentEditorProvider";
 import { seo, generateVeterinaryClinicSchema } from "@/lib/seo";
-import { clinic } from "@/lib/env";
+import { clinic, tracking } from "@/lib/env";
+import { Analytics } from "@/components/analytics/Analytics";
+import { GTMNoScript } from "@/components/analytics/GoogleTagManager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,6 +65,16 @@ export const metadata: Metadata = {
     apple: '/favicon.jpg',
   },
   manifest: '/site.webmanifest',
+  verification: {
+    ...(tracking.googleSiteVerification && {
+      google: tracking.googleSiteVerification,
+    }),
+  },
+  other: {
+    ...(tracking.facebookDomainVerification && {
+      'facebook-domain-verification': tracking.facebookDomainVerification,
+    }),
+  },
 };
 
 export const viewport: Viewport = {
@@ -82,6 +94,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-rose-50 via-blue-50 to-amber-50 min-h-screen relative overflow-x-hidden`}
       >
+        <GTMNoScript />
         {/* Global Background Pattern */}
         <div className="fixed inset-0 opacity-5 pointer-events-none">
           <div className="absolute top-10 left-4 sm:top-20 sm:left-20 w-16 h-16 sm:w-32 sm:h-32 bg-cyan-500 transform rotate-45"></div>
@@ -107,6 +120,8 @@ export default function RootLayout({
             __html: JSON.stringify(generateVeterinaryClinicSchema()),
           }}
         />
+
+        <Analytics />
       </body>
     </html>
   );

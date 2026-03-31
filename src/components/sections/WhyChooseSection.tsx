@@ -18,7 +18,7 @@ export default function WhyChooseSection() {
     {
       icon: <Building className="w-10 h-10 text-csm-blue" />,
       title: 'Estrutura Completa',
-      description: 'Centro cirúrgico, laboratório e internação separada para cães e gatos.'
+      description: 'Centro cirúrgico, laboratório parceiro e internação separada para cães e gatos.'
     },
     {
       icon: <MapPin className="w-10 h-10 text-csm-blue" />,
