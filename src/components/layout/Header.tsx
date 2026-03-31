@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, AlertTriangle, Home, Shield, Microscope, BookOpen, MessageCircle, Phone, MapPin, Heart } from 'lucide-react';
+import { Menu, AlertTriangle, Home, Shield, Microscope, BookOpen, MessageCircle, Phone, MapPin, Heart, Stethoscope } from 'lucide-react';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -47,6 +47,12 @@ const navigationItems = [
     href: '/convenios',
     description: 'Planos de saúde pet aceitos na CSM',
     icon: Heart
+  },
+  {
+    title: 'Domiciliar',
+    href: '/atendimento-domiciliar',
+    description: 'Atendimento veterinário na sua casa',
+    icon: Stethoscope
   },
   {
     title: 'Contato',
