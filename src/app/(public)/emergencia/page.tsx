@@ -330,6 +330,132 @@ export default function EmergenciaPage() {
         </div>
       </div>
 
+      {/* Mapa e Localização - estratégico logo após hero */}
+      <section className="py-12 sm:py-16 bg-gradient-to-b from-csm-blue-light/5 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <BadgeCSM variant="blue" className="mb-4">Localização</BadgeCSM>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              <span className="text-csm-gray-dark">Como </span>
+              <span className="text-csm-blue">Chegar</span>
+            </h2>
+            <p className="text-lg text-csm-gray max-w-2xl mx-auto">
+              Encontre-nos rapidamente e traga seu pet em caso de emergência
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {/* Mapa */}
+            <CardCSM variant="default">
+              <CardCsmContent className="p-6">
+                <div className="w-full h-64 rounded-lg overflow-hidden mb-4 relative">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Rua%20Julio%20Wischral%2C%201099%2C%20Uberaba%2C%20Curitiba%2C%20PR%2C%20Brasil&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-lg"
+                    title="Localização CSM Clínica Veterinária"
+                  ></iframe>
+
+                  {/* Overlay for emergency info */}
+                  <div className="absolute top-4 left-4 bg-csm-urgency text-white px-3 py-2 rounded-lg text-sm font-semibold">
+                    EMERGÊNCIA 24H
+                  </div>
+                </div>
+
+                {/* Address Details */}
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3 p-3 bg-csm-blue-light/30 rounded-lg border border-csm-blue-light">
+                    <div className="w-8 h-8 bg-csm-blue rounded-full flex items-center justify-center">
+                      <Ambulance className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-csm-gray-dark">Rua Julio Wischral, 1099</p>
+                      <p className="text-sm text-csm-gray">Uberaba, Curitiba/PR</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-4 h-4 text-csm-blue" />
+                      <span className="text-csm-gray">Estacionamento</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-4 h-4 text-csm-blue" />
+                      <span className="text-csm-gray">15-20 min centro</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="grid grid-cols-2 gap-3 mt-4">
+                    <ButtonCSM
+                      variant="primary"
+                      size="sm"
+                      data-track="tracar_rota_click"
+                      data-track-location="localizacao"
+                      data-track-label="maps"
+                      onClick={() => window.open('https://maps.google.com/?q=Rua+Julio+Wischral,+1099,+Uberaba,+Curitiba,+PR', '_blank')}
+                    >
+                      Ver no Maps
+                    </ButtonCSM>
+                    <ButtonCSM
+                      variant="secondary"
+                      size="sm"
+                      data-track="tracar_rota_click"
+                      data-track-location="localizacao"
+                      data-track-label="waze"
+                      onClick={() => window.open('https://waze.com/ul?q=Rua+Julio+Wischral,+1099,+Curitiba,+PR', '_blank')}
+                    >
+                      Abrir no Waze
+                    </ButtonCSM>
+                  </div>
+                </div>
+              </CardCsmContent>
+            </CardCSM>
+
+            {/* Informações de Acesso */}
+            <CardCSM variant="default">
+              <CardCsmContent className="p-6">
+                <h3 className="text-xl font-bold text-csm-gray-dark mb-4">Informações de Acesso</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 rounded-full bg-csm-blue-light text-csm-blue flex items-center justify-center">
+                      <Ambulance className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-csm-gray-dark">Entrada Principal</h4>
+                      <p className="text-sm text-csm-gray">Sinalizada para emergências</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 rounded-full bg-csm-yellow/20 text-csm-yellow flex items-center justify-center">
+                      <Clock className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-csm-gray-dark">Estacionamento</h4>
+                      <p className="text-sm text-csm-gray">Vagas próximas à entrada</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 rounded-full bg-csm-blue-light text-csm-blue flex items-center justify-center">
+                      <Clock className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-csm-gray-dark">Horário</h4>
+                      <p className="text-sm text-csm-gray">24 horas, todos os dias</p>
+                    </div>
+                  </div>
+                </div>
+              </CardCsmContent>
+            </CardCSM>
+          </div>
+        </div>
+      </section>
+
       {/* Indicadores de Serviço */}
       <section className="pt-8 pb-16 bg-gradient-to-b from-white to-csm-blue-light/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -788,136 +914,9 @@ export default function EmergenciaPage() {
                   <span key={i} className="text-csm-yellow text-lg">★</span>
                 ))}
               </div>
-              <span className="text-sm font-semibold text-csm-gray-dark">4.9/5.0</span>
-              <span className="text-sm text-csm-gray">(500+ avaliações)</span>
+              <span className="text-sm font-semibold text-csm-gray-dark">4.6/5.0</span>
+              <span className="text-sm text-csm-gray">(200+ avaliações)</span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mapa e Localização */}
-      <section className="py-20 bg-gradient-to-b from-white to-csm-blue-light/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <BadgeCSM variant="blue" className="mb-6">Localização</BadgeCSM>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="text-csm-gray-dark">Nossa </span>
-              <span className="text-csm-blue">Localização</span>
-            </h2>
-            <p className="text-xl text-csm-gray max-w-3xl mx-auto">
-              Encontre-nos facilmente e venha com seu pet em caso de emergência
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {/* Mapa */}
-            <CardCSM variant="default">
-              <CardCsmContent className="p-6">
-                <div className="w-full h-64 rounded-lg overflow-hidden mb-4 relative">
-                  <iframe
-                    src="https://maps.google.com/maps?q=Rua%20Julio%20Wischral%2C%201099%2C%20Uberaba%2C%20Curitiba%2C%20PR%2C%20Brasil&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen={true}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-lg"
-                    title="Localização CSM Clínica Veterinária"
-                  ></iframe>
-                  
-                  {/* Overlay for emergency info */}
-                  <div className="absolute top-4 left-4 bg-csm-urgency text-white px-3 py-2 rounded-lg text-sm font-semibold">
-                    EMERGÊNCIA 24H
-                  </div>
-                </div>
-                
-                {/* Address Details */}
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-3 bg-csm-blue-light/30 rounded-lg border border-csm-blue-light">
-                    <div className="w-8 h-8 bg-csm-blue rounded-full flex items-center justify-center">
-                      <Ambulance className="w-4 h-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-csm-gray-dark">Rua Julio Wischral, 1099</p>
-                      <p className="text-sm text-csm-gray">Uberaba, Curitiba/PR</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-4 h-4 text-csm-blue" />
-                      <span className="text-csm-gray">Estacionamento</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-4 h-4 text-csm-blue" />
-                      <span className="text-csm-gray">15-20 min centro</span>
-                    </div>
-                  </div>
-                  
-                  {/* Action Buttons */}
-                  <div className="grid grid-cols-2 gap-3 mt-4">
-                    <ButtonCSM
-                      variant="primary"
-                      size="sm"
-                      data-track="tracar_rota_click"
-                      data-track-location="localizacao"
-                      data-track-label="maps"
-                      onClick={() => window.open('https://maps.google.com/?q=Rua+Julio+Wischral,+1099,+Uberaba,+Curitiba,+PR', '_blank')}
-                    >
-                      Ver no Maps
-                    </ButtonCSM>
-                    <ButtonCSM
-                      variant="secondary"
-                      size="sm"
-                      data-track="tracar_rota_click"
-                      data-track-location="localizacao"
-                      data-track-label="waze"
-                      onClick={() => window.open('https://waze.com/ul?q=Rua+Julio+Wischral,+1099,+Curitiba,+PR', '_blank')}
-                    >
-                      Abrir no Waze
-                    </ButtonCSM>
-                  </div>
-                </div>
-              </CardCsmContent>
-            </CardCSM>
-            
-            {/* Informações de Acesso */}
-            <CardCSM variant="default">
-              <CardCsmContent className="p-6">
-                <h3 className="text-xl font-bold text-csm-gray-dark mb-4">Informações de Acesso</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-csm-blue-light text-csm-blue flex items-center justify-center">
-                      <Ambulance className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-csm-gray-dark">Entrada Principal</h4>
-                      <p className="text-sm text-csm-gray">Sinalizada para emergências</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-csm-yellow/20 text-csm-yellow flex items-center justify-center">
-                      <Clock className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-csm-gray-dark">Estacionamento</h4>
-                      <p className="text-sm text-csm-gray">Vagas próximas à entrada</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-csm-blue-light text-csm-blue flex items-center justify-center">
-                      <Clock className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-csm-gray-dark">Horário</h4>
-                      <p className="text-sm text-csm-gray">24 horas, todos os dias</p>
-                    </div>
-                  </div>
-                </div>
-              </CardCsmContent>
-            </CardCSM>
           </div>
         </div>
       </section>

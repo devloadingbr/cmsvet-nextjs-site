@@ -1,22 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, AlertTriangle, Home, Shield, Microscope, BookOpen, MessageCircle, Phone, MapPin, Heart, Stethoscope } from 'lucide-react';
+import { Menu, AlertTriangle, Home, Shield, Microscope, BookOpen, MessageCircle, Phone, MapPin, Heart, Stethoscope, Briefcase } from 'lucide-react';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
 } from '@/components/ui/navigation-menu';
 import { ButtonCSM } from '@/components/ui/button-csm';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { contact, address, clinic } from '@/lib/env';
 
-const navigationItems = [
+interface NavItem {
+  title: string;
+  href: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  isEmergency?: boolean;
+}
+
+const mainNavItems: NavItem[] = [
   {
     title: 'Início',
     href: '/',
@@ -30,6 +40,9 @@ const navigationItems = [
     isEmergency: true,
     icon: AlertTriangle
   },
+];
+
+const serviceItems: NavItem[] = [
   {
     title: 'Vacinação',
     href: '/vacinacao',
@@ -43,16 +56,19 @@ const navigationItems = [
     icon: Microscope
   },
   {
-    title: 'Convênios',
-    href: '/convenios',
-    description: 'Planos de saúde pet aceitos na CSM',
-    icon: Heart
-  },
-  {
     title: 'Domiciliar',
     href: '/atendimento-domiciliar',
     description: 'Atendimento veterinário na sua casa',
     icon: Stethoscope
+  },
+];
+
+const secondaryNavItems: NavItem[] = [
+  {
+    title: 'Convênios',
+    href: '/convenios',
+    description: 'Planos de saúde pet aceitos na CSM',
+    icon: Heart
   },
   {
     title: 'Contato',
@@ -68,9 +84,16 @@ const navigationItems = [
   }
 ];
 
+const allNavItems = [...mainNavItems, ...serviceItems, ...secondaryNavItems];
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -115,10 +138,11 @@ export default function Header() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center">
               <NavigationMenu>
-                <NavigationMenuList className="space-x-4">
-                  {navigationItems.map((item) => {
+                <NavigationMenuList className="gap-1 xl:gap-2">
+                  {/* Main nav items (Início, Emergência) */}
+                  {mainNavItems.map((item) => {
                     const IconComponent = item.icon;
                     const isActive = pathname === item.href;
                     return (
@@ -127,10 +151,72 @@ export default function Header() {
                           <Link
                             href={item.href}
                             className={cn(
-                              "px-4 py-2 text-csm-gray-dark hover:text-csm-blue transition-colors duration-300 rounded-lg font-medium flex flex-row items-center gap-2 focus:outline-none",
-                              item.isEmergency && "text-[#E67E22] hover:text-[#D35400] font-semibold bg-orange-50 hover:bg-orange-100",
+                              "px-3 xl:px-4 py-2 text-csm-gray-dark hover:text-csm-blue transition-colors duration-300 rounded-lg font-medium flex flex-row items-center gap-1.5 xl:gap-2 text-sm focus:outline-none",
+                              item.isEmergency && !isActive && "text-[#E67E22] hover:text-[#D35400] font-semibold bg-orange-50 hover:bg-orange-100",
                               isActive && !item.isEmergency && "text-white bg-csm-blue hover:bg-csm-blue-hover hover:text-white focus:bg-csm-blue focus:text-white",
-                              isActive && item.isEmergency && "bg-[#E67E22] text-white hover:bg-[#D35400] hover:text-white focus:bg-[#E67E22] focus:text-white"
+                              isActive && item.isEmergency && "!bg-[#E67E22] !text-white hover:!bg-[#D35400] hover:!text-white focus:!bg-[#E67E22] focus:!text-white data-[active=true]:hover:!bg-[#D35400] data-[active=true]:!bg-[#E67E22]"
+                            )}
+                          >
+                            <IconComponent className={cn("w-4 h-4", isActive && "text-white")} />
+                            <span className="whitespace-nowrap">{item.title}</span>
+                          </Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    );
+                  })}
+
+                  {/* Serviços dropdown - client-only to avoid hydration mismatch */}
+                  {mounted && <NavigationMenuItem>
+                    <NavigationMenuTrigger
+                      className={cn(
+                        "px-3 xl:px-4 py-2 text-csm-gray-dark hover:text-csm-blue transition-colors duration-300 rounded-lg font-medium flex flex-row items-center gap-1.5 xl:gap-2 text-sm bg-transparent hover:bg-accent focus:outline-none",
+                        serviceItems.some(s => pathname === s.href) && "text-white bg-csm-blue hover:bg-csm-blue-hover hover:text-white focus:bg-csm-blue focus:text-white data-[state=open]:bg-csm-blue data-[state=open]:text-white"
+                      )}
+                    >
+                      <Briefcase className={cn("w-4 h-4", serviceItems.some(s => pathname === s.href) && "text-white")} />
+                      <span className="whitespace-nowrap">Serviços</span>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent className="min-w-[280px]">
+                      <ul className="grid gap-1 p-2">
+                        {serviceItems.map((item) => {
+                          const IconComponent = item.icon;
+                          const isActive = pathname === item.href;
+                          return (
+                            <li key={item.title}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={item.href}
+                                  className={cn(
+                                    "flex items-start gap-3 rounded-md p-3 transition-colors hover:bg-csm-blue-light focus:outline-none",
+                                    isActive && "bg-csm-blue text-white hover:bg-csm-blue-hover"
+                                  )}
+                                >
+                                  <IconComponent className={cn("w-5 h-5 mt-0.5 text-csm-blue shrink-0", isActive && "text-white")} />
+                                  <div>
+                                    <div className={cn("font-medium text-sm", isActive ? "text-white" : "text-csm-gray-dark")}>{item.title}</div>
+                                    <p className={cn("text-xs mt-0.5 leading-snug", isActive ? "text-white/80" : "text-csm-gray")}>{item.description}</p>
+                                  </div>
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>}
+
+                  {/* Secondary nav items (Convênios, Contato, Recursos) */}
+                  {secondaryNavItems.map((item) => {
+                    const IconComponent = item.icon;
+                    const isActive = pathname === item.href;
+                    return (
+                      <NavigationMenuItem key={item.title}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href={item.href}
+                            className={cn(
+                              "px-3 xl:px-4 py-2 text-csm-gray-dark hover:text-csm-blue transition-colors duration-300 rounded-lg font-medium flex flex-row items-center gap-1.5 xl:gap-2 text-sm focus:outline-none",
+                              isActive && "text-white bg-csm-blue hover:bg-csm-blue-hover hover:text-white focus:bg-csm-blue focus:text-white"
                             )}
                           >
                             <IconComponent className={cn("w-4 h-4", isActive && "text-white")} />
@@ -144,8 +230,7 @@ export default function Header() {
               </NavigationMenu>
             </div>
 
-
-            {/* Mobile Menu Button */}
+            {/* Mobile/Tablet Menu Button */}
             <div className="lg:hidden">
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
@@ -165,9 +250,10 @@ export default function Header() {
                       />
                     </SheetTitle>
                   </SheetHeader>
-                  
-                  <div className="mt-8 space-y-4">
-                    {navigationItems.map((item) => {
+
+                  <div className="mt-8 flex-1 overflow-y-auto space-y-1">
+                    {/* All items flat in mobile */}
+                    {allNavItems.map((item) => {
                       const IconComponent = item.icon;
                       const isActive = pathname === item.href;
                       return (
@@ -186,7 +272,7 @@ export default function Header() {
                             <IconComponent className={cn("w-5 h-5", isActive && "text-white")} />
                             <div className="font-medium">{item.title}</div>
                           </div>
-                          <div className="text-sm text-csm-gray mt-2 ml-8">{item.description}</div>
+                          <div className={cn("text-sm mt-1 ml-8", isActive ? "text-white/80" : "text-csm-gray")}>{item.description}</div>
                         </Link>
                       );
                     })}
