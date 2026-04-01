@@ -11,6 +11,8 @@ export default function WhatsAppFloat() {
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 animate-pulse-slow"
       aria-label="Contato via WhatsApp"
+      data-track="whatsapp_click"
+      data-track-location="float"
     >
       <FaWhatsapp className="w-8 h-8 text-white" />
     </a>

@@ -199,13 +199,13 @@ export default function AtendimentoDomiciliarPageContent() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href={urls.whatsappWithMessage('Olá! Gostaria de agendar um atendimento veterinário domiciliar.')}>
+                <a href={urls.whatsappWithMessage('Olá! Gostaria de agendar um atendimento veterinário domiciliar.')} data-track="whatsapp_click" data-track-location="hero" data-track-label="domiciliar">
                   <ButtonCSM variant="urgency" size="lg">
                     <FaWhatsapp className="w-5 h-5" />
                     SOLICITAR VISITA
                   </ButtonCSM>
                 </a>
-                <a href={urls.phoneCall}>
+                <a href={urls.phoneCall} data-track="ligar_click" data-track-location="hero" data-track-label="domiciliar">
                   <ButtonCSM variant="secondary" size="lg">
                     <Phone className="w-5 h-5" />
                     {contact.phone.primary}
@@ -367,7 +367,7 @@ export default function AtendimentoDomiciliarPageContent() {
                 para verificar disponibilidade.
               </p>
 
-              <a href={urls.whatsappWithMessage('Olá! Gostaria de saber se vocês atendem no meu bairro/cidade.')}>
+              <a href={urls.whatsappWithMessage('Olá! Gostaria de saber se vocês atendem no meu bairro/cidade.')} data-track="whatsapp_click" data-track-location="cobertura" data-track-label="domiciliar">
                 <ButtonCSM variant="primary" size="md">
                   <FaWhatsapp className="w-4 h-4" />
                   CONSULTAR DISPONIBILIDADE
@@ -461,13 +461,13 @@ export default function AtendimentoDomiciliarPageContent() {
               </ul>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/emergencia">
+                <Link href="/emergencia" data-track="emergencia_click" data-track-location="limitacoes">
                   <ButtonCSM variant="urgency" size="sm">
                     <AlertTriangle className="w-4 h-4" />
                     EMERGÊNCIA 24H
                   </ButtonCSM>
                 </Link>
-                <a href={urls.phoneCall}>
+                <a href={urls.phoneCall} data-track="ligar_click" data-track-location="limitacoes" data-track-label="domiciliar">
                   <ButtonCSM variant="secondary" size="sm">
                     <Phone className="w-4 h-4" />
                     LIGAR PARA A CLÍNICA
@@ -545,13 +545,13 @@ export default function AtendimentoDomiciliarPageContent() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-              <a href={urls.whatsappWithMessage('Olá! Gostaria de agendar um atendimento veterinário domiciliar.')}>
+              <a href={urls.whatsappWithMessage('Olá! Gostaria de agendar um atendimento veterinário domiciliar.')} data-track="whatsapp_click" data-track-location="cta-final" data-track-label="domiciliar">
                 <ButtonCSM variant="whatsapp" size="lg">
                   <FaWhatsapp className="w-5 h-5" />
                   WHATSAPP
                 </ButtonCSM>
               </a>
-              <a href={urls.phoneCall}>
+              <a href={urls.phoneCall} data-track="ligar_click" data-track-location="cta-final" data-track-label="domiciliar">
                 <ButtonCSM
                   variant="secondary"
                   size="lg"

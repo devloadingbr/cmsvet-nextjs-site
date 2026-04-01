@@ -48,19 +48,23 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <ButtonCSM 
+              <ButtonCSM
                 variant="whatsapp"
-                size="lg" 
+                size="lg"
                 className="flex-1 sm:flex-initial"
+                data-track="whatsapp_click"
+                data-track-location="hero"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
               >
                 <FaWhatsapp className="w-5 h-5" />
                 WHATSAPP
               </ButtonCSM>
-              <ButtonCSM 
+              <ButtonCSM
                 variant="secondary"
-                size="lg" 
+                size="lg"
                 className="flex-1 sm:flex-initial"
+                data-track="ligar_click"
+                data-track-location="hero"
                 onClick={() => window.open(urls.phoneCall, '_self')}
               >
                 <Phone className="w-5 h-5" />
@@ -103,10 +107,12 @@ export default function HeroSection() {
               </div>
             </CardCSM>
             
-            <ButtonCSM 
+            <ButtonCSM
               variant="primary"
               size="lg"
               className="w-full sm:w-auto"
+              data-track="tracar_rota_click"
+              data-track-location="hero"
               onClick={() => window.open('https://www.google.com/maps?q=Rua+Julio+Wischral,+1099,+Uberaba,+Curitiba,+PR', '_blank')}
             >
               <Navigation className="w-5 h-5" />

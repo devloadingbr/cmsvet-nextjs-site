@@ -265,6 +265,9 @@ export default function VacinacaoPageContent() {
                 size="lg"
                 className="flex-1 max-w-xs"
                 onClick={() => window.open(`https://wa.me/${contact.phone.whatsapp}?text=${encodeURIComponent('Olá! Gostaria de agendar a vacinação do meu pet.')}`, '_blank')}
+                data-track="whatsapp_click"
+                data-track-location="hero"
+                data-track-label="vacinacao"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 AGENDAR VACINA
@@ -274,6 +277,9 @@ export default function VacinacaoPageContent() {
                 size="lg"
                 className="flex-1 max-w-xs"
                 onClick={() => window.location.href = `tel:${contact.phone.primary}`}
+                data-track="ligar_click"
+                data-track-location="hero"
+                data-track-label="vacinacao"
               >
                 <Phone className="w-5 h-5" />
                 LIGAR AGORA
@@ -549,6 +555,9 @@ export default function VacinacaoPageContent() {
                 size="lg"
                 className="flex-1"
                 onClick={() => window.open(`https://wa.me/${contact.phone.whatsapp}?text=${encodeURIComponent('Olá! Gostaria de agendar a vacinação do meu pet.')}`, '_blank')}
+                data-track="whatsapp_click"
+                data-track-location="cta-final"
+                data-track-label="vacinacao"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 WHATSAPP
@@ -558,6 +567,9 @@ export default function VacinacaoPageContent() {
                 size="lg"
                 className="flex-1 bg-white text-csm-blue hover:bg-white/90 border-0"
                 onClick={() => window.location.href = `tel:${contact.phone.primary}`}
+                data-track="ligar_click"
+                data-track-location="cta-final"
+                data-track-label="vacinacao"
               >
                 <Phone className="w-5 h-5" />
                 {contact.phone.primary}

@@ -300,19 +300,25 @@ export default function EmergenciaPage() {
           
           {/* CTA Buttons */}
           <div className="flex flex-row gap-4 sm:gap-6 justify-center max-w-4xl mx-auto px-2">
-            <ButtonCSM 
+            <ButtonCSM
               variant="whatsapp"
-              size="lg" 
+              size="lg"
               className="flex-1 max-w-xs"
+              data-track="whatsapp_click"
+              data-track-location="hero"
+              data-track-label="emergencia"
               onClick={() => window.open(`https://wa.me/${contact.phone.whatsapp}`, '_blank')}
             >
               <FaWhatsapp className="w-5 h-5" />
               WHATSAPP
             </ButtonCSM>
-            <ButtonCSM 
+            <ButtonCSM
               variant="primary"
-              size="lg" 
+              size="lg"
               className="flex-1 max-w-xs"
+              data-track="ligar_click"
+              data-track-location="hero"
+              data-track-label="emergencia"
               onClick={() => window.location.href = `tel:${contact.phone.primary}`}
             >
               <Phone className="w-5 h-5" />
@@ -477,10 +483,13 @@ export default function EmergenciaPage() {
           <div className="bg-csm-urgency text-white rounded-lg p-6 text-center mb-16">
             <h3 className="text-xl font-bold mb-2">LIGUE DURANTE O PROCEDIMENTO</h3>
             <p className="text-white/90 mb-4">Nossa equipe orientará você pelo telefone</p>
-            <ButtonCSM 
+            <ButtonCSM
               variant="secondary"
               size="lg"
               className="bg-white text-csm-urgency hover:bg-white/90 border-0"
+              data-track="ligar_click"
+              data-track-location="primeiros-socorros"
+              data-track-label="emergencia"
               onClick={() => window.location.href = `tel:${contact.phone.primary}`}
             >
               <Phone className="w-5 h-5" />
@@ -849,16 +858,22 @@ export default function EmergenciaPage() {
                   
                   {/* Action Buttons */}
                   <div className="grid grid-cols-2 gap-3 mt-4">
-                    <ButtonCSM 
+                    <ButtonCSM
                       variant="primary"
                       size="sm"
+                      data-track="tracar_rota_click"
+                      data-track-location="localizacao"
+                      data-track-label="maps"
                       onClick={() => window.open('https://maps.google.com/?q=Rua+Julio+Wischral,+1099,+Uberaba,+Curitiba,+PR', '_blank')}
                     >
                       Ver no Maps
                     </ButtonCSM>
-                    <ButtonCSM 
+                    <ButtonCSM
                       variant="secondary"
                       size="sm"
+                      data-track="tracar_rota_click"
+                      data-track-location="localizacao"
+                      data-track-label="waze"
                       onClick={() => window.open('https://waze.com/ul?q=Rua+Julio+Wischral,+1099,+Curitiba,+PR', '_blank')}
                     >
                       Abrir no Waze
@@ -959,19 +974,25 @@ export default function EmergenciaPage() {
               Nossa equipe está pronta para ajudar você e seu pet 24 horas por dia
             </p>
             <div className="flex flex-row gap-4 sm:gap-6 justify-center max-w-4xl mx-auto px-2">
-              <ButtonCSM 
+              <ButtonCSM
                 variant="secondary"
                 size="lg"
                 className="bg-white text-csm-urgency hover:bg-white/90 border-0 flex-1 max-w-xs"
+                data-track="ligar_click"
+                data-track-location="cta-final"
+                data-track-label="emergencia"
                 onClick={() => window.location.href = `tel:${contact.phone.primary}`}
               >
                 <Phone className="w-5 h-5" />
                 LIGAÇÃO
               </ButtonCSM>
-              <ButtonCSM 
+              <ButtonCSM
                 variant="whatsapp"
                 size="lg"
                 className="flex-1 max-w-xs"
+                data-track="whatsapp_click"
+                data-track-location="cta-final"
+                data-track-label="emergencia"
                 onClick={() => window.open(`https://wa.me/${contact.phone.whatsapp}`, '_blank')}
               >
                 <FaWhatsapp className="w-5 h-5" />

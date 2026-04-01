@@ -10,6 +10,7 @@ import { seo, generateVeterinaryClinicSchema } from "@/lib/seo";
 import { clinic, tracking } from "@/lib/env";
 import { Analytics } from "@/components/analytics/Analytics";
 import { GTMNoScript } from "@/components/analytics/GoogleTagManager";
+import { TrackingProvider } from "@/components/analytics/TrackingProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -122,6 +123,7 @@ export default function RootLayout({
         />
 
         <Analytics />
+        <TrackingProvider />
       </body>
     </html>
   );

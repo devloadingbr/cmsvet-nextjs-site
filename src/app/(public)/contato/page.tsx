@@ -135,6 +135,9 @@ export default function ContatoPage() {
                 size="lg"
                 className="flex-1 max-w-xs"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.info), '_blank')}
+                data-track="whatsapp_click"
+                data-track-location="hero"
+                data-track-label="contato"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 WHATSAPP
@@ -144,6 +147,9 @@ export default function ContatoPage() {
                 size="lg"
                 className="flex-1 max-w-xs"
                 onClick={() => window.location.href = urls.phoneCall}
+                data-track="ligar_click"
+                data-track-location="hero"
+                data-track-label="contato"
               >
                 <Phone className="w-5 h-5" />
                 LIGAR AGORA
@@ -174,6 +180,9 @@ export default function ContatoPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-csm-blue font-semibold hover:underline mt-2"
+                    data-track="tracar_rota_click"
+                    data-track-location="info-card"
+                    data-track-label="contato"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Ver no Google Maps
@@ -192,15 +201,15 @@ export default function ContatoPage() {
                 </div>
                 <h3 className="text-xl font-bold text-csm-gray-dark text-center mb-4">Telefones</h3>
                 <div className="space-y-3 text-sm">
-                  <a href={urls.phoneCall} className="flex items-center gap-2 text-csm-gray-dark hover:text-csm-blue transition-colors">
+                  <a href={urls.phoneCall} className="flex items-center gap-2 text-csm-gray-dark hover:text-csm-blue transition-colors" data-track="ligar_click" data-track-location="info-card" data-track-label="contato">
                     <Phone className="w-4 h-4 text-csm-blue flex-shrink-0" />
                     <span><strong>Telefone:</strong> {contact.phone.primary}</span>
                   </a>
-                  <a href={urls.whatsappWithMessage(whatsappMessages.info)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-csm-gray-dark hover:text-[#25D366] transition-colors">
+                  <a href={urls.whatsappWithMessage(whatsappMessages.info)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-csm-gray-dark hover:text-[#25D366] transition-colors" data-track="whatsapp_click" data-track-location="info-card" data-track-label="contato">
                     <FaWhatsapp className="w-4 h-4 text-[#25D366] flex-shrink-0" />
                     <span><strong>WhatsApp:</strong> {contact.phone.primary}</span>
                   </a>
-                  <a href={urls.emailContact} className="flex items-center gap-2 text-csm-gray-dark hover:text-csm-blue transition-colors">
+                  <a href={urls.emailContact} className="flex items-center gap-2 text-csm-gray-dark hover:text-csm-blue transition-colors" data-track="email_click" data-track-location="info-card" data-track-label="contato">
                     <Mail className="w-4 h-4 text-csm-blue flex-shrink-0" />
                     <span><strong>Email:</strong> {contact.email.general}</span>
                   </a>
@@ -501,6 +510,9 @@ export default function ContatoPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
+                data-track="social_click"
+                data-track-location="redes-sociais"
+                data-track-label="instagram"
               >
                 <CardCSM variant="default" className="hover:border-csm-blue cursor-pointer">
                   <CardCsmContent className="p-5 flex items-center gap-4">
@@ -521,6 +533,9 @@ export default function ContatoPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
+                data-track="social_click"
+                data-track-location="redes-sociais"
+                data-track-label="facebook"
               >
                 <CardCSM variant="default" className="hover:border-csm-blue cursor-pointer">
                   <CardCsmContent className="p-5 flex items-center gap-4">
@@ -541,6 +556,9 @@ export default function ContatoPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
+                data-track="whatsapp_click"
+                data-track-location="redes-sociais"
+                data-track-label="contato"
               >
                 <CardCSM variant="default" className="hover:border-csm-blue cursor-pointer">
                   <CardCsmContent className="p-5 flex items-center gap-4">
@@ -569,6 +587,9 @@ export default function ContatoPage() {
                     variant="primary"
                     size="md"
                     onClick={() => window.open(social.googleMaps, '_blank')}
+                    data-track="tracar_rota_click"
+                    data-track-location="mapa"
+                    data-track-label="contato"
                   >
                     <MapPin className="w-4 h-4" />
                     Abrir no Google Maps
@@ -624,6 +645,9 @@ export default function ContatoPage() {
                 variant="whatsapp"
                 size="md"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.info), '_blank')}
+                data-track="whatsapp_click"
+                data-track-location="faq"
+                data-track-label="contato"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 Falar pelo WhatsApp
@@ -632,6 +656,9 @@ export default function ContatoPage() {
                 variant="primary"
                 size="md"
                 onClick={() => window.location.href = urls.phoneCall}
+                data-track="ligar_click"
+                data-track-location="faq"
+                data-track-label="contato"
               >
                 <Phone className="w-5 h-5" />
                 Ligar Agora

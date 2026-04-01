@@ -24,19 +24,23 @@ export default function CTASection() {
 
             {/* Right Content - CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <ButtonCSM 
+              <ButtonCSM
                 variant="whatsapp"
                 size="lg"
                 className="flex-1"
+                data-track="whatsapp_click"
+                data-track-location="cta-section"
                 onClick={() => window.open(urls.whatsappWithMessage(whatsappMessages.emergency), '_blank')}
               >
                 <FaWhatsapp className="w-5 h-5" />
                 WhatsApp
               </ButtonCSM>
-              <ButtonCSM 
+              <ButtonCSM
                 variant="secondary"
                 size="lg"
                 className="flex-1"
+                data-track="ligar_click"
+                data-track-location="cta-section"
                 onClick={() => window.open(urls.phoneCall, '_self')}
               >
                 <Phone className="w-5 h-5" />

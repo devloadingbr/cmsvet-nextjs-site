@@ -186,13 +186,13 @@ export default function ConveniosPageContent() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href={urls.whatsappWithMessage(whatsappMessages.appointment)}>
+                <a href={urls.whatsappWithMessage(whatsappMessages.appointment)} data-track="whatsapp_click" data-track-location="hero" data-track-label="convenios">
                   <ButtonCSM variant="urgency" size="lg">
                     <FaWhatsapp className="w-5 h-5" />
                     AGENDAR PELO WHATSAPP
                   </ButtonCSM>
                 </a>
-                <a href={urls.phoneCall}>
+                <a href={urls.phoneCall} data-track="ligar_click" data-track-location="hero" data-track-label="convenios">
                   <ButtonCSM variant="secondary" size="lg">
                     <Phone className="w-5 h-5" />
                     {contact.phone.primary}
@@ -435,13 +435,13 @@ export default function ConveniosPageContent() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-              <a href={urls.whatsappWithMessage(whatsappMessages.appointment)}>
+              <a href={urls.whatsappWithMessage(whatsappMessages.appointment)} data-track="whatsapp_click" data-track-location="cta-final" data-track-label="convenios">
                 <ButtonCSM variant="whatsapp" size="lg">
                   <FaWhatsapp className="w-5 h-5" />
                   WHATSAPP
                 </ButtonCSM>
               </a>
-              <a href={urls.phoneCall}>
+              <a href={urls.phoneCall} data-track="ligar_click" data-track-location="cta-final" data-track-label="convenios">
                 <ButtonCSM
                   variant="secondary"
                   size="lg"
