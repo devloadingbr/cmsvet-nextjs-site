@@ -217,7 +217,7 @@ Utilizamos a biblioteca shadcn/ui para consistência e acessibilidade:
 ```bash
 # Clone o repositório
 git clone [url-do-repositorio]
-cd cmsvet-nextjs-site
+cd csmvet-site
 
 # Instale as dependências
 npm install

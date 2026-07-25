@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "cmsvet-nextjs-site",
+  "name": "csmvet-site",
   "alias": ["csmclinicaveterinaria.com.br", "www.csmclinicaveterinaria.com.br"],
   "regions": ["gru1"],
   "framework": "nextjs",
